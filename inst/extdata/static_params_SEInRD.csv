@@ -1,0 +1,10 @@
+param,value
+Npop,56550138
+EI_trans_rate,0.125
+IN_trans_rate,0.25
+NR_trans_prob,0.99
+NR_trans_rate,0.047596153846154
+ND_trans_prob,0.01
+ND_trans_rate,0.000480769230769
+r_t,0.25
+
