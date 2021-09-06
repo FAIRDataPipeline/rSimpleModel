@@ -1,9 +1,9 @@
-#' SimpleModel
+#' rSimpleModel
 #'
 #' Simple Model
 #'
-#' @name SimpleModel-package
-#' @aliases SimpleModel
+#' @name rSimpleModel-package
+#' @aliases rSimpleModel
 #' @docType package
 #'
 #' @import dplyr

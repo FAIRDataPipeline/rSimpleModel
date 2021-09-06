@@ -1,4 +1,4 @@
-Package: SimpleModel
+Package: rSimpleModel
 Title: SimpleModel
 Version: 0.26.2
 Authors@R: c(person("Sonia", "Mitchell", email = "sonia.mitchell@glasgow.ac.uk",
