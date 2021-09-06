@@ -56,7 +56,8 @@ jobs:
           poetry install
           source .venv/bin/activate
           cd ${{ github.workspace }}
-          fair init --using sonia.yaml
+          fair init --ci
+          fair init --export ci.yaml
 
       - name: Install R API system requirements (macOS-latest)
         if: runner.os == 'macOS'
