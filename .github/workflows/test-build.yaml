@@ -1,0 +1,91 @@
+on:
+  push:
+    branches:
+      - '*'
+#  pull_request:
+#    branches:
+#      - master
+
+jobs:
+  R-CMD-check:
+    runs-on: ${{ matrix.config.os }}
+    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {os: macOS-latest, r: 'release'}
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: r-lib/actions/setup-pandoc@master
+      - uses: r-lib/actions/setup-r@v1
+        with:
+          r-version: ${{ matrix.config.r }}
+          http-user-agent: ${{ matrix.config.http-user-agent }}
+          use-public-rspm: true
+      - uses: r-lib/actions/setup-r-dependencies@v1
+        with:
+          extra-packages: |
+            rcmdcheck
+            remotes
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install local registry
+        run: /bin/bash -c "$(curl -fsSL https://data.scrc.uk/static/localregistry.sh)"
+      - name: Checkout FAIRDataPipeline/FAIR-CLI
+        uses: actions/checkout@v2
+        with:
+          repository: FAIRDataPipeline/FAIR-CLI
+          path: FAIR-CLI
+      - name: Move FAIR-CLI
+        run: mv FAIR-CLI ../FAIR-CLI
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+
+      - name: Install and initialise FAIR CLI
+        run: |
+          cd ../FAIR-CLI
+          poetry install
+          source .venv/bin/activate
+          cd ${{ github.workspace }}
+          fair init --using sonia.yaml
+
+      - name: Install R API system requirements (macOS-latest)
+        if: runner.os == 'macOS'
+        run : |
+              rm '/usr/local/bin/gfortran'
+              brew install hdf5
+              brew install gdal
+      - name: Install R API system requirements (ubuntu-20.04)
+        if: matrix.config.os == 'ubuntu-20.04'
+        run: |
+          while read -r cmd
+          do
+            eval sudo $cmd
+          done < <(Rscript -e 'cat(remotes::system_requirements("ubuntu", "20.04"), sep = "\n")')
+
+      - name: Check
+        env:
+          _R_CHECK_CRAN_INCOMING_: false
+        run: |
+          options(crayon.enabled = TRUE)
+          rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check")
+        shell: Rscript {0}
+      - name: Show testthat output
+        if: always()
+        run: find check -name 'testthat.Rout*' -exec cat '{}' \; || true
+        shell: bash
+      - name: Upload check results
+        if: failure()
+        uses: actions/upload-artifact@main
+        with:
+          name: ${{ runner.os }}-r${{ matrix.config.r }}-results
+          path: check
