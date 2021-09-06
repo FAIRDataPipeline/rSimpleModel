@@ -91,17 +91,19 @@ fair pull config.yaml
 ```
 
 ```{r, include = FALSE}
-namespace <- "sonia"
 config_file <- file.path(here(), "config.yaml")
 data_static <- "disease/sars_cov2/simple_model/parameters/static_params"
 data_rts <- "disease/sars_cov2/simple_model/parameters/rts"
 data_efoi <- "disease/sars_cov2/simple_model/parameters/efoi"
 
+init <- configr::read.config(file = file.path(here::here(), "ci.yaml"))
+
 create_config(path = config_file,
               description = "Simple Model",
-              input_namespace = namespace,
-              output_namespace = namespace,
-              write_data_store = "/Users/Soniam/.fair/data",
+              input_namespace = init$namespaces$input,
+              output_namespace = init$namespaces$output,
+              write_data_store = init$registries$local$data_store,
+              local_repo = init$git$local_repo,
               force = TRUE)
 add_write(path = config_file,
           data_product = data_static,
@@ -151,7 +153,37 @@ and any data products registered by `fair pull` are made available to read by
 the current code run. 
 
 ```{r, include=FALSE}
-fair_run(path = file.path(here(), "inst/extdata/config2.yaml"), skip = TRUE)
+config_file <- file.path(here(), "config2.yaml")
+data_static <- "disease/sars_cov2/simple_model/parameters/static_params"
+data_rts <- "disease/sars_cov2/simple_model/parameters/rts"
+data_efoi <- "disease/sars_cov2/simple_model/parameters/efoi"
+results_dp <- "disease/sars_cov2/simple_model/results/model_output"
+figure_dp <- "disease/sars_cov2/simple_model/results/figure"
+init <- configr::read.config(file = file.path(here::here(), "ci.yaml"))
+
+create_config(path = config_file,
+              description = "Simple Model",
+              input_namespace = init$namespaces$input,
+              output_namespace = init$namespaces$output,
+              write_data_store = init$registries$local$data_store,
+              local_repo = init$git$local_repo,
+              force = TRUE)
+add_read(path = config_file,
+         data_product = data_static)
+add_read(path = config_file,
+         data_product = data_rts)
+add_read(path = config_file,
+         data_product = data_efoi)
+add_write(path = config_file,
+          data_product = results_dp,
+          description = "SEINRD model results",
+          file_type = "csv")
+add_write(path = config_file,
+          data_product = figure_dp,
+          description = "SEINRD output plot",
+          file_type = "pdf")
+
+fair_run(path = config_file, skip = TRUE)
 ```
 
 ```{python, eval=FALSE}
