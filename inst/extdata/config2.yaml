@@ -4,7 +4,7 @@ run_metadata:
   remote_data_registry_url: https://data.scrc.uk/api/
   default_input_namespace: sonia
   default_output_namespace: sonia
-  write_data_store: /Users/Soniam/.fair/data
+#  write_data_store: /Users/Soniam/.fair/data
   local_repo: /Users/Soniam/Desktop/git/FAIRDataPipeline/SimpleModel
   script: |-
     R -f vignettes/SEINRD_1.R {CONFIG_DIR}
