@@ -1,0 +1,5 @@
+title: RPiR
+url: https://fairdatapipeline.github.io/rSimpleModel/
+template:
+  params:
+    bootswatch: cerulean
