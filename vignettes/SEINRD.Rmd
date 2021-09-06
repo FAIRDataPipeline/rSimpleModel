@@ -220,7 +220,7 @@ efoi_params <- link_read(handle, "disease/sars_cov2/simple_model/parameters/efoi
 data <- initialise_model(rts_params, efoi_params, static_params)
 results <- ode(y = data$init_state, 
                times = data$time_length, 
-               func = SimpleModel::model, 
+               func = rSimpleModel::model, 
                parms = data$pars)
 g <- plot_results(results)
 
