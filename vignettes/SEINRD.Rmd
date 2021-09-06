@@ -17,7 +17,7 @@ here::i_am(path = "vignettes/SEINRD.Rmd")
 ```
 
 ```{r setup, include = FALSE}
-library(SimpleModel)
+library(rSimpleModel)
 library(rDataPipeline)
 library(dplyr)
 library(RCurl)
