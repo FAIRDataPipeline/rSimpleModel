@@ -1,0 +1,30 @@
+Package: rSimpleModel
+Title: SimpleModel
+Version: 0.26.2
+Authors@R: c(person("Sonia", "Mitchell", email = "sonia.mitchell@glasgow.ac.uk",
+                  role = c("cre", "aut"), comment = c(ORCID = "0000-0003-1536-2066")))
+Description: SimpleModel
+License: GPL-3
+Imports:
+    dplyr,
+    ggplot2,
+    RCurl,
+    deSolve,
+    here,
+    rDataPipeline,
+    reticulate
+Suggests:
+    rmarkdown,
+    knitr,
+    testthat
+Remotes:
+    FAIRDataPipeline/rDataPipeline
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+URL: https://fairdatapipeline.github.io/SimpleModel, https://github.com/FAIRDataPipeline/SimpleModel
+BugReports: https://github.com/FAIRDataPipeline/SimpleModel/issues
+VignetteBuilder: knitr
+Depends: 
+    R (>= 2.10)
