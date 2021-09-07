@@ -12,8 +12,6 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-
-here::i_am(path = "vignettes/SEINRD.Rmd")
 ```
 
 ```{r setup, include = FALSE}
@@ -24,6 +22,9 @@ library(RCurl)
 library(deSolve)
 library(ggplot2)
 library(here)
+
+here::i_am(path = "vignettes/SEINRD.Rmd")
+
 # setwd("/Users/Soniam/Desktop/git/FAIRDataPipeline/FAIR-CLI")
 # system2("/Users/Soniam/.poetry/bin/poetry", "install", 
 #         stdout = TRUE)
