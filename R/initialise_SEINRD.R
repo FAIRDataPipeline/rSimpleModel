@@ -1,4 +1,4 @@
-#' initialise_model
+#' initialise_SEINRD
 #'
 #' @param rts_params rts_params
 #' @param efoi_params efoi_params
@@ -6,7 +6,7 @@
 #'
 #' @export
 #'
-initialise_model <- function(rts_params, efoi_params, static_params) {
+initialise_SEINRD <- function(rts_params, efoi_params, static_params) {
   # Take the Rt data and fit a linear interpolation
   Rt_interp <- approxfun(x = rts_params$time, y = rts_params$Rt_value,
                          method = "constant", rule = 2)

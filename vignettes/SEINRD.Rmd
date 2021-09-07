@@ -1,8 +1,8 @@
 ---
-title: "Simple SEINRD Model Example"
+title: "SEINRD Model Example"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Simple SEINRD Model Example}
+  %\VignetteIndexEntry{SEINRD Model Example}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -12,8 +12,6 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-
-here::i_am(path = "vignettes/SEINRD.Rmd")
 ```
 
 ```{r setup, include = FALSE}
@@ -24,6 +22,9 @@ library(RCurl)
 library(deSolve)
 library(ggplot2)
 library(here)
+
+here::i_am(path = "vignettes/SEINRD.Rmd")
+
 # setwd("/Users/Soniam/Desktop/git/FAIRDataPipeline/FAIR-CLI")
 # system2("/Users/Soniam/.poetry/bin/poetry", "install", 
 #         stdout = TRUE)
@@ -31,11 +32,11 @@ library(here)
 #         stdout = TRUE)
 
 # Static parameters of the model
-static_params <- getURL("https://raw.githubusercontent.com/FAIRDataPipeline/SimpleModel/main/inst/extdata/static_params_SEInRD.csv") %>% read.csv(text = .)
+static_params <- getURL("https://raw.githubusercontent.com/FAIRDataPipeline/rSimpleModel/main/inst/extdata/static_params_SEInRD.csv") %>% read.csv(text = .)
 # Values of Rt at various times
-rts_params <- getURL("https://raw.githubusercontent.com/FAIRDataPipeline/SimpleModel/main/inst/extdata/Rt_beep.csv") %>% read.csv(text = .)
+rts_params <- getURL("https://raw.githubusercontent.com/FAIRDataPipeline/rSimpleModel/main/inst/extdata/Rt_beep.csv") %>% read.csv(text = .)
 # Values of efoi at various times
-efoi_params <- getURL("https://raw.githubusercontent.com/FAIRDataPipeline/SimpleModel/main/inst/extdata/efoi_all_dates.csv") %>% read.csv(text = .)
+efoi_params <- getURL("https://raw.githubusercontent.com/FAIRDataPipeline/rSimpleModel/main/inst/extdata/efoi_all_dates.csv") %>% read.csv(text = .)
 ```
 
 ## *config.yaml* file
@@ -44,9 +45,9 @@ The user should write a *config.yaml* file containing information pertaining to
 the data products used in the code run. The example *config.yaml* file below 
 describes a code run with inputs:
 
-* `disease/sars_cov2/simple_model/parameters/static_params`
-* `disease/sars_cov2/simple_model/parameters/rts`
-* `disease/sars_cov2/simple_model/parameters/efoi`
+* `disease/sars_cov2/SEINRD_model/parameters/static_params`
+* `disease/sars_cov2/SEINRD_model/parameters/rts`
+* `disease/sars_cov2/SEINRD_model/parameters/efoi`
 
 These inputs are listed in the `register` block, meaning that they should be 
 downloaded to the local data store from an external source, with associated
@@ -57,8 +58,8 @@ the data registry, inputs should be listed in the `read` block).
 A code run usually also has outputs, which are listed in the `write` block. In
 the example below, our outputs are:
 
-* disease/sars_cov2/simple_model/results/model_output
-* disease/sars_cov2/simple_model/results/figure
+* disease/sars_cov2/SEINRD_model/results/model_output
+* disease/sars_cov2/SEINRD_model/results/figure
 
 *config.yaml*:
 ```{r config, echo=FALSE, comment=''}
@@ -92,14 +93,14 @@ fair pull config.yaml
 
 ```{r, include = FALSE}
 config_file <- file.path(here(), "config.yaml")
-data_static <- "disease/sars_cov2/simple_model/parameters/static_params"
-data_rts <- "disease/sars_cov2/simple_model/parameters/rts"
-data_efoi <- "disease/sars_cov2/simple_model/parameters/efoi"
+data_static <- "disease/sars_cov2/SEINRD_model/parameters/static_params"
+data_rts <- "disease/sars_cov2/SEINRD_model/parameters/rts"
+data_efoi <- "disease/sars_cov2/SEINRD_model/parameters/efoi"
 
 init <- configr::read.config(file = file.path(here::here(), "ci.yaml"))
 
 create_config(path = config_file,
-              description = "Simple Model",
+              description = "SEINRD Model",
               input_namespace = init$namespaces$input,
               output_namespace = init$namespaces$output,
               write_data_store = init$registries$local$data_store,
@@ -139,9 +140,9 @@ finalise(handle)
 
 The local registry should now contain three data products: 
 
-1. `disease/sars_cov2/simple_model/parameters/static_params`,
-2. `disease/sars_cov2/simple_model/parameters/rts`, and 
-3. `disease/sars_cov2/simple_model/parameters/efoi`.
+1. `disease/sars_cov2/SEINRD_model/parameters/static_params`,
+2. `disease/sars_cov2/SEINRD_model/parameters/rts`, and 
+3. `disease/sars_cov2/SEINRD_model/parameters/efoi`.
 
 ## `fair run`
 
@@ -154,15 +155,15 @@ the current code run.
 
 ```{r, include=FALSE}
 config_file <- file.path(here(), "config2.yaml")
-data_static <- "disease/sars_cov2/simple_model/parameters/static_params"
-data_rts <- "disease/sars_cov2/simple_model/parameters/rts"
-data_efoi <- "disease/sars_cov2/simple_model/parameters/efoi"
-results_dp <- "disease/sars_cov2/simple_model/results/model_output"
-figure_dp <- "disease/sars_cov2/simple_model/results/figure"
+data_static <- "disease/sars_cov2/SEINRD_model/parameters/static_params"
+data_rts <- "disease/sars_cov2/SEINRD_model/parameters/rts"
+data_efoi <- "disease/sars_cov2/SEINRD_model/parameters/efoi"
+results_dp <- "disease/sars_cov2/SEINRD_model/results/model_output"
+figure_dp <- "disease/sars_cov2/SEINRD_model/results/figure"
 init <- configr::read.config(file = file.path(here::here(), "ci.yaml"))
 
 create_config(path = config_file,
-              description = "Simple Model",
+              description = "SEINRD Model",
               input_namespace = init$namespaces$input,
               output_namespace = init$namespaces$output,
               write_data_store = init$registries$local$data_store,
@@ -190,7 +191,7 @@ fair_run(path = config_file, skip = TRUE)
 fair run config.yaml
 ```
 
-## *Submission script*
+## *submission script*
 
 The submission script should call `initialise()` to set up the code run, 
 then perhaps read in some data using one of the `read_*()` functions (for 
@@ -209,26 +210,26 @@ script <- file.path(Sys.getenv("FDP_CONFIG_DIR"), "script.sh")
 handle <- initialise(config, script)
 
 # Read code run inputs
-static_params <- link_read(handle, "disease/sars_cov2/simple_model/parameters/static_params") %>% 
+static_params <- link_read(handle, "disease/sars_cov2/SEINRD_model/parameters/static_params") %>% 
   read.csv(row.names = 1)
-rts_params <- link_read(handle, "disease/sars_cov2/simple_model/parameters/rts") %>%
+rts_params <- link_read(handle, "disease/sars_cov2/SEINRD_model/parameters/rts") %>%
   read.csv(row.names = 1)
-efoi_params <- link_read(handle, "disease/sars_cov2/simple_model/parameters/efoi") %>%
+efoi_params <- link_read(handle, "disease/sars_cov2/SEINRD_model/parameters/efoi") %>%
   read.csv(row.names = 1)
 
 # Run the model
-data <- initialise_model(rts_params, efoi_params, static_params)
+data <- initialise_SEINRD(rts_params, efoi_params, static_params)
 results <- ode(y = data$init_state, 
                times = data$time_length, 
-               func = rSimpleModel::model, 
+               func = rSimpleModel::SEINRD_model, 
                parms = data$pars)
-g <- plot_results(results)
+g <- plot_SEINRD(results)
 
 # Save outputs to data store
-path <- link_write(handle, "disease/sars_cov2/simple_model/results/model_output") 
+path <- link_write(handle, "disease/sars_cov2/SEINRD_model/results/model_output") 
 write.csv(results, path)
 
-path <- link_write(handle, "disease/sars_cov2/simple_model/results/figure") 
+path <- link_write(handle, "disease/sars_cov2/SEINRD_model/results/figure") 
 ggsave(path, g)
 
 # Register code run in local registry

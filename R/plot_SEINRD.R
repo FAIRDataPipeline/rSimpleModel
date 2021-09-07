@@ -1,10 +1,10 @@
-#' plot_results
+#' plot_SEINRD
 #'
 #' @param results results
 #'
 #' @export
 #'
-plot_results <- function(results) {
+plot_SEINRD <- function(results) {
   ggplot2::ggplot(as.data.frame(results)) +
     ggplot2::geom_line(ggplot2::aes(x = time, y = S, color = "darkgreen")) +
     ggplot2::geom_line(ggplot2::aes(x = time, y = E, color = "yellow")) +

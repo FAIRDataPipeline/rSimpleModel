@@ -1,4 +1,4 @@
-#' model
+#' SEINRD_model
 #'
 #' @param time time
 #' @param state state
@@ -6,7 +6,7 @@
 #'
 #' @export
 #'
-model <- function(time, state, parms){
+SEINRD_model <- function(time, state, parms){
 
   # Take Rt data and fit a linear interpolation
   Rt_interp <- approxfun(x = rts_params$time, y = rts_params$Rt_value,
