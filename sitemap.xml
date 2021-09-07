@@ -7,15 +7,24 @@
     <loc>https://fairdatapipeline.github.io/rSimpleModel//reference/SEINRD_model.html</loc>
   </url>
   <url>
+    <loc>https://fairdatapipeline.github.io/rSimpleModel//reference/SEIRS_model.html</loc>
+  </url>
+  <url>
     <loc>https://fairdatapipeline.github.io/rSimpleModel//reference/initialise_SEINRD.html</loc>
   </url>
   <url>
     <loc>https://fairdatapipeline.github.io/rSimpleModel//reference/plot_SEINRD.html</loc>
   </url>
   <url>
+    <loc>https://fairdatapipeline.github.io/rSimpleModel//reference/plot_SEIRS.html</loc>
+  </url>
+  <url>
     <loc>https://fairdatapipeline.github.io/rSimpleModel//reference/rSimpleModel-package.html</loc>
   </url>
   <url>
     <loc>https://fairdatapipeline.github.io/rSimpleModel//articles/SEINRD.html</loc>
+  </url>
+  <url>
+    <loc>https://fairdatapipeline.github.io/rSimpleModel//articles/SEIRS.html</loc>
   </url>
 </urlset>
