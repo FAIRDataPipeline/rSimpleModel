@@ -10,8 +10,6 @@ plot_SEIRS <- function(results) {
     ggplot2::geom_line(ggplot2::aes(x = time, y = E, color = "yellow")) +
     ggplot2::geom_line(ggplot2::aes(x = time, y = I, color = "red")) +
     ggplot2::geom_line(ggplot2::aes(x = time, y = R, color = "blue")) +
-    ggplot2::geom_vline(xintercept = 82, linetype = "dashed") +
-    ggplot2::geom_vline(xintercept = 340, linetype = "dashed") +
     ggplot2::scale_color_identity(breaks = c("darkgreen", "yellow","red","blue","black"),
                                   labels = c("S","E","I","R","D"), guide = "legend") +
     ggplot2::labs(color = ggplot2::element_blank()) +
