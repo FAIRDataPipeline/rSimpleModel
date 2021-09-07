@@ -190,7 +190,7 @@ fair_run(path = config_file, skip = TRUE)
 fair run config.yaml
 ```
 
-## *Submission script*
+## *submission script*
 
 The submission script should call `initialise()` to set up the code run, 
 then perhaps read in some data using one of the `read_*()` functions (for 
@@ -217,12 +217,12 @@ efoi_params <- link_read(handle, "disease/sars_cov2/simple_model/parameters/efoi
   read.csv(row.names = 1)
 
 # Run the model
-data <- initialise_model(rts_params, efoi_params, static_params)
+data <- initialise_SEINRD(rts_params, efoi_params, static_params)
 results <- ode(y = data$init_state, 
                times = data$time_length, 
-               func = rSimpleModel::model, 
+               func = rSimpleModel::SEINRD_model, 
                parms = data$pars)
-g <- plot_results(results)
+g <- plot_SEINRD(results)
 
 # Save outputs to data store
 path <- link_write(handle, "disease/sars_cov2/simple_model/results/model_output") 
