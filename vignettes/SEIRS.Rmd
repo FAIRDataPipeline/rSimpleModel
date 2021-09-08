@@ -12,8 +12,6 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-
-
 ```
 
 ```{r setup, include = FALSE}
@@ -193,6 +191,7 @@ results <- SEIRS_model(S = 0.999,
                        I = 0, 
                        R = 0, 
                        timesteps = 1000,
+                       years = 5,
                        alpha = filter(static_params, param == "alpha")$value, 
                        beta = filter(static_params, param == "beta")$value, 
                        inv_gamma = filter(static_params, param == "inv_gamma")$value,
