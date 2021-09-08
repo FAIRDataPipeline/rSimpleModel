@@ -221,9 +221,11 @@ g
 ## Provenance report
 
 ```{r, echo=FALSE}
-get_provenance("disease/sars_cov2/SEIRS_model/results/figure",
-               "0.0.1",
-               "testing")
+tmp <- handle$outputs %>% 
+  dplyr::filter(data_product == "disease/sars_cov2/SEIRS_model/results/figure")
+get_provenance(tmp$data_product,
+               tmp$use_version,
+               tmp$use_namespace)
 ```
 
 
