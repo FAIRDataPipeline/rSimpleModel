@@ -30,7 +30,7 @@ jobs:
       - name: Install R API system requirements (ubuntu-20.04)
         if: matrix.config.os == 'ubuntu-20.04'
         run: |
-          yum install libgit-devel
+          sudo apt-get install -y libgit2-dev
           while read -r cmd
           do
             eval sudo $cmd
