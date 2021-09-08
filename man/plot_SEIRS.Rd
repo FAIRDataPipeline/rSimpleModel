@@ -7,7 +7,7 @@
 plot_SEIRS(results)
 }
 \arguments{
-\item{results}{results}
+\item{results}{SEIRS_model output}
 }
 \description{
 plot_SEIRS

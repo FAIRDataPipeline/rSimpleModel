@@ -1,6 +1,6 @@
 #' plot_SEIRS
 #'
-#' @param results results
+#' @param results SEIRS_model output
 #'
 #' @export
 #'

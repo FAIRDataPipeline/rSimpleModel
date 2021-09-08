@@ -133,9 +133,6 @@ the current code run.
 
 ```{r, include=FALSE}
 config_file <- file.path(here(), "config2.yaml")
-data_static <- "disease/sars_cov2/SEIRS_model/parameters/static_params"
-results_dp <- "disease/sars_cov2/SEIRS_model/results/model_output"
-figure_dp <- "disease/sars_cov2/SEIRS_model/results/figure"
 init <- configr::read.config(file = file.path(here::here(), "ci.yaml"))
 
 create_config(path = config_file,
@@ -146,14 +143,18 @@ create_config(path = config_file,
               local_repo = init$git$local_repo,
               force = TRUE)
 add_read(path = config_file,
-         data_product = data_static)
+         data_product = "disease/sars_cov2/SEIRS_model/parameters/static_params")
 add_write(path = config_file,
-          data_product = results_dp,
+          data_product = "disease/sars_cov2/SEIRS_model/results/model_output",
           description = "SEIRS model results",
           file_type = "csv")
 add_write(path = config_file,
-          data_product = figure_dp,
-          description = "SEIRS output plot",
+          data_product = "disease/sars_cov2/SEIRS_model/results/figure1",
+          description = "SEIRS output plot 1",
+          file_type = "pdf")
+add_write(path = config_file,
+          data_product = "disease/sars_cov2/SEIRS_model/results/figure2",
+          description = "SEIRS output plot 2",
           file_type = "pdf")
 
 fair_run(path = config_file, skip = TRUE)
@@ -199,13 +200,17 @@ results <- SEIRS_model(S = 0.999,
                        inv_mu = filter(static_params, param == "inv_mu")$value,
                        inv_sigma = filter(static_params, param == "inv_sigma")$value)
 
-g <- plot_SEIRS(results)
+g1 <- plot_SEIRS1(results)
+g2 <- plot_SEIRS2(results)
 
 # Save outputs to data store
 path <- link_write(handle, "disease/sars_cov2/SEIRS_model/results/model_output") 
 write.csv(results, path)
 
-path <- link_write(handle, "disease/sars_cov2/SEIRS_model/results/figure") 
+path <- link_write(handle, "disease/sars_cov2/SEIRS_model/results/figure1") 
+ggsave(path, g)
+
+path <- link_write(handle, "disease/sars_cov2/SEIRS_model/results/figure2") 
 ggsave(path, g)
 
 # Register code run in local registry
