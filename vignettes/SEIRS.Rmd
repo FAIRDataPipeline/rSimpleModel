@@ -22,6 +22,7 @@ library(RCurl)
 library(deSolve)
 library(ggplot2)
 library(here)
+library(gridExtra)
 
 here::i_am(path = "vignettes/SEIRS.Rmd")
 
@@ -149,12 +150,8 @@ add_write(path = config_file,
           description = "SEIRS model results",
           file_type = "csv")
 add_write(path = config_file,
-          data_product = "disease/sars_cov2/SEIRS_model/results/figure1",
-          description = "SEIRS output plot 1",
-          file_type = "pdf")
-add_write(path = config_file,
-          data_product = "disease/sars_cov2/SEIRS_model/results/figure2",
-          description = "SEIRS output plot 2",
+          data_product = "disease/sars_cov2/SEIRS_model/results/figure",
+          description = "SEIRS output plot",
           file_type = "pdf")
 
 fair_run(path = config_file, skip = TRUE)
@@ -200,23 +197,19 @@ results <- SEIRS_model(S = 0.999,
                        inv_mu = filter(static_params, param == "inv_mu")$value,
                        inv_sigma = filter(static_params, param == "inv_sigma")$value)
 
-g1 <- plot_SEIRS1(results)
-g2 <- plot_SEIRS2(results)
+g <- plot_SEIRS(results)
 
 # Save outputs to data store
 path <- link_write(handle, "disease/sars_cov2/SEIRS_model/results/model_output") 
 write.csv(results, path)
 
-path <- link_write(handle, "disease/sars_cov2/SEIRS_model/results/figure1") 
-ggsave(path, g)
-
-path <- link_write(handle, "disease/sars_cov2/SEIRS_model/results/figure2") 
+path <- link_write(handle, "disease/sars_cov2/SEIRS_model/results/figure") 
 ggsave(path, g)
 
 # Register code run in local registry
 finalise(handle)
 ```
 
-```{r, echo=FALSE, fig.height=4, fig.width=6}
+```{r, echo=FALSE, fig.height=4, fig.width=7}
 g
 ```
