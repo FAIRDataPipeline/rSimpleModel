@@ -5,21 +5,28 @@
 #' @param I Infectious individuals at time, t = 0
 #' @param R Recovered individuals at time, t = 0
 #' @param timesteps timesteps
-#' @param alpha alpha
-#' @param beta Contact rate
-#' @param inv_gamma Infectious period
-#' @param inv_omega Average protected period
-#' @param inv_mu inverse mu
-#' @param inv_sigma Latency period
+#' @param years years
+#' @param alpha Death rate
+#' @param beta Contact rate (per day)
+#' @param inv_gamma Infectious period (days)
+#' @param inv_omega Average protected period (years)
+#' @param inv_mu inverse mu (years)
+#' @param inv_sigma Latency period (days)
 #'
 #' @export
 #'
-SEIRS_model <- function(S, E, I, R, timesteps, alpha, beta,
+SEIRS_model <- function(S, E, I, R, timesteps, years, alpha, beta,
                         inv_gamma, inv_omega, inv_mu, inv_sigma) {
 
-  gamma <- 1 / inv_gamma
-  omega <- 1 / (inv_omega * 365)
-  mu <- 1 / (inv_mu * 365)
+  time_unit_years <- years / timesteps
+  time_unit_days <- time_unit_years * 365.25
+
+  # Convert parameters to days
+  alpha <- alpha * time_unit_days
+  beta <- beta * time_unit_days
+  gamma <- time_unit_days / inv_gamma
+  omega <- time_unit_days / (inv_omega * 365.25)
+  mu <- time_unit_days / (inv_mu * 365.25)
   sigma <- 1 / inv_sigma
 
   N <- S + E + I + R
@@ -28,7 +35,9 @@ SEIRS_model <- function(S, E, I, R, timesteps, alpha, beta,
   results <- as.data.frame(matrix(NA, nrow = timesteps + 1, ncol = 5))
   colnames(results) <- c("time", "S", "E", "I", "R")
   results[1,] <- c(0, S, E, I, R)
-  results$time <- 0:timesteps
+  results <- results %>%
+    dplyr::mutate(time = 0:timesteps) %>%
+    dplyr::mutate(time = time * time_unit_days)
 
   for (t in seq_len(timesteps)) {
 

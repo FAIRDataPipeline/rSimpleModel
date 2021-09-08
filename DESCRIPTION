@@ -7,12 +7,16 @@ Description: SimpleModel
 License: GPL-3
 Imports:
     dplyr,
+    configr,
     ggplot2,
+    grid,
+    gridExtra,
     RCurl,
     deSolve,
     here,
     rDataPipeline,
-    reticulate
+    reticulate,
+    tidyr
 Suggests:
     rmarkdown,
     knitr,

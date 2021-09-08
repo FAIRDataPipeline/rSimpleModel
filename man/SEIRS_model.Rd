@@ -10,6 +10,7 @@ SEIRS_model(
   I,
   R,
   timesteps,
+  years,
   alpha,
   beta,
   inv_gamma,
@@ -29,17 +30,19 @@ SEIRS_model(
 
 \item{timesteps}{timesteps}
 
-\item{alpha}{alpha}
+\item{years}{years}
 
-\item{beta}{Contact rate}
+\item{alpha}{Death rate}
 
-\item{inv_gamma}{Infectious period}
+\item{beta}{Contact rate (per day)}
 
-\item{inv_omega}{Average protected period}
+\item{inv_gamma}{Infectious period (days)}
 
-\item{inv_mu}{inverse mu}
+\item{inv_omega}{Average protected period (years)}
 
-\item{inv_sigma}{Latency period}
+\item{inv_mu}{inverse mu (years)}
+
+\item{inv_sigma}{Latency period (days)}
 }
 \description{
 SEIRS_model
