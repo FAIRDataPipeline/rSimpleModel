@@ -23,6 +23,10 @@ library(deSolve)
 library(ggplot2)
 library(here)
 library(gridExtra)
+library(XML)
+library(rsvg)
+library(httr)
+library(png)
 
 here::i_am(path = "vignettes/SEIRS.Rmd")
 
@@ -213,3 +217,26 @@ finalise(handle)
 ```{r, echo=FALSE, fig.height=4, fig.width=7}
 g
 ```
+
+
+```{r, echo=FALSE}
+api_url <- "http://localhost:8000/api/prov-report/113/?format=svg"
+svg <- httr::GET(api_url) %>%
+  httr::content(as = "text", encoding = "UTF-8") 
+xml <- XML::xmlParse(svg, asText = TRUE)
+xml_file <- file.path(here(), "text.xml")
+XML::saveXML(xml, file = xml_file)
+png_file <- file.path(here(), "out.png")
+rsvg::rsvg_png(xml_file, png_file)
+f <- function(img) {
+  img <- png::readPNG(img)
+  plot.new()
+  plot.window(0:1, 0:1, asp = 1)
+  rasterImage(img, 0, 0, 1, 1)
+}
+f(png_file)
+```
+
+
+
+

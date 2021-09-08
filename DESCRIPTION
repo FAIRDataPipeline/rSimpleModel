@@ -6,17 +6,21 @@ Authors@R: c(person("Sonia", "Mitchell", email = "sonia.mitchell@glasgow.ac.uk",
 Description: SimpleModel
 License: GPL-3
 Imports:
-    dplyr,
     configr,
+    deSolve,
+    dplyr,
     ggplot2,
     grid,
     gridExtra,
-    RCurl,
-    deSolve,
     here,
+    httr,
+    png,
+    RCurl,
     rDataPipeline,
     reticulate,
-    tidyr
+    rsvg,
+    tidyr,
+    XML
 Suggests:
     rmarkdown,
     knitr,
