@@ -27,6 +27,14 @@ jobs:
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
+      - name: Install R API system requirements (ubuntu-20.04)
+        if: matrix.config.os == 'ubuntu-20.04'
+        run: |
+          yum install libgit-devel
+          while read -r cmd
+          do
+            eval sudo $cmd
+          done < <(Rscript -e 'cat(remotes::system_requirements("ubuntu", "20.04"), sep = "\n")')
       - uses: r-lib/actions/setup-r-dependencies@v1
         with:
           extra-packages: |
@@ -61,16 +69,6 @@ jobs:
           cd ${{ github.workspace }}
           fair init --ci
           fair init --export ci.yaml
-
-      - name: Install R API system requirements (ubuntu-20.04)
-        if: matrix.config.os == 'ubuntu-20.04'
-        run: |
-          sudo apt update
-          sudo apt install libgit2-dev
-          while read -r cmd
-          do
-            eval sudo $cmd
-          done < <(Rscript -e 'cat(remotes::system_requirements("ubuntu", "20.04"), sep = "\n")')
 
       - name: Check
         env:
