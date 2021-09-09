@@ -21,12 +21,12 @@ Imports:
     rsvg,
     tidyr,
     XML,
-    assertthat
+    assertthat,
+    magick
 Suggests:
     rmarkdown,
     knitr,
-    testthat,
-    magick
+    testthat
 Remotes:
     FAIRDataPipeline/rDataPipeline
 Encoding: UTF-8
