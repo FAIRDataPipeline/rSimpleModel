@@ -22,5 +22,6 @@
 #' @rawNamespace import(tidyr, except = complete)
 #' @import XML
 #' @import assertthat
+#' @import magick
 #'
 NULL

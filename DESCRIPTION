@@ -25,7 +25,8 @@ Imports:
 Suggests:
     rmarkdown,
     knitr,
-    testthat
+    testthat,
+    magick
 Remotes:
     FAIRDataPipeline/rDataPipeline
 Encoding: UTF-8

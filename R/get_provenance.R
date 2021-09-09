@@ -3,11 +3,15 @@
 #' @param data_product data_product
 #' @param version version
 #' @param namespace namespace
+#' @param attributes attributes
 #' @param endpoint endpoint
 #'
 #' @export
 #'
-get_provenance <- function(data_product, version, namespace,
+get_provenance <- function(data_product,
+                           version,
+                           namespace,
+                           attributes = FALSE,
                            endpoint = "http://localhost:8000/api/") {
 
   # Get provenance URL
@@ -26,6 +30,8 @@ get_provenance <- function(data_product, version, namespace,
   assertthat::assert_that(length(dp_entry) == 1)
   prov_url <- dp_entry[[1]]$prov_report
   api_url <- paste0(prov_url, "?format=svg")
+  if (!attributes)
+    api_url <- paste0(api_url, "&attributes=False")
 
   key <- readLines(file.path("~", ".fair", "registry", "token"))
   h <- c(Authorization = paste("token", key))
@@ -45,15 +51,11 @@ get_provenance <- function(data_product, version, namespace,
   xml_file <- tempfile(fileext = ".xml")
   XML::saveXML(xml, xml_file)
 
-  # Generate and display png
+  # convert directly into a png format
   png_file <- tempfile(fileext = ".png")
   rsvg::rsvg_png(xml_file, png_file)
-  display_png(png_file)
-}
-
-display_png <- function(img) {
-  img <- png::readPNG(img)
-  plot.new()
-  plot.window(0:1, 0:1, asp = 1)
-  rasterImage(img, 0, 0, 1, 1)
+  # render into raw png array
+  png <- rsvg::rsvg(xml_file)
+  # read in png
+  magick::image_read(png)
 }

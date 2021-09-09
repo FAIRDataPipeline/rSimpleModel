@@ -8,6 +8,7 @@ get_provenance(
   data_product,
   version,
   namespace,
+  attributes = FALSE,
   endpoint = "http://localhost:8000/api/"
 )
 }
@@ -17,6 +18,8 @@ get_provenance(
 \item{version}{version}
 
 \item{namespace}{namespace}
+
+\item{attributes}{attributes}
 
 \item{endpoint}{endpoint}
 }
