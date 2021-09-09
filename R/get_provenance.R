@@ -16,11 +16,12 @@ get_provenance <- function(data_product, version, namespace,
                                               endpoint = endpoint)
   assertthat::assert_that(length(namespace_entry) == 1)
   namespace_url <- namespace_entry[[1]]$url
+  namespace_id <- gsub(paste0(endpoint, ".*/([0-9]*)/"), "\\1", namespace_url)
 
   dp_entry <- rDataPipeline::get_entry("data_product",
                                        list(name = data_product,
                                             version = version,
-                                            namespace = extract_id(namespace_url)),
+                                            namespace = namespace_id),
                                        endpoint = endpoint)
   assertthat::assert_that(length(dp_entry) == 1)
   prov_url <- dp_entry[[1]]$prov_report
