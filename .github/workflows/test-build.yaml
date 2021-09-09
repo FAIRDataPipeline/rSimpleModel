@@ -35,13 +35,6 @@ jobs:
               else
                   brew install graphviz
               fi
-      - uses: r-lib/actions/setup-r-dependencies@v1
-        with:
-          extra-packages: |
-            rcmdcheck
-            remotes
-            pkgdown
-          needs: website
       - name: Install R API system requirements (ubuntu-20.04)
         if: matrix.config.os == 'ubuntu-20.04'
         run: |
@@ -51,6 +44,13 @@ jobs:
           do
             eval sudo $cmd
           done < <(Rscript -e 'cat(remotes::system_requirements("ubuntu", "20.04"), sep = "\n")')
+      - uses: r-lib/actions/setup-r-dependencies@v1
+        with:
+          extra-packages: |
+            rcmdcheck
+            remotes
+            pkgdown
+          needs: website
 
       - uses: actions/setup-python@v2
         with:
