@@ -28,12 +28,13 @@ jobs:
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
-#      - name: Install R API system requirements (macOS-latest)
-#        if: runner.os == 'macOS'
-#        run : |
-#              rm '/usr/local/bin/gfortran'
-#              brew install hdf5
-#              brew install gdal
+      - name: Install graphviz on ubuntu
+        run:  |
+              if [ ${{ runner.os }} == "Linux" ]; then
+                  sudo apt-get install graphviz
+              else
+                  brew install graphviz
+              fi
       - name: Install R API system requirements (ubuntu-20.04)
         if: matrix.config.os == 'ubuntu-20.04'
         run: |
