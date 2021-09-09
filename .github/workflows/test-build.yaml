@@ -35,15 +35,8 @@ jobs:
               else
                   brew install graphviz
               fi
-      - name: Install R API system requirements (ubuntu-20.04)
-        if: matrix.config.os == 'ubuntu-20.04'
-        run: |
-          sudo apt-get install libmagick++-dev
-          sudo apt-get install -y libgit2-dev
-          while read -r cmd
-          do
-            eval sudo $cmd
-          done < <(Rscript -e 'cat(remotes::system_requirements("ubuntu", "20.04"), sep = "\n")')
+      - name: Install magick dependencies for Linux
+        run: sudo apt-get install libmagick++-dev
       - uses: r-lib/actions/setup-r-dependencies@v1
         with:
           extra-packages: |
@@ -51,6 +44,14 @@ jobs:
             remotes
             pkgdown
           needs: website
+      - name: Install R API system requirements (ubuntu-20.04)
+        if: matrix.config.os == 'ubuntu-20.04'
+        run: |
+          sudo apt-get install -y libgit2-dev
+          while read -r cmd
+          do
+            eval sudo $cmd
+          done < <(Rscript -e 'cat(remotes::system_requirements("ubuntu", "20.04"), sep = "\n")')
 
       - uses: actions/setup-python@v2
         with:
