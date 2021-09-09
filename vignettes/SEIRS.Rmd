@@ -222,7 +222,7 @@ g
 
 ```{r, echo=FALSE}
 tmp <- handle$outputs %>% 
-  dplyr::filter(data_product == "disease/sars_cov2/SEIRS_model/results/figure")
+  dplyr::filter(data_product == "disease/sars_cov2/SEIRS_model/results/model_output")
 get_provenance(tmp$data_product,
                tmp$use_version,
                tmp$use_namespace)
