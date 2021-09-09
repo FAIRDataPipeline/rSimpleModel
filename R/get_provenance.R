@@ -27,8 +27,12 @@ get_provenance <- function(data_product, version, namespace,
   prov_url <- dp_entry[[1]]$prov_report
   api_url <- paste0(prov_url, "?format=svg")
 
+  key <- get_token()
+  h <- c(Authorization = paste("token", key))
+
   # Get XML
-  response <- httr::GET(api_url)
+  response <- httr::GET(api_url,
+                        httr::add_headers(.headers = h))
   svg <- httr::content(response, as = "text", encoding = "UTF-8")
   if(!isXMLString(svg))
     stop(paste(response, "\n",
