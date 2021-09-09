@@ -27,7 +27,7 @@ get_provenance <- function(data_product, version, namespace,
   prov_url <- dp_entry[[1]]$prov_report
   api_url <- paste0(prov_url, "?format=svg")
 
-  key <- get_token()
+  key <- readLines(file.path("~", ".fair", "registry", "token"))
   h <- c(Authorization = paste("token", key))
 
   # Get XML
