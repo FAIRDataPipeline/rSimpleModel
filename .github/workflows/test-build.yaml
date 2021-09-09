@@ -45,6 +45,7 @@ jobs:
       - name: Install R API system requirements (ubuntu-20.04)
         if: matrix.config.os == 'ubuntu-20.04'
         run: |
+          sudo apt-get install libmagick++-dev
           sudo apt-get install -y libgit2-dev
           while read -r cmd
           do
