@@ -35,8 +35,8 @@ jobs:
               else
                   brew install graphviz
               fi
-      - name: Install magick dependencies for Linux
-        run: sudo apt-get install libmagick++-dev
+      - name: git2r dependencies
+        run: sudo apt-get install -y libgit2-dev
       - uses: r-lib/actions/setup-r-dependencies@v1
         with:
           extra-packages: |
@@ -47,7 +47,6 @@ jobs:
       - name: Install R API system requirements (ubuntu-20.04)
         if: matrix.config.os == 'ubuntu-20.04'
         run: |
-          sudo apt-get install -y libgit2-dev
           while read -r cmd
           do
             eval sudo $cmd
