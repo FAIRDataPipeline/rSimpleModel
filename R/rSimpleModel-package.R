@@ -21,5 +21,6 @@
 #' @import rsvg
 #' @rawNamespace import(tidyr, except = complete)
 #' @import XML
+#' @import assertthat
 #'
 NULL

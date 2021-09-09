@@ -20,7 +20,8 @@ Imports:
     reticulate,
     rsvg,
     tidyr,
-    XML
+    XML,
+    assertthat
 Suggests:
     rmarkdown,
     knitr,

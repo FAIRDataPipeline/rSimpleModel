@@ -2,11 +2,13 @@
 
 export(SEINRD_model)
 export(SEIRS_model)
+export(get_provenance)
 export(initialise_SEINRD)
 export(plot_SEINRD)
 export(plot_SEIRS)
 import(RCurl)
 import(XML)
+import(assertthat)
 import(configr)
 import(deSolve)
 import(dplyr)
