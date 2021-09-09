@@ -11,16 +11,17 @@ get_provenance <- function(data_product, version, namespace,
                            endpoint = "http://localhost:8000/api/") {
 
   # Get provenance URL
-  namespace_entry <- get_entry("namespace", list(name = namespace),
-                               endpoint = endpoint)
+  namespace_entry <- rDataPipeline::get_entry("namespace",
+                                              list(name = namespace),
+                                              endpoint = endpoint)
   assertthat::assert_that(length(namespace_entry) == 1)
   namespace_url <- namespace_entry[[1]]$url
 
-  dp_entry <- get_entry("data_product",
-                        list(name = data_product,
-                             version = version,
-                             namespace = extract_id(namespace_url)),
-                        endpoint = endpoint)
+  dp_entry <- rDataPipeline::get_entry("data_product",
+                                       list(name = data_product,
+                                            version = version,
+                                            namespace = extract_id(namespace_url)),
+                                       endpoint = endpoint)
   assertthat::assert_that(length(dp_entry) == 1)
   prov_url <- dp_entry[[1]]$prov_report
   api_url <- paste0(prov_url, "?format=svg")
