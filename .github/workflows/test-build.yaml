@@ -14,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: macOS-latest, r: 'release'}
+#          - {os: macOS-latest, r: 'release'}
           - {os: ubuntu-20.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
 
     env:
@@ -28,12 +28,12 @@ jobs:
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
-      - name: Install R API system requirements (macOS-latest)
-        if: runner.os == 'macOS'
-        run : |
-              rm '/usr/local/bin/gfortran'
-              brew install hdf5
-              brew install gdal
+#      - name: Install R API system requirements (macOS-latest)
+#        if: runner.os == 'macOS'
+#        run : |
+#              rm '/usr/local/bin/gfortran'
+#              brew install hdf5
+#              brew install gdal
       - name: Install R API system requirements (ubuntu-20.04)
         if: matrix.config.os == 'ubuntu-20.04'
         run: |
@@ -77,23 +77,23 @@ jobs:
           fair init --ci
           fair init --export ci.yaml
 
-      - name: Check
-        env:
-          _R_CHECK_CRAN_INCOMING_: false
-        run: |
-          options(crayon.enabled = TRUE)
-          rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check")
-        shell: Rscript {0}
-      - name: Show testthat output
-        if: always()
-        run: find check -name 'testthat.Rout*' -exec cat '{}' \; || true
-        shell: bash
-      - name: Upload check results
-        if: failure()
-        uses: actions/upload-artifact@main
-        with:
-          name: ${{ runner.os }}-r${{ matrix.config.r }}-results
-          path: check
+#      - name: Check
+#        env:
+#          _R_CHECK_CRAN_INCOMING_: false
+#        run: |
+#          options(crayon.enabled = TRUE)
+#          rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check")
+#        shell: Rscript {0}
+#      - name: Show testthat output
+#        if: always()
+#        run: find check -name 'testthat.Rout*' -exec cat '{}' \; || true
+#        shell: bash
+#      - name: Upload check results
+#        if: failure()
+#        uses: actions/upload-artifact@main
+#        with:
+#          name: ${{ runner.os }}-r${{ matrix.config.r }}-results
+#          path: check
 
       - name: Deploy package
         run: |
