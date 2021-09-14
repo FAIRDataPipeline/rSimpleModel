@@ -3,6 +3,7 @@
 #' @param data_product data_product
 #' @param version version
 #' @param namespace namespace
+#' @param width width
 #' @param attributes attributes
 #' @param endpoint endpoint
 #'
@@ -11,6 +12,7 @@
 get_provenance <- function(data_product,
                            version,
                            namespace,
+                           width = NULL,
                            attributes = FALSE,
                            endpoint = "http://localhost:8000/api/") {
 
@@ -55,7 +57,7 @@ get_provenance <- function(data_product,
   png_file <- tempfile(fileext = ".png")
   rsvg::rsvg_png(xml_file, png_file)
   # render into raw png array
-  png <- rsvg::rsvg(xml_file)
+  png <- rsvg::rsvg(xml_file, width = width)
   # read in png
   magick::image_read(png)
 }
