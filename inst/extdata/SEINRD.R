@@ -3,12 +3,6 @@ library(rDataPipeline)
 library(deSolve)
 library(ggplot2)
 
-data_static <- "disease/sars_cov2/SEINRD_model/parameters/static_params"
-data_rts <- "disease/sars_cov2/SEINRD_model/parameters/rts"
-data_efoi <- "disease/sars_cov2/SEINRD_model/parameters/efoi"
-results_dp <- "disease/sars_cov2/SEINRD_model/results/model_output"
-figure_dp <- "disease/sars_cov2/SEINRD_model/results/figure"
-
 # Initialise code run
 config <- file.path(Sys.getenv("FDP_CONFIG_DIR"), "config.yaml")
 script <- file.path(Sys.getenv("FDP_CONFIG_DIR"), "script.sh")

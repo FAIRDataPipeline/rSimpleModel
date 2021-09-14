@@ -16,12 +16,15 @@ knitr::opts_chunk$set(
 
 ```{r setup, include = FALSE}
 library(rSimpleModel)
+library(rDataPipeline)
+library(here)
 
-here::i_am(path = "vignettes/SEINRD.Rmd")
+i_am(path = "vignettes/SEINRD.Rmd")
 
 # Install fair CLI
 setwd(file.path(here(), "..", "FAIR-CLI"))
-poetry <- "/home/runner/.local/bin/poetry"
+poetry <- "/Users/Soniam/.poetry/bin/poetry"
+# poetry <- "/home/runner/.local/bin/poetry"
 system2(poetry, "install", stdout = TRUE)
 ```
 
@@ -74,7 +77,7 @@ the local data store whilst associated metadata is registered in the local
 registry.
 
 ```{python, eval=FALSE}
-fair pull SEINRD_model.yaml
+fair pull inst/extdata/SEINRD_model.yaml
 ```
 
 The local registry should now contain three data products: 
@@ -93,7 +96,7 @@ and any data products registered by `fair pull` are made available to read by
 the current code run. 
 
 ```{python, eval=FALSE}
-fair run SEINRD_model.yaml
+fair run inst/extdata/SEINRD_model.yaml
 ```
 
 ## *submission script*

@@ -1,11 +1,11 @@
 run_metadata:
   default_input_namespace: sonia
   description: SEIRS Model
-  script: R -f inst/extdata/SEIRS.R {CONFIG_DIR}
+  script: R -f inst/extdata/SEIRS.R ${{CONFIG_DIR}}
 
 register:
 - external_object: disease/sars_cov2/SEIRS_model/parameters/static_params
-  namespace_name: Pennsylvania State University
+  namespace_name: PSU
   namespace_full_name: Pennsylvania State University
   namespace_website: https://www.psu.edu
   root: https://raw.githubusercontent.com/
