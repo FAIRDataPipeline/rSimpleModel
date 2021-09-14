@@ -27,7 +27,9 @@ here::i_am(path = "vignettes/SEINRD.Rmd")
 
 # Install fair CLI
 setwd(file.path(here(), "..", "FAIR-CLI"))
-system2("/home/runner/.local/bin/poetry", "install", stdout = TRUE)
+poetry <- "/Users/Soniam/.poetry/bin/poetry"
+# poetry <- "/home/runner/.local/bin/poetry"
+system2(poetry, "install", stdout = TRUE)
 ```
 
 ```{r code-run, include = FALSE}
@@ -37,10 +39,10 @@ tmp <- tempfile(fileext = ".sh")
 cat(paste("#!/bin/sh\n",
           paste("cd", here(),"\n"),
           "fair init --ci\n",
-          "fair pull inst/extdata/SEINRD_model.yaml\n",
-          "fair run inst/extdata/SEINRD_model.yaml"), file = tmp)
+          "fair pull inst/extdata/SEINRDconfig.yaml\n",
+          "fair run inst/extdata/SEINRDconfig.yaml"), file = tmp)
 system2("chmod", paste("+x", tmp))
-system2("/home/runner/.local/bin/poetry", paste("run", tmp),
+system2(poetry, paste("run", tmp),
         stdout = TRUE)
 ```
 
@@ -68,7 +70,7 @@ the example below, our outputs are:
 
 *SEINRD_model.yaml*:
 ```{r config, echo=FALSE, comment=''}
-cat(readLines(file.path(here(), 'inst/extdata/SEINRD_model.yaml')), sep = '\n')
+cat(readLines(file.path(here(), 'inst/extdata/SEINRDconfig.yaml')), sep = '\n')
 ```
 
 ## `fair pull`
