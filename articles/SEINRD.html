@@ -173,7 +173,7 @@ write:
 <a href="#fair-pull" class="anchor"></a><code>fair pull</code>
 </h2>
 <p>Using the CLI tool, <code>fair pull</code> identifies any data products listed in the <code>register</code> field of the <em>config.yaml</em>. These data products are downloaded to the local data store whilst associated metadata is registered in the local registry.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>fair pull SEINRD_model.yaml</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>fair pull inst<span class="op">/</span>extdata<span class="op">/</span>SEINRD_model.yaml</span></code></pre></div>
 <p>The local registry should now contain three data products:</p>
 <ol style="list-style-type: decimal">
 <li>
@@ -189,7 +189,7 @@ write:
 <a href="#fair-run" class="anchor"></a><code>fair run</code>
 </h2>
 <p>Again using the CLI tool, <code>fair run</code> performs the code run, as written in the. submission script. In preparation for this, it translates the user-written <em>config.yaml</em> file for use by the Data Pipeline API. Any variables / wildcards specified by the user in the config file are cross referenced with the registry, and any data products registered by <code>fair pull</code> are made available to read by the current code run.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>fair run SEINRD_model.yaml</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>fair run inst<span class="op">/</span>extdata<span class="op">/</span>SEINRD_model.yaml</span></code></pre></div>
 </div>
 <div id="submission-script" class="section level2">
 <h2 class="hasAnchor">
@@ -200,16 +200,8 @@ write:
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://fairdatapipeline.github.io/SimpleModel">rSimpleModel</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://fairdatapipeline.github.io/rDataPipeline">rDataPipeline</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">RCurl</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://desolve.r-forge.r-project.org/">deSolve</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-
-<span class="va">data_static</span> <span class="op">&lt;-</span> <span class="st">"disease/sars_cov2/SEINRD_model/parameters/static_params"</span>
-<span class="va">data_rts</span> <span class="op">&lt;-</span> <span class="st">"disease/sars_cov2/SEINRD_model/parameters/rts"</span>
-<span class="va">data_efoi</span> <span class="op">&lt;-</span> <span class="st">"disease/sars_cov2/SEINRD_model/parameters/efoi"</span>
-<span class="va">results_dp</span> <span class="op">&lt;-</span> <span class="st">"disease/sars_cov2/SEINRD_model/results/model_output"</span>
-<span class="va">figure_dp</span> <span class="op">&lt;-</span> <span class="st">"disease/sars_cov2/SEINRD_model/results/figure"</span>
 
 <span class="co"># Initialise code run</span>
 <span class="va">config</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span><span class="op">(</span><span class="st">"FDP_CONFIG_DIR"</span><span class="op">)</span>, <span class="st">"config.yaml"</span><span class="op">)</span>
@@ -246,7 +238,7 @@ write:
 <div id="provenance-report" class="section level2">
 <h2 class="hasAnchor">
 <a href="#provenance-report" class="anchor"></a>Provenance report</h2>
-<p><img src="SEINRD_files/figure-html/unnamed-chunk-7-1.png" width="1160"></p>
+<p><img src="SEINRD_files/figure-html/unnamed-chunk-6-1.png" width="1160"></p>
 </div>
   </div>
 
