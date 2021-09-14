@@ -35,13 +35,12 @@ system2("/Users/Soniam/.poetry/bin/poetry", "install", stdout = TRUE)
 setwd(file.path(here(), "..", "FAIR-CLI"))
 tmp <- tempfile(fileext = ".sh")
 cat(paste("#!/bin/sh\n",
-          "cd /Users/Soniam/Desktop/git/FAIRDataPipeline/rSimpleModel/\n",
+          paste("cd", here(),"\n"),
           "fair init --ci\n",
           "fair pull inst/extdata/SEINRD_model.yaml\n",
           "fair run inst/extdata/SEINRD_model.yaml"), file = tmp)
 system2("chmod", paste("+x", tmp))
-
-system2("/Users/Soniam/.poetry/bin/poetry", paste("run", tmp),
+system2("/home/runner/.local/bin/poetry", paste("run", tmp),
         stdout = TRUE)
 ```
 
