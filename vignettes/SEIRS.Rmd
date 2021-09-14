@@ -23,6 +23,10 @@ library(deSolve)
 library(ggplot2)
 library(here)
 library(gridExtra)
+library(XML)
+library(rsvg)
+library(httr)
+library(png)
 
 here::i_am(path = "vignettes/SEIRS.Rmd")
 
@@ -213,3 +217,17 @@ finalise(handle)
 ```{r, echo=FALSE, fig.height=4, fig.width=7}
 g
 ```
+
+## Provenance report
+
+```{r, echo=FALSE}
+tmp <- handle$outputs %>% 
+  dplyr::filter(data_product == "disease/sars_cov2/SEIRS_model/results/model_output")
+get_provenance(tmp$data_product,
+               tmp$use_version,
+               tmp$use_namespace)
+```
+
+
+
+

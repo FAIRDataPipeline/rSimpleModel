@@ -25,18 +25,23 @@ library(here)
 
 here::i_am(path = "vignettes/SEINRD.Rmd")
 
-# setwd("/Users/Soniam/Desktop/git/FAIRDataPipeline/FAIR-CLI")
-# system2("/Users/Soniam/.poetry/bin/poetry", "install", 
-#         stdout = TRUE)
-# system2("/Users/Soniam/.poetry/bin/poetry", "init --ci", 
-#         stdout = TRUE)
+# Install fair CLI
+setwd(file.path(here(), "..", "FAIR-CLI"))
+system2("/home/runner/.local/bin/poetry", "install", stdout = TRUE)
+```
 
-# Static parameters of the model
-static_params <- getURL("https://raw.githubusercontent.com/FAIRDataPipeline/rSimpleModel/main/inst/extdata/static_params_SEInRD.csv") %>% read.csv(text = .)
-# Values of Rt at various times
-rts_params <- getURL("https://raw.githubusercontent.com/FAIRDataPipeline/rSimpleModel/main/inst/extdata/Rt_beep.csv") %>% read.csv(text = .)
-# Values of efoi at various times
-efoi_params <- getURL("https://raw.githubusercontent.com/FAIRDataPipeline/rSimpleModel/main/inst/extdata/efoi_all_dates.csv") %>% read.csv(text = .)
+```{r code-run, include = FALSE}
+# Run 
+setwd(file.path(here(), "..", "FAIR-CLI"))
+tmp <- tempfile(fileext = ".sh")
+cat(paste("#!/bin/sh\n",
+          paste("cd", here(),"\n"),
+          "fair init --ci\n",
+          "fair pull inst/extdata/SEINRD_model.yaml\n",
+          "fair run inst/extdata/SEINRD_model.yaml"), file = tmp)
+system2("chmod", paste("+x", tmp))
+system2("/home/runner/.local/bin/poetry", paste("run", tmp),
+        stdout = TRUE)
 ```
 
 ## *config.yaml* file
@@ -61,9 +66,9 @@ the example below, our outputs are:
 * disease/sars_cov2/SEINRD_model/results/model_output
 * disease/sars_cov2/SEINRD_model/results/figure
 
-*config.yaml*:
+*SEINRD_model.yaml*:
 ```{r config, echo=FALSE, comment=''}
-cat(readLines(file.path(here(), 'inst/extdata/config1.yaml')), sep = '\n')
+cat(readLines(file.path(here(), 'inst/extdata/SEINRD_model.yaml')), sep = '\n')
 ```
 
 ## `fair pull`
@@ -74,68 +79,7 @@ the local data store whilst associated metadata is registered in the local
 registry.
 
 ```{python, eval=FALSE}
-fair pull config.yaml
-```
-
-```{r, include = FALSE}
-# Run 
-# setwd("/Users/Soniam/Desktop/git/FAIRDataPipeline/FAIR-CLI")
-# tmp <- tempfile(fileext = ".sh")
-# cat(paste("#!/bin/sh\n", 
-#           "cd /Users/Soniam/Desktop/git/FAIRDataPipeline/SimpleModel/\n", 
-#           "fair pull inst/extdata/config1.yaml\n",
-#           "fair run --ci --debug inst/extdata/config1.yaml\n"), file = tmp)
-# system2("chmod", paste("+x", tmp))
-# 
-# system2("/Users/Soniam/.poetry/bin/poetry", paste("run", tmp), 
-#         stdout = TRUE)
-```
-
-```{r, include = FALSE}
-config_file <- file.path(here(), "config.yaml")
-data_static <- "disease/sars_cov2/SEINRD_model/parameters/static_params"
-data_rts <- "disease/sars_cov2/SEINRD_model/parameters/rts"
-data_efoi <- "disease/sars_cov2/SEINRD_model/parameters/efoi"
-
-init <- configr::read.config(file = file.path(here::here(), "ci.yaml"))
-
-create_config(path = config_file,
-              description = "SEINRD Model",
-              input_namespace = init$namespaces$input,
-              output_namespace = init$namespaces$output,
-              write_data_store = init$registries$local$data_store,
-              local_repo = init$git$local_repo,
-              force = TRUE)
-add_write(path = config_file,
-          data_product = data_static,
-          description = "Static parameters of the model",
-          file_type = "csv")
-add_write(path = config_file,
-          data_product = data_rts,
-          description = "Values of Rt at time t",
-          file_type = "csv")
-add_write(path = config_file,
-          data_product = data_efoi,
-          description = "Effective force of infection at time t",
-          file_type = "csv")
-
-fair_run(path = config_file, skip = TRUE)
-
-# Initialise code run
-config <- file.path(Sys.getenv("FDP_CONFIG_DIR"), "config.yaml")
-script <- file.path(Sys.getenv("FDP_CONFIG_DIR"), "script.sh")
-handle <- initialise(config, script)
-
-path <- link_write(handle, data_static)
-write.csv(static_params, path)
-
-path <- link_write(handle, data_rts)
-write.csv(rts_params, path)
-
-path <- link_write(handle, data_efoi)
-write.csv(efoi_params, path)
-
-finalise(handle)
+fair pull SEINRD_model.yaml
 ```
 
 The local registry should now contain three data products: 
@@ -153,42 +97,8 @@ specified by the user in the config file are cross referenced with the registry,
 and any data products registered by `fair pull` are made available to read by 
 the current code run. 
 
-```{r, include=FALSE}
-config_file <- file.path(here(), "config2.yaml")
-data_static <- "disease/sars_cov2/SEINRD_model/parameters/static_params"
-data_rts <- "disease/sars_cov2/SEINRD_model/parameters/rts"
-data_efoi <- "disease/sars_cov2/SEINRD_model/parameters/efoi"
-results_dp <- "disease/sars_cov2/SEINRD_model/results/model_output"
-figure_dp <- "disease/sars_cov2/SEINRD_model/results/figure"
-init <- configr::read.config(file = file.path(here::here(), "ci.yaml"))
-
-create_config(path = config_file,
-              description = "SEINRD Model",
-              input_namespace = init$namespaces$input,
-              output_namespace = init$namespaces$output,
-              write_data_store = init$registries$local$data_store,
-              local_repo = init$git$local_repo,
-              force = TRUE)
-add_read(path = config_file,
-         data_product = data_static)
-add_read(path = config_file,
-         data_product = data_rts)
-add_read(path = config_file,
-         data_product = data_efoi)
-add_write(path = config_file,
-          data_product = results_dp,
-          description = "SEINRD model results",
-          file_type = "csv")
-add_write(path = config_file,
-          data_product = figure_dp,
-          description = "SEINRD output plot",
-          file_type = "pdf")
-
-fair_run(path = config_file, skip = TRUE)
-```
-
 ```{python, eval=FALSE}
-fair run config.yaml
+fair run SEINRD_model.yaml
 ```
 
 ## *submission script*
@@ -202,40 +112,27 @@ via one of the `write_*()` functions or `link_write()`. When the code run is
 complete, `finalise()` should be called to register the all metadata with the
 local registry.
 
-*vignettes/SEINRD.R*:
-```{r, message=FALSE}
-# Initialise code run
-config <- file.path(Sys.getenv("FDP_CONFIG_DIR"), "config.yaml")
-script <- file.path(Sys.getenv("FDP_CONFIG_DIR"), "script.sh")
-handle <- initialise(config, script)
-
-# Read code run inputs
-static_params <- link_read(handle, "disease/sars_cov2/SEINRD_model/parameters/static_params") %>% 
-  read.csv(row.names = 1)
-rts_params <- link_read(handle, "disease/sars_cov2/SEINRD_model/parameters/rts") %>%
-  read.csv(row.names = 1)
-efoi_params <- link_read(handle, "disease/sars_cov2/SEINRD_model/parameters/efoi") %>%
-  read.csv(row.names = 1)
-
-# Run the model
-data <- initialise_SEINRD(rts_params, efoi_params, static_params)
-results <- ode(y = data$init_state, 
-               times = data$time_length, 
-               func = rSimpleModel::SEINRD_model, 
-               parms = data$pars)
-g <- plot_SEINRD(results)
-
-# Save outputs to data store
-path <- link_write(handle, "disease/sars_cov2/SEINRD_model/results/model_output") 
-write.csv(results, path)
-
-path <- link_write(handle, "disease/sars_cov2/SEINRD_model/results/figure") 
-ggsave(path, g)
-
-# Register code run in local registry
-finalise(handle)
+*SEINRD.R*:
+```{r, code = readLines(file.path(here(), "inst/extdata/SEINRD.R")), eval=FALSE}
 ```
 
 ```{r, echo=FALSE, fig.height=4, fig.width=6}
-g
+#g
+```
+
+## Outputs
+
+```{r, echo=FALSE}
+# path <- get_dataproduct(data_product = "disease/sars_cov2/SEINRD_model/results/figure",
+#                         version = "0.0.1",
+#                         namespace = "testing")
+# system2('open', args = path, wait = FALSE)
+```
+
+## Provenance report
+
+```{r, echo=FALSE}
+get_provenance(data_product = "disease/sars_cov2/SEINRD_model/results/model_output",
+               version = "0.0.1",
+               namespace = "testing")
 ```
