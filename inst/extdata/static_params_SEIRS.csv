@@ -1,8 +1,8 @@
-"","param","value"
-"1","alpha",0
-"2","beta",0.21
-"3","inv_gamma",14
-"4","inv_omega",1
-"5","inv_mu",76
-"6","inv_sigma",7
-"7","R0",3
+"param","value"
+"alpha",0
+"beta",0.21
+"inv_gamma",14
+"inv_omega",1
+"inv_mu",76
+"inv_sigma",7
+"R0",3
