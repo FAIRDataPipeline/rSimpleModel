@@ -16,8 +16,10 @@ knitr::opts_chunk$set(
 
 ```{r setup, include = FALSE}
 library(rSimpleModel)
+library(rDataPipeline)
+library(here)
 
-here::i_am(path = "vignettes/SEIRS.Rmd")
+i_am(path = "vignettes/SEIRS.Rmd")
 
 # Install fair CLI
 setwd(file.path(here(), "..", "FAIR-CLI"))
@@ -59,7 +61,7 @@ the example below, our outputs are:
 * disease/sars_cov2/SEIRS_model/results/model_output
 * disease/sars_cov2/SEIRS_model/results/figure
 
-*config.yaml*:
+*SEIRSconfig.yaml*:
 ```{r config, echo=FALSE, comment=''}
 cat(readLines(file.path(here(), 'inst/extdata/SEIRSconfig.yaml')), sep = '\n')
 ```
@@ -72,7 +74,7 @@ the local data store whilst associated metadata is registered in the local
 registry.
 
 ```{python, eval=FALSE}
-fair pull config.yaml
+fair pull inst/extdata/SEIRSconfig.yaml
 ```
 
 The local registry should now contain three data products: 
@@ -91,7 +93,7 @@ and any data products registered by `fair pull` are made available to read by
 the current code run. 
 
 ```{python, eval=FALSE}
-fair run config.yaml
+fair run inst/extdata/SEIRSconfig.yaml
 ```
 
 ## *submission script*
