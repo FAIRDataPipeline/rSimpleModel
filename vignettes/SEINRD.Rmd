@@ -27,8 +27,7 @@ here::i_am(path = "vignettes/SEINRD.Rmd")
 
 # Install fair CLI
 setwd(file.path(here(), "..", "FAIR-CLI"))
-poetry <- "/Users/Soniam/.poetry/bin/poetry"
-# poetry <- "/home/runner/.local/bin/poetry"
+poetry <- "/home/runner/.local/bin/poetry"
 system2(poetry, "install", stdout = TRUE)
 ```
 
