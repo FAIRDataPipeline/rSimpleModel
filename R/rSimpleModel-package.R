@@ -15,7 +15,6 @@
 #' @import here
 #' @import httr
 #' @import png
-#' @import RCurl
 #' @import rDataPipeline
 #' @import reticulate
 #' @import rsvg
