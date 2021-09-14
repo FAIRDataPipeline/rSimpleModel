@@ -107,7 +107,7 @@
 <li>disease/sars_cov2/SEINRD_model/results/model_output</li>
 <li>disease/sars_cov2/SEINRD_model/results/figure</li>
 </ul>
-<p><em>SEINRD_model.yaml</em>:</p>
+<p><em>SEINRDconfig.yaml</em>:</p>
 <pre><code>run_metadata:
   default_input_namespace: BioSS
   description: SEINRD_model
@@ -173,7 +173,7 @@ write:
 <a href="#fair-pull" class="anchor"></a><code>fair pull</code>
 </h2>
 <p>Using the CLI tool, <code>fair pull</code> identifies any data products listed in the <code>register</code> field of the <em>config.yaml</em>. These data products are downloaded to the local data store whilst associated metadata is registered in the local registry.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>fair pull inst<span class="op">/</span>extdata<span class="op">/</span>SEINRD_model.yaml</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>fair pull inst<span class="op">/</span>extdata<span class="op">/</span>SEINRDconfig.yaml</span></code></pre></div>
 <p>The local registry should now contain three data products:</p>
 <ol style="list-style-type: decimal">
 <li>
@@ -189,7 +189,7 @@ write:
 <a href="#fair-run" class="anchor"></a><code>fair run</code>
 </h2>
 <p>Again using the CLI tool, <code>fair run</code> performs the code run, as written in the. submission script. In preparation for this, it translates the user-written <em>config.yaml</em> file for use by the Data Pipeline API. Any variables / wildcards specified by the user in the config file are cross referenced with the registry, and any data products registered by <code>fair pull</code> are made available to read by the current code run.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>fair run inst<span class="op">/</span>extdata<span class="op">/</span>SEINRD_model.yaml</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>fair run inst<span class="op">/</span>extdata<span class="op">/</span>SEINRDconfig.yaml</span></code></pre></div>
 </div>
 <div id="submission-script" class="section level2">
 <h2 class="hasAnchor">
