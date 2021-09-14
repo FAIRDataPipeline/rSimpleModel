@@ -16,12 +16,6 @@ knitr::opts_chunk$set(
 
 ```{r setup, include = FALSE}
 library(rSimpleModel)
-library(rDataPipeline)
-library(dplyr)
-library(RCurl)
-library(deSolve)
-library(ggplot2)
-library(here)
 
 here::i_am(path = "vignettes/SEINRD.Rmd")
 
@@ -115,10 +109,6 @@ local registry.
 
 *SEINRD.R*:
 ```{r, code = readLines(file.path(here(), "inst/extdata/SEINRD.R")), eval=FALSE}
-```
-
-```{r, echo=FALSE, fig.height=4, fig.width=6}
-#g
 ```
 
 ## Outputs

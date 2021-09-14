@@ -1,13 +1,8 @@
 run_metadata:
-  description: SEIRS Model
-  local_data_registry_url: http://localhost:8000/api/
-  remote_data_registry_url: https://data.scrc.uk/api/
   default_input_namespace: sonia
-  default_output_namespace: sonia
-  write_data_store: /Users/Soniam/.fair/data
-  local_repo: /Users/Soniam/Desktop/git/FAIRDataPipeline/rSimpleModel
-  script: |-
-    R -f vignettes/SEIRS.R {CONFIG_DIR}
+  description: SEIRS Model
+  script: R -f inst/extdata/SEIRS.R {CONFIG_DIR}
+
 register:
 - external_object: disease/sars_cov2/SEIRS_model/parameters/static_params
   namespace_name: Pennsylvania State University
@@ -23,10 +18,12 @@ register:
   release_date: ${{DATETIME}}
   version: 0.${{DATE}}.0
   primary: True
+
 write:
 - data_product: disease/sars_cov2/SEIRS_model/results/model_output
   description: SEIRS model results
   file_type: csv
+
 - data_product: disease/sars_cov2/SEIRS_model/results/figure
   description: SEIRS output plot
   file_type: pdf
