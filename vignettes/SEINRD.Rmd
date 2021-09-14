@@ -63,7 +63,7 @@ the example below, our outputs are:
 * disease/sars_cov2/SEINRD_model/results/model_output
 * disease/sars_cov2/SEINRD_model/results/figure
 
-*SEINRD_model.yaml*:
+*SEINRDconfig.yaml*:
 ```{r config, echo=FALSE, comment=''}
 cat(readLines(file.path(here(), 'inst/extdata/SEINRDconfig.yaml')), sep = '\n')
 ```
@@ -76,7 +76,7 @@ the local data store whilst associated metadata is registered in the local
 registry.
 
 ```{python, eval=FALSE}
-fair pull inst/extdata/SEINRD_model.yaml
+fair pull inst/extdata/SEINRDconfig.yaml
 ```
 
 The local registry should now contain three data products: 
@@ -95,7 +95,7 @@ and any data products registered by `fair pull` are made available to read by
 the current code run. 
 
 ```{python, eval=FALSE}
-fair run inst/extdata/SEINRD_model.yaml
+fair run inst/extdata/SEINRDconfig.yaml
 ```
 
 ## *submission script*
