@@ -96,7 +96,7 @@ jobs:
 #        with:
 #          name: ${{ runner.os }}-r${{ matrix.config.r }}-results
 #          path: check
-      - name Install pdftools dependencies
+      - name: Install pdftools dependencies
         run: |
           sudo add-apt-repository -y ppa:cran/poppler
           sudo apt-get update
