@@ -76,7 +76,9 @@ the local data store whilst associated metadata is registered in the local
 registry.
 
 ```{bash}
-fair pull inst/extdata/SEINRDconfig.yaml
+fair init --ci
+ls
+fair pull ../inst/extdata/SEINRDconfig.yaml
 ```
 
 The local registry should now contain three data products: 
@@ -95,7 +97,7 @@ and any data products registered by `fair pull` are made available to read by
 the current code run. 
 
 ```{bash}
-fair run inst/extdata/SEINRDconfig.yaml
+fair run ../inst/extdata/SEINRDconfig.yaml
 ```
 
 ## *submission script*
