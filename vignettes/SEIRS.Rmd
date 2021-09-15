@@ -18,6 +18,8 @@ knitr::opts_chunk$set(
 library(rSimpleModel)
 library(rDataPipeline)
 library(here)
+library(magick)
+library(pdftools)
 
 i_am(path = "vignettes/SEIRS.Rmd")
 knitr::opts_knit$set(root.dir = here())
