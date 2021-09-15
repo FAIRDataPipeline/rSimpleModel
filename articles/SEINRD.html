@@ -167,6 +167,7 @@ write:
 - data_product: disease/sars_cov2/SEINRD_model/results/figure
   description: SEINRD output plot
   file_type: pdf</code></pre>
+<p>The submission script should call <code>initialise()</code> to set up the code run, then perhaps read in some data using one of the <code>read_*()</code> functions (for internal file formats) or <code>link_read()</code> (for external file formats such as csvs). The data might now be processed in some way, or a model / analysis might bw carried out, after which the results should be saved in the local data store via one of the <code>write_*()</code> functions or <code>link_write()</code>. When the code run is complete, <code>finalise()</code> should be called to register the all metadata with the local registry.</p>
 </div>
 <div id="fair-pull" class="section level2">
 <h2 class="hasAnchor">
@@ -196,7 +197,7 @@ write:
 <p>Again using the CLI tool, <code>fair run</code> performs the code run, as written in the. submission script. In preparation for this, it translates the user-written <em>config.yaml</em> file for use by the Data Pipeline API. Any variables / wildcards specified by the user in the config file are cross referenced with the registry, and any data products registered by <code>fair pull</code> are made available to read by the current code run.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">fair</span> run inst/extdata/SEINRDconfig.yaml</span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="co">#&gt; Updating registry from inst/extdata/SEINRDconfig.yaml</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt; ARGUMENT '/tmp/tmpy3ghepb5/data_store/jobs/2021-09-15_23_06_25_699623/' __ignored__</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt; ARGUMENT '/tmp/tmpvxb23yql/data_store/jobs/2021-09-15_23_32_28_075383/' __ignored__</span></span>
 <span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt; </span></span>
 <span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt; </span></span>
 <span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; R version 4.1.1 (2021-08-10) -- "Kick Things"</span></span>
@@ -250,16 +251,10 @@ write:
 <span id="cb3-54"><a href="#cb3-54"></a><span class="co">#&gt; </span></span>
 <span id="cb3-55"><a href="#cb3-55"></a><span class="co">#&gt; &gt;</span></span></code></pre></div>
 </div>
-<div id="submission-script" class="section level2">
-<h2 class="hasAnchor">
-<a href="#submission-script" class="anchor"></a><em>submission script</em>
-</h2>
-<p>The submission script should call <code>initialise()</code> to set up the code run, then perhaps read in some data using one of the <code>read_*()</code> functions (for internal file formats) or <code>link_read()</code> (for external file formats such as csvs). The data might now be processed in some way, or a model / analysis might bw carried out, after which the results should be saved in the local data store via one of the <code>write_*()</code> functions or <code>link_write()</code>. When the code run is complete, <code>finalise()</code> should be called to register the all metadata with the local registry.</p>
-<p><em>SEINRD.R</em>:</p>
-</div>
 <div id="outputs" class="section level2">
 <h2 class="hasAnchor">
 <a href="#outputs" class="anchor"></a>Outputs</h2>
+<p><img src="SEINRD_files/figure-html/unnamed-chunk-4-1.png" width="210"></p>
 </div>
 <div id="provenance-report" class="section level2">
 <h2 class="hasAnchor">
