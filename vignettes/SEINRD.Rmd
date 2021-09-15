@@ -20,25 +20,26 @@ library(rDataPipeline)
 library(here)
 
 i_am(path = "vignettes/SEINRD.Rmd")
+knitr::opts_knit$set(root.dir = here())
 
 # Install fair CLI
-setwd(file.path(here(), "..", "FAIR-CLI"))
-poetry <- "/home/runner/.local/bin/poetry"
-system2(poetry, "install", stdout = TRUE)
+# setwd(file.path(here(), "..", "FAIR-CLI"))
+# poetry <- "/home/runner/.local/bin/poetry"
+# system2(poetry, "install", stdout = TRUE)
 ```
 
 ```{r code-run, include = FALSE}
 # Run 
-setwd(file.path(here(), "..", "FAIR-CLI"))
-tmp <- tempfile(fileext = ".sh")
-cat(paste("#!/bin/sh\n",
-          paste("cd", here(),"\n"),
-          "fair init --ci\n",
-          "fair pull inst/extdata/SEINRDconfig.yaml\n",
-          "fair run inst/extdata/SEINRDconfig.yaml"), file = tmp)
-system2("chmod", paste("+x", tmp))
-system2(poetry, paste("run", tmp),
-        stdout = TRUE)
+# setwd(file.path(here(), "..", "FAIR-CLI"))
+# tmp <- tempfile(fileext = ".sh")
+# cat(paste("#!/bin/sh\n",
+#           paste("cd", here(),"\n"),
+#           "fair init --ci\n",
+#           "fair pull inst/extdata/SEINRDconfig.yaml\n",
+#           "fair run inst/extdata/SEINRDconfig.yaml"), file = tmp)
+# system2("chmod", paste("+x", tmp))
+# system2(poetry, paste("run", tmp),
+#         stdout = TRUE)
 ```
 
 ## *config.yaml* file
@@ -75,7 +76,8 @@ Using the CLI tool, `fair pull` identifies any data products listed in the
 the local data store whilst associated metadata is registered in the local 
 registry.
 
-```{python, eval=FALSE}
+```{bash}
+fair init --ci
 fair pull inst/extdata/SEINRDconfig.yaml
 ```
 
@@ -94,7 +96,7 @@ specified by the user in the config file are cross referenced with the registry,
 and any data products registered by `fair pull` are made available to read by 
 the current code run. 
 
-```{python, eval=FALSE}
+```{bash}
 fair run inst/extdata/SEINRDconfig.yaml
 ```
 
@@ -110,8 +112,7 @@ complete, `finalise()` should be called to register the all metadata with the
 local registry.
 
 *SEINRD.R*:
-```{r, code = readLines(file.path(here(), "inst/extdata/SEINRD.R")), eval=FALSE}
-```
+
 
 ## Outputs
 
