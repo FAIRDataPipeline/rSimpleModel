@@ -102,8 +102,10 @@ jobs:
           mkdir tmp
           echo "git config --local user.name "$GITHUB_ACTOR" >> tmp/tmp_file.sh
           echo "git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com" >> tmp/tmp_file.sh
-          echo "Rscript -e 'pkgdown::deploy_to_branch(pkg = "../rSimpleModel", new_process = FALSE)'" >> tmp/tmp_file.sh
-          echo "chmod +x ../rSimpleModeltmp/tmp_file.sh" >> tmp/tmp_file.sh
+          echo "cd ../rSimpleModel" >> tmp/tmp_file.sh
+          echo "Rscript -e 'pkgdown::deploy_to_branch(new_process = FALSE)'" >> tmp/tmp_file.sh
+          chmod +x tmp/tmp_file.sh
           cd ../FAIR-CLI
-          poetry run ../rSimpleModeltmp/tmp/tmp_file.sh
+          ls ../rSimpleModel/tmp/
+          poetry run ../rSimpleModel/tmp/tmp_file.sh
 
