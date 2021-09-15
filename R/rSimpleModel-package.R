@@ -22,5 +22,6 @@
 #' @import XML
 #' @import assertthat
 #' @import magick
+#' @import pdftools
 #'
 NULL

@@ -18,6 +18,8 @@ knitr::opts_chunk$set(
 library(rSimpleModel)
 library(rDataPipeline)
 library(here)
+library(magick)
+library(pdftools)
 
 i_am(path = "vignettes/SEIRS.Rmd")
 knitr::opts_knit$set(root.dir = here())
@@ -67,6 +69,15 @@ the example below, our outputs are:
 cat(readLines(file.path(here(), 'inst/extdata/SEIRSconfig.yaml')), sep = '\n')
 ```
 
+The submission script should call `initialise()` to set up the code run, 
+then perhaps read in some data using one of the `read_*()` functions (for 
+internal file formats) or `link_read()` (for external file formats such as 
+csvs). The data might now be processed in some way, or a model / analysis might
+bw carried out, after which the results should be saved in the local data store
+via one of the `write_*()` functions or `link_write()`. When the code run is 
+complete, `finalise()` should be called to register the all metadata with the
+local registry.
+
 ## `fair pull`
 
 Using the CLI tool, `fair pull` identifies any data products listed in the 
@@ -98,27 +109,13 @@ the current code run.
 fair run inst/extdata/SEIRSconfig.yaml
 ```
 
-## *submission script*
-
-The submission script should call `initialise()` to set up the code run, 
-then perhaps read in some data using one of the `read_*()` functions (for 
-internal file formats) or `link_read()` (for external file formats such as 
-csvs). The data might now be processed in some way, or a model / analysis might
-bw carried out, after which the results should be saved in the local data store
-via one of the `write_*()` functions or `link_write()`. When the code run is 
-complete, `finalise()` should be called to register the all metadata with the
-local registry.
-
-*SEIRS.R*:
-
-
 ## Outputs
 
 ```{r, echo=FALSE}
-# path <- get_dataproduct(data_product = "disease/sars_cov2/SEIRS_model/results/figure",
-#                         version = "0.0.1",
-#                         namespace = "testing")
-# system2('open', args = path, wait = FALSE)
+path <- get_dataproduct(data_product = "disease/sars_cov2/SEIRS_model/results/figure",
+                        version = "0.0.1",
+                        namespace = "testing")
+image_read_pdf(path, density = 60)
 ```
 
 ## Provenance report

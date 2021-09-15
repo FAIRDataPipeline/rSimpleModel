@@ -96,7 +96,9 @@ jobs:
 #        with:
 #          name: ${{ runner.os }}-r${{ matrix.config.r }}-results
 #          path: check
-
+      - name: Install pdftools dependencies
+        run: |
+          sudo apt-get install -y libpoppler-cpp-dev
       - name: Deploy package
         run: |
           mkdir tmp

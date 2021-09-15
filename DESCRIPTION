@@ -21,7 +21,8 @@ Imports:
     tidyr,
     XML,
     assertthat,
-    magick
+    magick,
+    pdftools
 Suggests:
     rmarkdown,
     knitr,
