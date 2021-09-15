@@ -99,10 +99,11 @@ jobs:
 
       - name: Deploy package
         run: |
+          mkdir tmp
+          echo "git config --local user.name "$GITHUB_ACTOR" >> tmp/tmp_file.sh
+          echo "git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com" >> tmp/tmp_file.sh
+          echo "Rscript -e 'pkgdown::deploy_to_branch(pkg = "../rSimpleModel", new_process = FALSE)'" >> tmp/tmp_file.sh
+          echo "chmod +x ../rSimpleModeltmp/tmp_file.sh" >> tmp/tmp_file.sh
           cd ../FAIR-CLI
-          echo "git config --local user.name "$GITHUB_ACTOR" >> temp_file.sh
-          echo "git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com" >> temp_file.sh
-          echo "Rscript -e 'pkgdown::deploy_to_branch(pkg = "../rSimpleModel", new_process = FALSE)'" >> temp_file.sh
-          echo "chmod +x temp_file.sh" >> temp_file.sh
-          poetry run temp_file.sh
+          poetry run ../rSimpleModeltmp/tmp/tmp_file.sh
 
