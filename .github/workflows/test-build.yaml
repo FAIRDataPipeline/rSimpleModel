@@ -100,6 +100,7 @@ jobs:
       - name: Deploy package
         run: |
           mkdir tmp
+          echo "#!/bin/sh" >> tmp/tmp_file.sh
           echo "git config --local user.name "$GITHUB_ACTOR" >> tmp/tmp_file.sh
           echo "git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com" >> tmp/tmp_file.sh
           echo "cd ../rSimpleModel" >> tmp/tmp_file.sh
