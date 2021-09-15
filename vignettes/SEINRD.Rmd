@@ -20,6 +20,8 @@ library(rDataPipeline)
 library(here)
 
 i_am(path = "vignettes/SEINRD.Rmd")
+knitr::opts_knit$set(root.dir = here())
+
 
 # Install fair CLI
 # setwd(file.path(here(), "..", "FAIR-CLI"))
@@ -78,7 +80,7 @@ registry.
 ```{bash}
 fair init --ci
 ls
-fair pull ../inst/extdata/SEINRDconfig.yaml
+fair pull inst/extdata/SEINRDconfig.yaml
 ```
 
 The local registry should now contain three data products: 
@@ -97,7 +99,7 @@ and any data products registered by `fair pull` are made available to read by
 the current code run. 
 
 ```{bash}
-fair run ../inst/extdata/SEINRDconfig.yaml
+fair run inst/extdata/SEINRDconfig.yaml
 ```
 
 ## *submission script*
