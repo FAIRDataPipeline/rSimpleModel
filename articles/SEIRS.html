@@ -141,7 +141,12 @@ write:
 <a href="#fair-pull" class="anchor"></a><code>fair pull</code>
 </h2>
 <p>Using the CLI tool, <code>fair pull</code> identifies any data products listed in the <code>register</code> field of the <em>config.yaml</em>. These data products are downloaded to the local data store whilst associated metadata is registered in the local registry.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>fair pull inst<span class="op">/</span>extdata<span class="op">/</span>SEIRSconfig.yaml</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">fair</span> init --ci</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="ex">fair</span> pull inst/extdata/SEIRSconfig.yaml</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co">#&gt; FAIR repository is already initialised.</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt; Updating registry from inst/extdata/SEIRSconfig.yaml</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co">#&gt; </span><span class="al">WARNING</span><span class="co">:FAIRDataPipeline.Parsing:Cannot currently pull from remote registry</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co">#&gt; </span><span class="al">WARNING</span><span class="co">:FAIRDataPipeline.Parsing:Cannot currently pull from remote registry</span></span></code></pre></div>
 <p>The local registry should now contain three data products:</p>
 <ol style="list-style-type: decimal">
 <li>
@@ -157,52 +162,73 @@ write:
 <a href="#fair-run" class="anchor"></a><code>fair run</code>
 </h2>
 <p>Again using the CLI tool, <code>fair run</code> performs the code run, as written in the. submission script. In preparation for this, it translates the user-written <em>config.yaml</em> file for use by the Data Pipeline API. Any variables / wildcards specified by the user in the config file are cross referenced with the registry, and any data products registered by <code>fair pull</code> are made available to read by the current code run.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>fair run inst<span class="op">/</span>extdata<span class="op">/</span>SEIRSconfig.yaml</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">fair</span> run inst/extdata/SEIRSconfig.yaml</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co">#&gt; Updating registry from inst/extdata/SEIRSconfig.yaml</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt; ARGUMENT '/tmp/tmph37woam3/data_store/jobs/2021-09-15_22_34_48_185233/' __ignored__</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt; </span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt; </span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; R version 4.1.1 (2021-08-10) -- "Kick Things"</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co">#&gt; Copyright (C) 2021 The R Foundation for Statistical Computing</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt; </span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#&gt; R is free software and comes with ABSOLUTELY NO WARRANTY.</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="co">#&gt; You are welcome to redistribute it under certain conditions.</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="co">#&gt; Type 'license()' or 'licence()' for distribution details.</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="co">#&gt; </span></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="co">#&gt; R is a collaborative project with many contributors.</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="co">#&gt; Type 'contributors()' for more information and</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a><span class="co">#&gt; 'citation()' on how to cite R or R packages in publications.</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="co">#&gt; </span></span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="co">#&gt; Type 'demo()' for some demos, 'help()' for on-line help, or</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a><span class="co">#&gt; 'help.start()' for an HTML browser interface to help.</span></span>
+<span id="cb3-20"><a href="#cb3-20"></a><span class="co">#&gt; Type 'q()' to quit R.</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a><span class="co">#&gt; </span></span>
+<span id="cb3-22"><a href="#cb3-22"></a><span class="co">#&gt; &gt; library(rSimpleModel)</span></span>
+<span id="cb3-23"><a href="#cb3-23"></a><span class="co">#&gt; &gt; library(rDataPipeline)</span></span>
+<span id="cb3-24"><a href="#cb3-24"></a><span class="co">#&gt; &gt; library(ggplot2)</span></span>
+<span id="cb3-25"><a href="#cb3-25"></a><span class="co">#&gt; &gt; library(dplyr)</span></span>
+<span id="cb3-26"><a href="#cb3-26"></a><span class="co">#&gt; &gt; </span></span>
+<span id="cb3-27"><a href="#cb3-27"></a><span class="co">#&gt; &gt; # Initialise code run</span></span>
+<span id="cb3-28"><a href="#cb3-28"></a><span class="co">#&gt; &gt; config &lt;- file.path(Sys.getenv("FDP_CONFIG_DIR"), "config.yaml")</span></span>
+<span id="cb3-29"><a href="#cb3-29"></a><span class="co">#&gt; &gt; script &lt;- file.path(Sys.getenv("FDP_CONFIG_DIR"), "script.sh")</span></span>
+<span id="cb3-30"><a href="#cb3-30"></a><span class="co">#&gt; &gt; handle &lt;- initialise(config, script)</span></span>
+<span id="cb3-31"><a href="#cb3-31"></a><span class="co">#&gt; &gt; </span></span>
+<span id="cb3-32"><a href="#cb3-32"></a><span class="co">#&gt; &gt; # Read code run inputs</span></span>
+<span id="cb3-33"><a href="#cb3-33"></a><span class="co">#&gt; &gt; static_params &lt;- read.csv(link_read(handle, "disease/sars_cov2/SEIRS_model/parameters/static_params"))</span></span>
+<span id="cb3-34"><a href="#cb3-34"></a><span class="co">#&gt; &gt; </span></span>
+<span id="cb3-35"><a href="#cb3-35"></a><span class="co">#&gt; &gt; # Run the model</span></span>
+<span id="cb3-36"><a href="#cb3-36"></a><span class="co">#&gt; &gt; results &lt;- SEIRS_model(S = 0.999,</span></span>
+<span id="cb3-37"><a href="#cb3-37"></a><span class="co">#&gt; +                        E = 0.001,</span></span>
+<span id="cb3-38"><a href="#cb3-38"></a><span class="co">#&gt; +                        I = 0,</span></span>
+<span id="cb3-39"><a href="#cb3-39"></a><span class="co">#&gt; +                        R = 0,</span></span>
+<span id="cb3-40"><a href="#cb3-40"></a><span class="co">#&gt; +                        timesteps = 1000,</span></span>
+<span id="cb3-41"><a href="#cb3-41"></a><span class="co">#&gt; +                        years = 5,</span></span>
+<span id="cb3-42"><a href="#cb3-42"></a><span class="co">#&gt; +                        alpha = filter(static_params, param == "alpha")$value,</span></span>
+<span id="cb3-43"><a href="#cb3-43"></a><span class="co">#&gt; +                        beta = filter(static_params, param == "beta")$value,</span></span>
+<span id="cb3-44"><a href="#cb3-44"></a><span class="co">#&gt; +                        inv_gamma = filter(static_params, param == "inv_gamma")$value,</span></span>
+<span id="cb3-45"><a href="#cb3-45"></a><span class="co">#&gt; +                        inv_omega = filter(static_params, param == "inv_omega")$value,</span></span>
+<span id="cb3-46"><a href="#cb3-46"></a><span class="co">#&gt; +                        inv_mu = filter(static_params, param == "inv_mu")$value,</span></span>
+<span id="cb3-47"><a href="#cb3-47"></a><span class="co">#&gt; +                        inv_sigma = filter(static_params, param == "inv_sigma")$value)</span></span>
+<span id="cb3-48"><a href="#cb3-48"></a><span class="co">#&gt; &gt; g &lt;- plot_SEIRS(results)</span></span>
+<span id="cb3-49"><a href="#cb3-49"></a><span class="co">#&gt; &gt; </span></span>
+<span id="cb3-50"><a href="#cb3-50"></a><span class="co">#&gt; &gt; # Save outputs to data store</span></span>
+<span id="cb3-51"><a href="#cb3-51"></a><span class="co">#&gt; &gt; path &lt;- link_write(handle, "disease/sars_cov2/SEIRS_model/results/model_output")</span></span>
+<span id="cb3-52"><a href="#cb3-52"></a><span class="co">#&gt; &gt; write.csv(results, path)</span></span>
+<span id="cb3-53"><a href="#cb3-53"></a><span class="co">#&gt; &gt; </span></span>
+<span id="cb3-54"><a href="#cb3-54"></a><span class="co">#&gt; &gt; path &lt;- link_write(handle, "disease/sars_cov2/SEIRS_model/results/figure")</span></span>
+<span id="cb3-55"><a href="#cb3-55"></a><span class="co">#&gt; &gt; ggsave(path, g)</span></span>
+<span id="cb3-56"><a href="#cb3-56"></a><span class="co">#&gt; &gt; </span></span>
+<span id="cb3-57"><a href="#cb3-57"></a><span class="co">#&gt; &gt; # Register code run in local registry</span></span>
+<span id="cb3-58"><a href="#cb3-58"></a><span class="co">#&gt; &gt; finalise(handle)</span></span>
+<span id="cb3-59"><a href="#cb3-59"></a><span class="co">#&gt; </span></span>
+<span id="cb3-60"><a href="#cb3-60"></a><span class="co">#&gt; &gt;</span></span></code></pre></div>
 </div>
 <div id="submission-script" class="section level2">
 <h2 class="hasAnchor">
 <a href="#submission-script" class="anchor"></a><em>submission script</em>
 </h2>
-<p>The submission script should call <code><a href="https://fairdatapipeline.github.io/rFDP/reference/initialise.html">initialise()</a></code> to set up the code run, then perhaps read in some data using one of the <code>read_*()</code> functions (for internal file formats) or <code><a href="https://fairdatapipeline.github.io/rFDP/reference/link_read.html">link_read()</a></code> (for external file formats such as csvs). The data might now be processed in some way, or a model / analysis might bw carried out, after which the results should be saved in the local data store via one of the <code>write_*()</code> functions or <code><a href="https://fairdatapipeline.github.io/rFDP/reference/link_write.html">link_write()</a></code>. When the code run is complete, <code><a href="https://fairdatapipeline.github.io/rFDP/reference/finalise.html">finalise()</a></code> should be called to register the all metadata with the local registry.</p>
+<p>The submission script should call <code>initialise()</code> to set up the code run, then perhaps read in some data using one of the <code>read_*()</code> functions (for internal file formats) or <code>link_read()</code> (for external file formats such as csvs). The data might now be processed in some way, or a model / analysis might bw carried out, after which the results should be saved in the local data store via one of the <code>write_*()</code> functions or <code>link_write()</code>. When the code run is complete, <code>finalise()</code> should be called to register the all metadata with the local registry.</p>
 <p><em>SEIRS.R</em>:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://fairdatapipeline.github.io/SimpleModel">rSimpleModel</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://fairdatapipeline.github.io/rDataPipeline">rDataPipeline</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
-
-<span class="co"># Initialise code run</span>
-<span class="va">config</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span><span class="op">(</span><span class="st">"FDP_CONFIG_DIR"</span><span class="op">)</span>, <span class="st">"config.yaml"</span><span class="op">)</span>
-<span class="va">script</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span><span class="op">(</span><span class="st">"FDP_CONFIG_DIR"</span><span class="op">)</span>, <span class="st">"script.sh"</span><span class="op">)</span>
-<span class="va">handle</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://fairdatapipeline.github.io/rFDP/reference/initialise.html">initialise</a></span><span class="op">(</span><span class="va">config</span>, <span class="va">script</span><span class="op">)</span>
-
-<span class="co"># Read code run inputs</span>
-<span class="va">static_params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://fairdatapipeline.github.io/rFDP/reference/link_read.html">link_read</a></span><span class="op">(</span><span class="va">handle</span>, <span class="st">"disease/sars_cov2/SEIRS_model/parameters/static_params"</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># Run the model</span>
-<span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/SEIRS_model.html">SEIRS_model</a></span><span class="op">(</span>S <span class="op">=</span> <span class="fl">0.999</span>,
-                       E <span class="op">=</span> <span class="fl">0.001</span>,
-                       I <span class="op">=</span> <span class="fl">0</span>,
-                       R <span class="op">=</span> <span class="fl">0</span>,
-                       timesteps <span class="op">=</span> <span class="fl">1000</span>,
-                       years <span class="op">=</span> <span class="fl">5</span>,
-                       alpha <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">static_params</span>, <span class="va">param</span> <span class="op">==</span> <span class="st">"alpha"</span><span class="op">)</span><span class="op">$</span><span class="va">value</span>,
-                       beta <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">static_params</span>, <span class="va">param</span> <span class="op">==</span> <span class="st">"beta"</span><span class="op">)</span><span class="op">$</span><span class="va">value</span>,
-                       inv_gamma <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">static_params</span>, <span class="va">param</span> <span class="op">==</span> <span class="st">"inv_gamma"</span><span class="op">)</span><span class="op">$</span><span class="va">value</span>,
-                       inv_omega <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">static_params</span>, <span class="va">param</span> <span class="op">==</span> <span class="st">"inv_omega"</span><span class="op">)</span><span class="op">$</span><span class="va">value</span>,
-                       inv_mu <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">static_params</span>, <span class="va">param</span> <span class="op">==</span> <span class="st">"inv_mu"</span><span class="op">)</span><span class="op">$</span><span class="va">value</span>,
-                       inv_sigma <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">static_params</span>, <span class="va">param</span> <span class="op">==</span> <span class="st">"inv_sigma"</span><span class="op">)</span><span class="op">$</span><span class="va">value</span><span class="op">)</span>
-<span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_SEIRS.html">plot_SEIRS</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span>
-
-<span class="co"># Save outputs to data store</span>
-<span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://fairdatapipeline.github.io/rFDP/reference/link_write.html">link_write</a></span><span class="op">(</span><span class="va">handle</span>, <span class="st">"disease/sars_cov2/SEIRS_model/results/model_output"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/write.table.html">write.csv</a></span><span class="op">(</span><span class="va">results</span>, <span class="va">path</span><span class="op">)</span>
-
-<span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://fairdatapipeline.github.io/rFDP/reference/link_write.html">link_write</a></span><span class="op">(</span><span class="va">handle</span>, <span class="st">"disease/sars_cov2/SEIRS_model/results/figure"</span><span class="op">)</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span><span class="va">path</span>, <span class="va">g</span><span class="op">)</span>
-
-<span class="co"># Register code run in local registry</span>
-<span class="fu"><a href="https://fairdatapipeline.github.io/rFDP/reference/finalise.html">finalise</a></span><span class="op">(</span><span class="va">handle</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="outputs" class="section level2">
 <h2 class="hasAnchor">
@@ -211,7 +237,7 @@ write:
 <div id="provenance-report" class="section level2">
 <h2 class="hasAnchor">
 <a href="#provenance-report" class="anchor"></a>Provenance report</h2>
-<p><img src="SEIRS_files/figure-html/unnamed-chunk-6-1.png" width="703"></p>
+<p><img src="SEIRS_files/figure-html/unnamed-chunk-5-1.png" width="899"></p>
 </div>
   </div>
 
