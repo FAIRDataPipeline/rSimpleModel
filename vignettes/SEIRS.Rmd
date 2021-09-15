@@ -20,6 +20,7 @@ library(rDataPipeline)
 library(here)
 
 i_am(path = "vignettes/SEIRS.Rmd")
+knitr::opts_knit$set(root.dir = here())
 
 # Install fair CLI
 # setwd(file.path(here(), "..", "FAIR-CLI"))
@@ -74,6 +75,7 @@ the local data store whilst associated metadata is registered in the local
 registry.
 
 ```{bash}
+fair init --ci
 fair pull inst/extdata/SEIRSconfig.yaml
 ```
 
