@@ -8,7 +8,8 @@ get_provenance(
   data_product,
   version,
   namespace,
-  width = NULL,
+  aspect_ratio = NULL,
+  size = "50\%",
   attributes = FALSE,
   endpoint = "http://localhost:8000/api/"
 )
@@ -20,7 +21,9 @@ get_provenance(
 
 \item{namespace}{namespace}
 
-\item{width}{width}
+\item{aspect_ratio}{aspect_ratio}
+
+\item{size}{size}
 
 \item{attributes}{attributes}
 
