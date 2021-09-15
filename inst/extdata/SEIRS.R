@@ -8,15 +8,9 @@ config <- file.path(Sys.getenv("FDP_CONFIG_DIR"), "config.yaml")
 script <- file.path(Sys.getenv("FDP_CONFIG_DIR"), "script.sh")
 handle <- initialise(config, script)
 
-
-dat <- c(alpha = 0, beta = 0.21, inv_gamma = 14,  inv_omega = 1,
-         inv_mu = 76, inv_sigma = 7, R0 = 3)
-dat <- data.frame(param = names(dat), value = dat)
-row.names(dat) <- NULL
-write.csv(dat, "static_params_SEIRS.csv", row.names = F)
 # Read code run inputs
 static_params <- read.csv(link_read(handle, "disease/sars_cov2/SEIRS_model/parameters/static_params"))
-static_params
+
 # Run the model
 results <- SEIRS_model(S = 0.999,
                        E = 0.001,
