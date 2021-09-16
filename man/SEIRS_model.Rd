@@ -5,10 +5,7 @@
 \title{SEIRS_model}
 \usage{
 SEIRS_model(
-  S,
-  E,
-  I,
-  R,
+  initial.state,
   timesteps,
   years,
   alpha,
@@ -20,13 +17,7 @@ SEIRS_model(
 )
 }
 \arguments{
-\item{S}{Susceptible individuals at time, t = 0}
-
-\item{E}{Exposed individuals at time, t = 0}
-
-\item{I}{Infectious individuals at time, t = 0}
-
-\item{R}{Recovered individuals at time, t = 0}
+\item{initial.state}{Number of individuals in different disease states (S, E, I and R) at time, t = 0}
 
 \item{timesteps}{timesteps}
 
