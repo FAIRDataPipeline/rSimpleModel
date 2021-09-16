@@ -112,7 +112,7 @@ fair run inst/extdata/SEIRSconfig.yaml
 ## Outputs
 
 ```{r, echo=FALSE}
-path <- get_dataproduct(data_product = "disease/sars_cov2/SEIRS_model/results/figure",
+path <- get_dataproduct(data_product = "SEIRS_model/results/figure",
                         version = "0.0.1",
                         namespace = "testing")
 image_read_pdf(path, density = 60)
@@ -121,7 +121,7 @@ image_read_pdf(path, density = 60)
 ## Provenance report
 
 ```{r, echo=FALSE, fig.height=5, fig.width=5}
-get_provenance(data_product = "disease/sars_cov2/SEIRS_model/results/model_output",
+get_provenance(data_product = "SEIRS_model/results/model_output",
                version = "0.0.1",
                namespace = "testing")
 ```

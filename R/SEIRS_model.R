@@ -1,9 +1,6 @@
 #' SEIRS_model
 #'
-#' @param S Susceptible individuals at time, t = 0
-#' @param E Exposed individuals at time, t = 0
-#' @param I Infectious individuals at time, t = 0
-#' @param R Recovered individuals at time, t = 0
+#' @param initial.state Number of individuals in different disease states (S, E, I and R) at time, t = 0
 #' @param timesteps timesteps
 #' @param years years
 #' @param alpha Death rate
@@ -15,9 +12,13 @@
 #'
 #' @export
 #'
-SEIRS_model <- function(S, E, I, R, timesteps, years, alpha, beta,
+SEIRS_model <- function(initial.state, timesteps, years, alpha, beta,
                         inv_gamma, inv_omega, inv_mu, inv_sigma) {
 
+  S <- initial.state$S
+  E <- initial.state$E
+  I <- initial.state$I
+  R <- initial.state$R
   time_unit_years <- years / timesteps
   time_unit_days <- time_unit_years * 365.25
 

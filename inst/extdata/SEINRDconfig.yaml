@@ -1,13 +1,15 @@
 run_metadata:
   default_input_namespace: BioSS
   description: SEINRD_model
-  script: R -f inst/extdata/SEINRD.R ${{CONFIG_DIR}}
+  script: R -f inst/extdata/SEINRD.R --args ${{CONFIG_DIR}}
 
 register:
+- namespace: BioSS
+  full_name: Biomathematics and Statistics Scotland
+  website: https://ror.org/03jwrz939
+
 - external_object: disease/sars_cov2/SEINRD_model/parameters/static_params
-  namespace_name: BioSS
-  namespace_full_name: Biomathematics and Statistics Scotland
-  namespace_website: https://www.bioss.ac.uk
+  namespace: BioSS
   root: https://raw.githubusercontent.com/
   path: FAIRDataPipeline/rSimpleModel/main/inst/extdata/static_params_SEInRD.csv
   title: Static parameters of the model
@@ -16,13 +18,11 @@ register:
   alternate_identifier_type: simple_model_params
   file_type: csv
   release_date: ${{DATETIME}}
-  version: 0.${{DATE}}.0
+  version: 1.0.0
   primary: True
 
 - external_object: disease/sars_cov2/SEINRD_model/parameters/rts
-  namespace_name: BioSS
-  namespace_full_name: Biomathematics and Statistics Scotland
-  namespace_website: https://www.bioss.ac.uk
+  namespace: BioSS
   root: https://raw.githubusercontent.com/
   path: FAIRDataPipeline/rSimpleModel/main/inst/extdata/Rt_beep.csv
   title: Values of Rt at time t
@@ -31,13 +31,11 @@ register:
   alternate_identifier_type: simple_model_params
   file_type: csv
   release_date: ${{DATETIME}}
-  version: 0.${{DATE}}.0
+  version: 1.0.0
   primary: True
 
 - external_object: disease/sars_cov2/SEINRD_model/parameters/efoi
-  namespace_name: BioSS
-  namespace_full_name: Biomathematics and Statistics Scotland
-  namespace_website: https://www.bioss.ac.uk
+  namespace: BioSS
   root: https://raw.githubusercontent.com/
   path: FAIRDataPipeline/rSimpleModel/main/inst/extdata/efoi_all_dates.csv
   title: Effective force of infection at time t
@@ -46,7 +44,7 @@ register:
   alternate_identifier_type: simple_model_params
   file_type: csv
   release_date: ${{DATETIME}}
-  version: 0.${{DATE}}.0
+  version: 1.0.0
   primary: True
 
 write:
