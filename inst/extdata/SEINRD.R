@@ -4,7 +4,7 @@ library(deSolve)
 library(ggplot2)
 
 # Read config directory from command line
-conf.dir <- Sys.getenv("FDP_CONFIG_DIR")
+conf.dir <- commandArgs(trailingOnly=TRUE)[1]
 
 # Initialise code run
 config <- file.path(conf.dir, "config.yaml")
