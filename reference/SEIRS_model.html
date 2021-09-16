@@ -133,10 +133,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>SEIRS_model</span><span class='op'>(</span>
-  <span class='va'>S</span>,
-  <span class='va'>E</span>,
-  <span class='va'>I</span>,
-  <span class='va'>R</span>,
+  <span class='va'>initial.state</span>,
   <span class='va'>timesteps</span>,
   <span class='va'>years</span>,
   <span class='va'>alpha</span>,
@@ -151,20 +148,8 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>S</th>
-      <td><p>Susceptible individuals at time, t = 0</p></td>
-    </tr>
-    <tr>
-      <th>E</th>
-      <td><p>Exposed individuals at time, t = 0</p></td>
-    </tr>
-    <tr>
-      <th>I</th>
-      <td><p>Infectious individuals at time, t = 0</p></td>
-    </tr>
-    <tr>
-      <th>R</th>
-      <td><p>Recovered individuals at time, t = 0</p></td>
+      <th>initial.state</th>
+      <td><p>Number of individuals in different disease states (S, E, I and R) at time, t = 0</p></td>
     </tr>
     <tr>
       <th>timesteps</th>

@@ -111,13 +111,15 @@
 <pre><code>run_metadata:
   default_input_namespace: BioSS
   description: SEINRD_model
-  script: R -f inst/extdata/SEINRD.R ${{CONFIG_DIR}}
+  script: R -f inst/extdata/SEINRD.R --args ${{CONFIG_DIR}}
 
 register:
+- namespace: BioSS
+  full_name: Biomathematics and Statistics Scotland
+  website: https://ror.org/03jwrz939
+
 - external_object: disease/sars_cov2/SEINRD_model/parameters/static_params
-  namespace_name: BioSS
-  namespace_full_name: Biomathematics and Statistics Scotland
-  namespace_website: https://www.bioss.ac.uk
+  namespace: BioSS
   root: https://raw.githubusercontent.com/
   path: FAIRDataPipeline/rSimpleModel/main/inst/extdata/static_params_SEInRD.csv
   title: Static parameters of the model
@@ -126,13 +128,11 @@ register:
   alternate_identifier_type: simple_model_params
   file_type: csv
   release_date: ${{DATETIME}}
-  version: 0.${{DATE}}.0
+  version: 1.0.0
   primary: True
 
 - external_object: disease/sars_cov2/SEINRD_model/parameters/rts
-  namespace_name: BioSS
-  namespace_full_name: Biomathematics and Statistics Scotland
-  namespace_website: https://www.bioss.ac.uk
+  namespace: BioSS
   root: https://raw.githubusercontent.com/
   path: FAIRDataPipeline/rSimpleModel/main/inst/extdata/Rt_beep.csv
   title: Values of Rt at time t
@@ -141,13 +141,11 @@ register:
   alternate_identifier_type: simple_model_params
   file_type: csv
   release_date: ${{DATETIME}}
-  version: 0.${{DATE}}.0
+  version: 1.0.0
   primary: True
 
 - external_object: disease/sars_cov2/SEINRD_model/parameters/efoi
-  namespace_name: BioSS
-  namespace_full_name: Biomathematics and Statistics Scotland
-  namespace_website: https://www.bioss.ac.uk
+  namespace: BioSS
   root: https://raw.githubusercontent.com/
   path: FAIRDataPipeline/rSimpleModel/main/inst/extdata/efoi_all_dates.csv
   title: Effective force of infection at time t
@@ -156,7 +154,7 @@ register:
   alternate_identifier_type: simple_model_params
   file_type: csv
   release_date: ${{DATETIME}}
-  version: 0.${{DATE}}.0
+  version: 1.0.0
   primary: True
 
 write:
@@ -197,59 +195,60 @@ write:
 <p>Again using the CLI tool, <code>fair run</code> performs the code run, as written in the. submission script. In preparation for this, it translates the user-written <em>config.yaml</em> file for use by the Data Pipeline API. Any variables / wildcards specified by the user in the config file are cross referenced with the registry, and any data products registered by <code>fair pull</code> are made available to read by the current code run.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">fair</span> run inst/extdata/SEINRDconfig.yaml</span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="co">#&gt; Updating registry from inst/extdata/SEINRDconfig.yaml</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt; ARGUMENT '/tmp/tmpqv463_so/data_store/jobs/2021-09-16_11_30_08_076258/' __ignored__</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt; </span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt; </span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; R version 4.1.1 (2021-08-10) -- "Kick Things"</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="co">#&gt; Copyright (C) 2021 The R Foundation for Statistical Computing</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt; </span></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#&gt; R is free software and comes with ABSOLUTELY NO WARRANTY.</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a><span class="co">#&gt; You are welcome to redistribute it under certain conditions.</span></span>
-<span id="cb3-12"><a href="#cb3-12"></a><span class="co">#&gt; Type 'license()' or 'licence()' for distribution details.</span></span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="co">#&gt; </span></span>
-<span id="cb3-14"><a href="#cb3-14"></a><span class="co">#&gt; R is a collaborative project with many contributors.</span></span>
-<span id="cb3-15"><a href="#cb3-15"></a><span class="co">#&gt; Type 'contributors()' for more information and</span></span>
-<span id="cb3-16"><a href="#cb3-16"></a><span class="co">#&gt; 'citation()' on how to cite R or R packages in publications.</span></span>
-<span id="cb3-17"><a href="#cb3-17"></a><span class="co">#&gt; </span></span>
-<span id="cb3-18"><a href="#cb3-18"></a><span class="co">#&gt; Type 'demo()' for some demos, 'help()' for on-line help, or</span></span>
-<span id="cb3-19"><a href="#cb3-19"></a><span class="co">#&gt; 'help.start()' for an HTML browser interface to help.</span></span>
-<span id="cb3-20"><a href="#cb3-20"></a><span class="co">#&gt; Type 'q()' to quit R.</span></span>
-<span id="cb3-21"><a href="#cb3-21"></a><span class="co">#&gt; </span></span>
-<span id="cb3-22"><a href="#cb3-22"></a><span class="co">#&gt; &gt; library(rSimpleModel)</span></span>
-<span id="cb3-23"><a href="#cb3-23"></a><span class="co">#&gt; &gt; library(rDataPipeline)</span></span>
-<span id="cb3-24"><a href="#cb3-24"></a><span class="co">#&gt; &gt; library(deSolve)</span></span>
-<span id="cb3-25"><a href="#cb3-25"></a><span class="co">#&gt; &gt; library(ggplot2)</span></span>
-<span id="cb3-26"><a href="#cb3-26"></a><span class="co">#&gt; &gt; </span></span>
-<span id="cb3-27"><a href="#cb3-27"></a><span class="co">#&gt; &gt; # Initialise code run</span></span>
-<span id="cb3-28"><a href="#cb3-28"></a><span class="co">#&gt; &gt; config &lt;- file.path(Sys.getenv("FDP_CONFIG_DIR"), "config.yaml")</span></span>
-<span id="cb3-29"><a href="#cb3-29"></a><span class="co">#&gt; &gt; script &lt;- file.path(Sys.getenv("FDP_CONFIG_DIR"), "script.sh")</span></span>
-<span id="cb3-30"><a href="#cb3-30"></a><span class="co">#&gt; &gt; handle &lt;- initialise(config, script)</span></span>
-<span id="cb3-31"><a href="#cb3-31"></a><span class="co">#&gt; &gt; </span></span>
-<span id="cb3-32"><a href="#cb3-32"></a><span class="co">#&gt; &gt; # Read code run inputs</span></span>
-<span id="cb3-33"><a href="#cb3-33"></a><span class="co">#&gt; &gt; static_params &lt;- read.csv(link_read(handle, "disease/sars_cov2/SEINRD_model/parameters/static_params"))</span></span>
-<span id="cb3-34"><a href="#cb3-34"></a><span class="co">#&gt; &gt; rts_params &lt;- read.csv(link_read(handle, "disease/sars_cov2/SEINRD_model/parameters/rts"))</span></span>
-<span id="cb3-35"><a href="#cb3-35"></a><span class="co">#&gt; &gt; efoi_params &lt;- read.csv(link_read(handle, "disease/sars_cov2/SEINRD_model/parameters/efoi"))</span></span>
-<span id="cb3-36"><a href="#cb3-36"></a><span class="co">#&gt; &gt; </span></span>
-<span id="cb3-37"><a href="#cb3-37"></a><span class="co">#&gt; &gt; # Run the model</span></span>
-<span id="cb3-38"><a href="#cb3-38"></a><span class="co">#&gt; &gt; data &lt;- initialise_SEINRD(rts_params, efoi_params, static_params)</span></span>
-<span id="cb3-39"><a href="#cb3-39"></a><span class="co">#&gt; &gt; results &lt;- ode(y = data$init_state,</span></span>
-<span id="cb3-40"><a href="#cb3-40"></a><span class="co">#&gt; +                times = data$time_length,</span></span>
-<span id="cb3-41"><a href="#cb3-41"></a><span class="co">#&gt; +                func = rSimpleModel::SEINRD_model,</span></span>
-<span id="cb3-42"><a href="#cb3-42"></a><span class="co">#&gt; +                parms = data$pars)</span></span>
-<span id="cb3-43"><a href="#cb3-43"></a><span class="co">#&gt; &gt; g &lt;- plot_SEINRD(results)</span></span>
-<span id="cb3-44"><a href="#cb3-44"></a><span class="co">#&gt; &gt; </span></span>
-<span id="cb3-45"><a href="#cb3-45"></a><span class="co">#&gt; &gt; # Save outputs to data store</span></span>
-<span id="cb3-46"><a href="#cb3-46"></a><span class="co">#&gt; &gt; path &lt;- link_write(handle, "disease/sars_cov2/SEINRD_model/results/model_output")</span></span>
-<span id="cb3-47"><a href="#cb3-47"></a><span class="co">#&gt; &gt; write.csv(results, path)</span></span>
-<span id="cb3-48"><a href="#cb3-48"></a><span class="co">#&gt; &gt; </span></span>
-<span id="cb3-49"><a href="#cb3-49"></a><span class="co">#&gt; &gt; path &lt;- link_write(handle, "disease/sars_cov2/SEINRD_model/results/figure")</span></span>
-<span id="cb3-50"><a href="#cb3-50"></a><span class="co">#&gt; &gt; ggsave(path, g)</span></span>
-<span id="cb3-51"><a href="#cb3-51"></a><span class="co">#&gt; &gt; </span></span>
-<span id="cb3-52"><a href="#cb3-52"></a><span class="co">#&gt; &gt; # Register code run in local registry</span></span>
-<span id="cb3-53"><a href="#cb3-53"></a><span class="co">#&gt; &gt; finalise(handle)</span></span>
-<span id="cb3-54"><a href="#cb3-54"></a><span class="co">#&gt; </span></span>
-<span id="cb3-55"><a href="#cb3-55"></a><span class="co">#&gt; &gt;</span></span></code></pre></div>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt; </span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt; R version 4.1.1 (2021-08-10) -- "Kick Things"</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt; Copyright (C) 2021 The R Foundation for Statistical Computing</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co">#&gt; </span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="co">#&gt; R is free software and comes with ABSOLUTELY NO WARRANTY.</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt; You are welcome to redistribute it under certain conditions.</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#&gt; Type 'license()' or 'licence()' for distribution details.</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="co">#&gt; </span></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="co">#&gt; R is a collaborative project with many contributors.</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="co">#&gt; Type 'contributors()' for more information and</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="co">#&gt; 'citation()' on how to cite R or R packages in publications.</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="co">#&gt; </span></span>
+<span id="cb3-16"><a href="#cb3-16"></a><span class="co">#&gt; Type 'demo()' for some demos, 'help()' for on-line help, or</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="co">#&gt; 'help.start()' for an HTML browser interface to help.</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="co">#&gt; Type 'q()' to quit R.</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a><span class="co">#&gt; </span></span>
+<span id="cb3-20"><a href="#cb3-20"></a><span class="co">#&gt; &gt; library(rSimpleModel)</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a><span class="co">#&gt; &gt; library(rDataPipeline)</span></span>
+<span id="cb3-22"><a href="#cb3-22"></a><span class="co">#&gt; &gt; library(deSolve)</span></span>
+<span id="cb3-23"><a href="#cb3-23"></a><span class="co">#&gt; &gt; library(ggplot2)</span></span>
+<span id="cb3-24"><a href="#cb3-24"></a><span class="co">#&gt; &gt; </span></span>
+<span id="cb3-25"><a href="#cb3-25"></a><span class="co">#&gt; &gt; # Read config directory from command line</span></span>
+<span id="cb3-26"><a href="#cb3-26"></a><span class="co">#&gt; &gt; conf.dir &lt;- commandArgs(trailingOnly=TRUE)[1]</span></span>
+<span id="cb3-27"><a href="#cb3-27"></a><span class="co">#&gt; &gt; </span></span>
+<span id="cb3-28"><a href="#cb3-28"></a><span class="co">#&gt; &gt; # Initialise code run</span></span>
+<span id="cb3-29"><a href="#cb3-29"></a><span class="co">#&gt; &gt; config &lt;- file.path(conf.dir, "config.yaml")</span></span>
+<span id="cb3-30"><a href="#cb3-30"></a><span class="co">#&gt; &gt; script &lt;- file.path(conf.dir, "script.sh")</span></span>
+<span id="cb3-31"><a href="#cb3-31"></a><span class="co">#&gt; &gt; handle &lt;- initialise(config, script)</span></span>
+<span id="cb3-32"><a href="#cb3-32"></a><span class="co">#&gt; &gt; </span></span>
+<span id="cb3-33"><a href="#cb3-33"></a><span class="co">#&gt; &gt; # Read code run inputs</span></span>
+<span id="cb3-34"><a href="#cb3-34"></a><span class="co">#&gt; &gt; static_params &lt;- read.csv(link_read(handle, "disease/sars_cov2/SEINRD_model/parameters/static_params"))</span></span>
+<span id="cb3-35"><a href="#cb3-35"></a><span class="co">#&gt; &gt; rts_params &lt;- read.csv(link_read(handle, "disease/sars_cov2/SEINRD_model/parameters/rts"))</span></span>
+<span id="cb3-36"><a href="#cb3-36"></a><span class="co">#&gt; &gt; efoi_params &lt;- read.csv(link_read(handle, "disease/sars_cov2/SEINRD_model/parameters/efoi"))</span></span>
+<span id="cb3-37"><a href="#cb3-37"></a><span class="co">#&gt; &gt; </span></span>
+<span id="cb3-38"><a href="#cb3-38"></a><span class="co">#&gt; &gt; # Run the model</span></span>
+<span id="cb3-39"><a href="#cb3-39"></a><span class="co">#&gt; &gt; data &lt;- initialise_SEINRD(rts_params, efoi_params, static_params)</span></span>
+<span id="cb3-40"><a href="#cb3-40"></a><span class="co">#&gt; &gt; results &lt;- ode(y = data$init_state,</span></span>
+<span id="cb3-41"><a href="#cb3-41"></a><span class="co">#&gt; +                times = data$time_length,</span></span>
+<span id="cb3-42"><a href="#cb3-42"></a><span class="co">#&gt; +                func = rSimpleModel::SEINRD_model,</span></span>
+<span id="cb3-43"><a href="#cb3-43"></a><span class="co">#&gt; +                parms = data$pars)</span></span>
+<span id="cb3-44"><a href="#cb3-44"></a><span class="co">#&gt; &gt; g &lt;- plot_SEINRD(results)</span></span>
+<span id="cb3-45"><a href="#cb3-45"></a><span class="co">#&gt; &gt; </span></span>
+<span id="cb3-46"><a href="#cb3-46"></a><span class="co">#&gt; &gt; # Save outputs to data store</span></span>
+<span id="cb3-47"><a href="#cb3-47"></a><span class="co">#&gt; &gt; path &lt;- link_write(handle, "disease/sars_cov2/SEINRD_model/results/model_output")</span></span>
+<span id="cb3-48"><a href="#cb3-48"></a><span class="co">#&gt; &gt; write.csv(results, path)</span></span>
+<span id="cb3-49"><a href="#cb3-49"></a><span class="co">#&gt; &gt; </span></span>
+<span id="cb3-50"><a href="#cb3-50"></a><span class="co">#&gt; &gt; path &lt;- link_write(handle, "disease/sars_cov2/SEINRD_model/results/figure")</span></span>
+<span id="cb3-51"><a href="#cb3-51"></a><span class="co">#&gt; &gt; ggsave(path, g)</span></span>
+<span id="cb3-52"><a href="#cb3-52"></a><span class="co">#&gt; &gt; </span></span>
+<span id="cb3-53"><a href="#cb3-53"></a><span class="co">#&gt; &gt; # Register code run in local registry</span></span>
+<span id="cb3-54"><a href="#cb3-54"></a><span class="co">#&gt; &gt; finalise(handle)</span></span>
+<span id="cb3-55"><a href="#cb3-55"></a><span class="co">#&gt; </span></span>
+<span id="cb3-56"><a href="#cb3-56"></a><span class="co">#&gt; &gt;</span></span></code></pre></div>
 </div>
 <div id="outputs" class="section level2">
 <h2 class="hasAnchor">
