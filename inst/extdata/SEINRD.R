@@ -3,9 +3,12 @@ library(rDataPipeline)
 library(deSolve)
 library(ggplot2)
 
+# Read config directory from command line
+conf.dir <- commandArgs(trailingOnly=TRUE)[1]
+
 # Initialise code run
-config <- file.path(Sys.getenv("FDP_CONFIG_DIR"), "config.yaml")
-script <- file.path(Sys.getenv("FDP_CONFIG_DIR"), "script.sh")
+config <- file.path(conf.dir, "config.yaml")
+script <- file.path(conf.dir, "script.sh")
 handle <- initialise(config, script)
 
 # Read code run inputs
