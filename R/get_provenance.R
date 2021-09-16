@@ -4,7 +4,7 @@
 #' @param version version
 #' @param namespace namespace
 #' @param aspect_ratio aspect_ratio
-#' @param size size
+#' @param dpi dpi
 #' @param attributes attributes
 #' @param endpoint endpoint
 #'
@@ -14,7 +14,7 @@ get_provenance <- function(data_product,
                            version,
                            namespace,
                            aspect_ratio = NULL,
-                           size = "50%",
+                           dpi = NULL,
                            attributes = FALSE,
                            endpoint = "http://localhost:8000/api/") {
 
@@ -35,11 +35,14 @@ get_provenance <- function(data_product,
   prov_url <- dp_entry[[1]]$prov_report
   api_url <- paste0(prov_url, "?format=svg")
 
-  if (is.null(aspect_ratio)) {
+  if (!attributes)
     api_url <- paste0(api_url, "&attributes=False")
-  } else {
-    api_url <- paste0(api_url, "&attributes=False&aspect_ratio=", aspect_ratio)
-  }
+
+  if (!is.null(aspect_ratio))
+    api_url <- paste0(api_url, "&aspect_ratio=", aspect_ratio)
+
+  if (!is.null(dpi))
+    api_url <- paste0(api_url, "&dpi=", dpi)
 
   key <- readLines(file.path("~", ".fair", "registry", "token"))
   h <- c(Authorization = paste("token", key))
@@ -65,10 +68,5 @@ get_provenance <- function(data_product,
   # render into raw png array
   png <- rsvg::rsvg(xml_file)
   # read in png
-  img <- magick::image_read(png)
-
-  if(!missing(size))
-    img <- magick::image_resize(img, size)
-
-  img
+  magick::image_read(png)
 }
