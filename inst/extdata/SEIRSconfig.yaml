@@ -1,13 +1,15 @@
 run_metadata:
   default_input_namespace: sonia
   description: SEIRS Model
-  script: R -f inst/extdata/SEIRS.R ${{CONFIG_DIR}}
+  script: R -f inst/extdata/SEIRS.R
 
 register:
-- external_object: disease/sars_cov2/SEIRS_model/parameters/static_params
-  namespace_name: PSU
-  namespace_full_name: Pennsylvania State University
-  namespace_website: https://www.psu.edu
+- namespace: PSU
+  full_name: Pennsylvania State University
+  website: https://ror.org/04p491231
+
+- external_object: SEIRS_model/parameters
+  namespace: PSU
   root: https://raw.githubusercontent.com/
   path: FAIRDataPipeline/rSimpleModel/main/inst/extdata/static_params_SEIRS.csv
   title: Static parameters of the model
@@ -15,15 +17,15 @@ register:
   unique_name: SEIRS model parameters - Static parameters of the model
   alternate_identifier_type: SEIRS_model_params
   file_type: csv
-  release_date: ${{DATETIME}}
-  version: 0.${{DATE}}.0
+  release_date: "2020-06-01T12:00"
+  version: "1.0.0"
   primary: True
 
 write:
-- data_product: disease/sars_cov2/SEIRS_model/results/model_output
+- data_product: SEIRS_model/results/model_output
   description: SEIRS model results
   file_type: csv
 
-- data_product: disease/sars_cov2/SEIRS_model/results/figure
+- data_product: SEIRS_model/results/figure
   description: SEIRS output plot
   file_type: pdf
