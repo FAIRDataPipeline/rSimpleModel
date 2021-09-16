@@ -9,7 +9,7 @@ get_provenance(
   version,
   namespace,
   aspect_ratio = NULL,
-  size = "50\%",
+  dpi = NULL,
   attributes = FALSE,
   endpoint = "http://localhost:8000/api/"
 )
@@ -23,7 +23,7 @@ get_provenance(
 
 \item{aspect_ratio}{aspect_ratio}
 
-\item{size}{size}
+\item{dpi}{dpi}
 
 \item{attributes}{attributes}
 
