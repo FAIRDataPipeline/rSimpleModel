@@ -23,15 +23,15 @@ SEIRS_model <- function(initial.state, timesteps, years, alpha, beta,
   time_unit_days <- time_unit_years * 365.25
 
   # Convert parameters to days
-  alpha <- alpha * time_unit_days
-  beta <- beta * time_unit_days
-  gamma <- time_unit_days / inv_gamma
-  omega <- time_unit_days / (inv_omega * 365.25)
-  mu <- time_unit_days / (inv_mu * 365.25)
-  sigma <- 1 / inv_sigma
+  a <- alpha * time_unit_days
+  b <- beta * time_unit_days
+  g <- time_unit_days / inv_gamma
+  o <- time_unit_days / (inv_omega * 365.25)
+  m <- time_unit_days / (inv_mu * 365.25)
+  s <- 1 / inv_sigma
 
   N <- S + E + I + R
-  birth <- mu * N
+  birth <- m * N
 
   results <- as.data.frame(matrix(NA, nrow = timesteps + 1, ncol = 5))
   colnames(results) <- c("time", "S", "E", "I", "R")
@@ -42,14 +42,14 @@ SEIRS_model <- function(initial.state, timesteps, years, alpha, beta,
 
   for (t in seq_len(timesteps)) {
 
-    infection <- (beta * results$I[t] * results$S[t]) / N
-    lost_immunity <- omega * results$R[t]
-    death_S <- mu * results$S[t]
-    death_E <- mu * results$E[t]
-    death_I <- (mu * alpha) * results$I[t]
-    death_R <- mu * results$R[t]
-    latency <- sigma * results$E[t]
-    recovery <- gamma * results$I[t]
+    infection <- (b * results$I[t] * results$S[t]) / N
+    lost_immunity <- o * results$R[t]
+    death_S <- m * results$S[t]
+    death_E <- m * results$E[t]
+    death_I <- (m * a) * results$I[t]
+    death_R <- m * results$R[t]
+    latency <- s * results$E[t]
+    recovery <- g * results$I[t]
 
     S_rate <- birth - infection + lost_immunity - death_S
     E_rate <- infection - latency - death_E
@@ -61,12 +61,7 @@ SEIRS_model <- function(initial.state, timesteps, years, alpha, beta,
     results$E[now] <- results$E[t] + E_rate
     results$I[now] <- results$I[t] + I_rate
     results$R[now] <- results$R[t] + R_rate
-
-    # infectious_period <- 1 / (gamma + mu + alpha)
-    # # probability of the index case becoming infectious rather than dying while in E
-    # prob <- sigma / (sigma * mu)
-    # R0 <- prob * (beta * infectious_period)
   }
 
-  results
+  results %>% dplyr::mutate(time = time / 365.25)
 }
