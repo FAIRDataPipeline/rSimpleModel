@@ -73,7 +73,7 @@ jobs:
         run: |
           cd ../FAIR-CLI
           source .venv/bin/activate
-          cd ..pyDataPipeline
+          cd ../pyDataPipeline
           fair init --ci
           pip3 install .
           fair pull src/org/fairdatapipeline/simpleModel/ext/SEIRSconfig.yaml
