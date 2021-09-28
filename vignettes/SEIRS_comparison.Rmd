@@ -26,12 +26,9 @@ knitr::opts_knit$set(root.dir = here())
 ```
 
 ```{bash, include = F}
-cd ../pyDataPipeline
-pip3 install .
-```
-
-```{bash, include = F}
 ls
+pip3 install ../pyDataPipeline
+ls ../pyDataPipeline
 fair init --ci
 fair pull ../pyDataPipeline/src/org/fairdatapipeline/simpleModel/ext/SEIRSconfig.yaml
 fair run ../pyDataPipeline/src/org/fairdatapipeline/simpleModel/ext/SEIRSconfig.yaml
