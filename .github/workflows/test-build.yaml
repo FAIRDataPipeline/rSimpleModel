@@ -65,6 +65,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: FAIRDataPipeline/pyDataPipeline
+          ref: dev
           path: pyDataPipeline
       - name: Move pyDataPipeline
         run: mv pyDataPipeline ../pyDataPipeline
