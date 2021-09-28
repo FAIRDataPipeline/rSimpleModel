@@ -23,25 +23,6 @@ library(pdftools)
 
 i_am(path = "vignettes/SEIRS.Rmd")
 knitr::opts_knit$set(root.dir = here())
-
-# Install fair CLI
-# setwd(file.path(here(), "..", "FAIR-CLI"))
-# poetry <- "/home/runner/.local/bin/poetry"
-# system2(poetry, "install", stdout = TRUE)
-```
-
-```{r code-run, include = FALSE}
-# Run 
-# setwd(file.path(here(), "..", "FAIR-CLI"))
-# tmp <- tempfile(fileext = ".sh")
-# cat(paste("#!/bin/sh\n",
-#           paste("cd", here(),"\n"),
-#           "fair init --ci\n",
-#           "fair pull inst/extdata/SEIRSconfig.yaml\n",
-#           "fair run inst/extdata/SEIRSconfig.yaml"), file = tmp)
-# system2("chmod", paste("+x", tmp))
-# system2(poetry, paste("run", tmp),
-#         stdout = TRUE)
 ```
 
 ## *config.yaml* file
@@ -111,8 +92,8 @@ fair run inst/extdata/SEIRSconfig.yaml
 
 ## Outputs
 
-```{r, echo=FALSE}
-path <- get_dataproduct(data_product = "SEIRS_model/results/figure",
+```{r, echo=FALSE, out.width = "200%"}
+path <- get_dataproduct(data_product = "SEIRS_model/results/figure/R",
                         version = "0.0.1",
                         namespace = "testing")
 image_read_pdf(path, density = 60)
@@ -121,7 +102,7 @@ image_read_pdf(path, density = 60)
 ## Provenance report
 
 ```{r, echo=FALSE, fig.height=5, fig.width=5}
-get_provenance(data_product = "SEIRS_model/results/model_output",
+get_provenance(data_product = "SEIRS_model/results/model_output/R",
                version = "0.0.1",
                namespace = "testing")
 ```
