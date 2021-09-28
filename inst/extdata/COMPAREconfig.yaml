@@ -7,6 +7,8 @@ read:
 - data_product: SEIRS_model/results/model_output/R
 
 - data_product: SEIRS_model/results/model_output
+  use:
+    namespace: rfield
 
 write:
 - data_product: output

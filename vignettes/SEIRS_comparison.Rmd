@@ -25,15 +25,6 @@ i_am(path = "vignettes/SEIRS.Rmd")
 knitr::opts_knit$set(root.dir = here())
 ```
 
-```{bash, include = F}
-ls
-pip3 install ../pyDataPipeline
-ls ../pyDataPipeline
-fair init --ci
-fair pull ../pyDataPipeline/src/org/fairdatapipeline/simpleModel/ext/SEIRSconfig.yaml
-fair run ../pyDataPipeline/src/org/fairdatapipeline/simpleModel/ext/SEIRSconfig.yaml
-```
-
 ## *config.yaml* file
 
 ```{r config, echo=FALSE, comment=''}
@@ -43,10 +34,6 @@ cat(readLines(file.path(here(), 'inst/extdata/COMPAREconfig.yaml')), sep = '\n')
 ## pull
 
 ```{bash}
-fair pull inst/extdata/COMPAREconfig.yaml
-```
-
-```{bash, eval=FALSE}
 fair init --ci
 fair pull inst/extdata/COMPAREconfig.yaml
 ```
