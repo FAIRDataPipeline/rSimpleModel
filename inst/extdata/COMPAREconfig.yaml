@@ -1,0 +1,22 @@
+run_metadata:
+  default_input_namespace: testing
+  description: SEIRS Model
+  script: R -f inst/extdata/compare.R
+
+read:
+- data_product: SEIRS_model/results/model_output/R
+
+- data_product: SEIRS_model/results/model_output/julia
+
+write:
+- data_product: output
+  description: Compare results across implementations
+  file_type: csv
+  use:
+    data_product: SEIRS_model/compare_results/output
+
+- data_product: figure
+  description: Compare results across implementations in a plot
+  file_type: pdf
+  use:
+    data_product: SEIRS_model/compare_results/figure
