@@ -54,13 +54,12 @@ jobs:
         with:
           virtualenvs-create: true
           virtualenvs-in-project: true
-      - name: Install FAIR CLI
+      - name: Install FAIR CLI and initialise rSimpleModel project directory
         run: |
           cd ../FAIR-CLI
           poetry install
           source .venv/bin/activate
-      - name: Initialise rSimpleModel project directory
-        run: fair init --ci
+          fair init --ci
 
       - name: Checkout FAIRDataPipeline/pyDataPipeline
         uses: actions/checkout@v2
@@ -75,6 +74,8 @@ jobs:
           pip3 install .
       - name: Initialise pyDataPipeline project directory
         run: |
+          cd ../FAIR-CLI
+          source .venv/bin/activate
           cd ../pyDataPipeline
           fair init --ci
       - name: pyDataPipeline code run
