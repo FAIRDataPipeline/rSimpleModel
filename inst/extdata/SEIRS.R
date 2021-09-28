@@ -29,9 +29,9 @@ results <- SEIRS_model(initial.state, timesteps = 1000, years = 5,
 g <- plot_SEIRS(results)
 
 # Save outputs to data store
-results %>% write.csv(link_write(handle, "SEIRS_model/results/model_output"))
+results %>% write.csv(link_write(handle, "model_output"), row.names = FALSE)
 
-path <- link_write(handle, "SEIRS_model/results/figure")
+path <- link_write(handle, "figure")
 ggsave(path, g)
 
 # Register code run in local registry
