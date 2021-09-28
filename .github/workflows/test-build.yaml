@@ -75,9 +75,6 @@ jobs:
           cd ../pyDataPipeline
           fair init --ci
           pip3 install .
-          ls
-          fair pull src/org/fairdatapipeline/simpleModel/ext/SEIRSconfig.yaml
-          fair run src/org/fairdatapipeline/simpleModel/ext/SEIRSconfig.yaml
 
       - name: git2r dependencies (for package deployment)
         run: sudo apt-get install -y libgit2-dev

@@ -25,6 +25,11 @@ i_am(path = "vignettes/SEIRS.Rmd")
 knitr::opts_knit$set(root.dir = here())
 ```
 
+```{bash, include = F}
+fair pull ../pyDataPipeline/src/org/fairdatapipeline/simpleModel/ext/SEIRSconfig.yaml
+fair run ../pyDataPipeline/src/org/fairdatapipeline/simpleModel/ext/SEIRSconfig.yaml
+```
+
 ## *config.yaml* file
 
 ```{r config, echo=FALSE, comment=''}
