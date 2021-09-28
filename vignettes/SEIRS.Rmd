@@ -92,7 +92,7 @@ fair run inst/extdata/SEIRSconfig.yaml
 
 ## Outputs
 
-```{r, echo=FALSE, out.width = "200%"}
+```{r, echo=FALSE}
 path <- get_dataproduct(data_product = "SEIRS_model/results/figure/R",
                         version = "0.0.1",
                         namespace = "testing")
