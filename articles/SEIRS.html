@@ -130,13 +130,17 @@ register:
   primary: True
 
 write:
-- data_product: SEIRS_model/results/model_output
+- data_product: model_output
   description: SEIRS model results
   file_type: csv
+  use:
+    data_product: SEIRS_model/results/model_output/R
 
-- data_product: SEIRS_model/results/figure
+- data_product: figure
   description: SEIRS output plot
-  file_type: pdf</code></pre>
+  file_type: pdf
+  use:
+    data_product: SEIRS_model/results/figure/R</code></pre>
 <p>The submission script should call <code>initialise()</code> to set up the code run, then perhaps read in some data using one of the <code>read_*()</code> functions (for internal file formats) or <code>link_read()</code> (for external file formats such as csvs). The data might now be processed in some way, or a model / analysis might bw carried out, after which the results should be saved in the local data store via one of the <code>write_*()</code> functions or <code>link_write()</code>. When the code run is complete, <code>finalise()</code> should be called to register the all metadata with the local registry.</p>
 </div>
 <div id="fair-pull" class="section level2">
@@ -215,9 +219,9 @@ write:
 <span id="cb3-48"><a href="#cb3-48"></a><span class="co">#&gt; &gt; g &lt;- plot_SEIRS(results)</span></span>
 <span id="cb3-49"><a href="#cb3-49"></a><span class="co">#&gt; &gt; </span></span>
 <span id="cb3-50"><a href="#cb3-50"></a><span class="co">#&gt; &gt; # Save outputs to data store</span></span>
-<span id="cb3-51"><a href="#cb3-51"></a><span class="co">#&gt; &gt; results %&gt;% write.csv(link_write(handle, "SEIRS_model/results/model_output"))</span></span>
+<span id="cb3-51"><a href="#cb3-51"></a><span class="co">#&gt; &gt; results %&gt;% write.csv(link_write(handle, "model_output"), row.names = FALSE)</span></span>
 <span id="cb3-52"><a href="#cb3-52"></a><span class="co">#&gt; &gt; </span></span>
-<span id="cb3-53"><a href="#cb3-53"></a><span class="co">#&gt; &gt; path &lt;- link_write(handle, "SEIRS_model/results/figure")</span></span>
+<span id="cb3-53"><a href="#cb3-53"></a><span class="co">#&gt; &gt; path &lt;- link_write(handle, "figure")</span></span>
 <span id="cb3-54"><a href="#cb3-54"></a><span class="co">#&gt; &gt; ggsave(path, g)</span></span>
 <span id="cb3-55"><a href="#cb3-55"></a><span class="co">#&gt; &gt; </span></span>
 <span id="cb3-56"><a href="#cb3-56"></a><span class="co">#&gt; &gt; # Register code run in local registry</span></span>
@@ -228,7 +232,7 @@ write:
 <div id="outputs" class="section level2">
 <h2 class="hasAnchor">
 <a href="#outputs" class="anchor"></a>Outputs</h2>
-<p><img src="SEIRS_files/figure-html/unnamed-chunk-4-1.png" width="210"></p>
+<p><img src="SEIRS_files/figure-html/unnamed-chunk-4-1.png" width="200%"></p>
 </div>
 <div id="provenance-report" class="section level2">
 <h2 class="hasAnchor">
