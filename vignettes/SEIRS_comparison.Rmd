@@ -28,6 +28,7 @@ knitr::opts_knit$set(root.dir = here())
 ```{bash, include = F}
 cd ../pyDataPipeline
 pip3 install .
+fair init --ci
 fair pull src/org/fairdatapipeline/simpleModel/ext/SEIRSconfig.yaml
 fair run src/org/fairdatapipeline/simpleModel/ext/SEIRSconfig.yaml
 ```
@@ -41,6 +42,10 @@ cat(readLines(file.path(here(), 'inst/extdata/COMPAREconfig.yaml')), sep = '\n')
 ## pull
 
 ```{bash}
+fair pull inst/extdata/COMPAREconfig.yaml
+```
+
+```{bash, eval=FALSE}
 fair init --ci
 fair pull inst/extdata/COMPAREconfig.yaml
 ```
