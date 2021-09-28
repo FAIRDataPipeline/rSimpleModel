@@ -21,7 +21,7 @@ library(here)
 library(magick)
 library(pdftools)
 
-i_am(path = "vignettes/SEIRS.Rmd")
+i_am(path = "vignettes/SEIRS_comparison.Rmd")
 knitr::opts_knit$set(root.dir = here())
 ```
 
