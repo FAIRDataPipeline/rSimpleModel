@@ -6,7 +6,7 @@ run_metadata:
 read:
 - data_product: SEIRS_model/results/model_output/R
 
-- data_product: SEIRS_model/results/model_output/julia
+- data_product: SEIRS_model/results/model_output
 
 write:
 - data_product: output

@@ -12,13 +12,13 @@ handle <- initialise(config, script)
 
 # Read model results
 R <- read.csv(link_read(handle, "SEIRS_model/results/model_output/R"))
-julia <- read.csv(link_read(handle, "SEIRS_model/results/model_output/julia"))
+python <- read.csv(link_read(handle, "SEIRS_model/results/model_output"))
 
 # Largest difference between implementations across timesteps
-results <- max(R - julia)
+results <- max(R - python)
 
 # Plot results
-g <- plot_compare(R, julia)
+g <- plot_compare(R, python)
 
 # Save outputs to data store
 results %>% write_estimate(handle = handle,

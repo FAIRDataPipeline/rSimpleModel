@@ -1,0 +1,54 @@
+---
+title: "Model Comparison"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Model Comparison}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, include = FALSE}
+library(rSimpleModel)
+library(rDataPipeline)
+library(here)
+library(magick)
+library(pdftools)
+
+i_am(path = "vignettes/SEIRS.Rmd")
+knitr::opts_knit$set(root.dir = here())
+```
+
+## *config.yaml* file
+
+```{r config, echo=FALSE, comment=''}
+cat(readLines(file.path(here(), 'inst/extdata/COMPAREconfig.yaml')), sep = '\n')
+```
+
+## pull
+
+```{bash}
+fair init --ci
+fair pull inst/extdata/COMPAREconfig.yaml
+```
+
+## run
+
+```{bash}
+fair run inst/extdata/SEIRSconfig.yaml
+```
+
+## Outputs
+
+```{r, echo=FALSE}
+path <- get_dataproduct(data_product = "SEIRS_model/compare_results/figure",
+                        version = "0.0.1",
+                        namespace = "testing")
+image_read_pdf(path, density = 60)
+```
