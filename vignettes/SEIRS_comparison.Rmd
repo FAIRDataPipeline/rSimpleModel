@@ -41,7 +41,7 @@ fair pull inst/extdata/COMPAREconfig.yaml
 ## run
 
 ```{bash}
-fair run inst/extdata/SEIRSconfig.yaml
+fair run inst/extdata/COMPAREconfig.yaml
 ```
 
 ## Outputs
