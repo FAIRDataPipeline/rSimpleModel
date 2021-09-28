@@ -68,16 +68,14 @@ jobs:
           path: pyDataPipeline
       - name: Move pyDataPipeline
         run: mv pyDataPipeline ../pyDataPipeline
-      - name: Install pyDataPipeline
-        run: |
-          cd ../pyDataPipeline
-          pip3 install .
       - name: pyDataPipeline code run
         run: |
           cd ../FAIR-CLI
           source .venv/bin/activate
           cd ../pyDataPipeline
           fair init --ci
+          pip3 install .
+          ls
           fair pull src/org/fairdatapipeline/simpleModel/ext/SEIRSconfig.yaml
           fair run src/org/fairdatapipeline/simpleModel/ext/SEIRSconfig.yaml
 
