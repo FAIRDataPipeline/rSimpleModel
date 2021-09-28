@@ -5,12 +5,8 @@ run_metadata:
 
 read:
 - data_product: SEIRS_model/results/model_output/R
-  use:
-    namespace: sonia
 
 - data_product: SEIRS_model/results/model_output
-  use:
-    namespace: rfield
 
 write:
 - data_product: output
