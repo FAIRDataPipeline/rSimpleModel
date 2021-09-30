@@ -17,7 +17,8 @@ SEIRS_model(
 )
 }
 \arguments{
-\item{initial.state}{Number of individuals in different disease states (S, E, I and R) at time, t = 0}
+\item{initial.state}{Number of individuals in different disease states
+(S, E, I and R) at time, t = 0}
 
 \item{timesteps}{timesteps}
 
