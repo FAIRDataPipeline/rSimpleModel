@@ -1,12 +1,17 @@
 run_metadata:
-  default_input_namespace: testing
+  default_input_namespace: sonia
   description: SEIRS Model
   script: R -f inst/extdata/compare.R
 
 read:
 - data_product: SEIRS_model/results/model_output/R
-
-- data_product: SEIRS_model/results/model_output
+- data_product: SEIRS_model/results/model_output/java
+  use:
+    namespace: bram
+- data_product: SEIRS_model/results/model_output/julia
+- data_product: SEIRS_model/results/model_output/python
+  use:
+    namespace: ryan
 
 write:
 - data_product: output
