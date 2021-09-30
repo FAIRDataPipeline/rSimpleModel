@@ -1,6 +1,6 @@
 run_metadata:
   default_input_namespace: sonia
-  description: SEIRS Model
+  description: SEIRS Model comparison
   script: R -f inst/extdata/compare.R
 
 read:
