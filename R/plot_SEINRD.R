@@ -14,7 +14,7 @@ plot_SEINRD <- function(results) {
                                 levels = c("S", "E", "I", "N", "R", "D")),
                   plot = "left")
 
-  right <- tmp %>%
+  right <- left %>%
     dplyr::filter(name %in% c("E", "I", "N", "D")) %>%
     dplyr::mutate(plot = "right")
 
@@ -26,8 +26,9 @@ plot_SEINRD <- function(results) {
     ggplot2::scale_colour_manual(values = cols) +
     ggplot2::labs(title = "SEINRD model trajectories",
                   x = "Time", y = "Number") +
-    ggplot2::scale_y_continuous(labels = function(x) format(x, scientific = TRUE)) +
-    ggplot2::theme(strip.background = element_blank(),
-                   strip.text.x = element_blank(),
-                   plot.title = element_text(hjust = 0.5))
+    ggplot2::scale_y_continuous(labels = function(x)
+      format(x, scientific = TRUE)) +
+    ggplot2::theme(strip.background = ggplot2::element_blank(),
+                   strip.text.x = ggplot2::element_blank(),
+                   plot.title = ggplot2::element_text(hjust = 0.5))
 }
