@@ -1,5 +1,5 @@
 run_metadata:
-  default_input_namespace: BioSS
+  default_input_namespace: sonia
   description: SEINRD_model
   script: R -f inst/extdata/SEINRD.R --args ${{CONFIG_DIR}}
 

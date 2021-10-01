@@ -23,25 +23,6 @@ library(pdftools)
 
 i_am(path = "vignettes/SEINRD.Rmd")
 knitr::opts_knit$set(root.dir = here())
-
-# Install fair CLI
-# setwd(file.path(here(), "..", "FAIR-CLI"))
-# poetry <- "/home/runner/.local/bin/poetry"
-# system2(poetry, "install", stdout = TRUE)
-```
-
-```{r code-run, include = FALSE}
-# Run 
-# setwd(file.path(here(), "..", "FAIR-CLI"))
-# tmp <- tempfile(fileext = ".sh")
-# cat(paste("#!/bin/sh\n",
-#           paste("cd", here(),"\n"),
-#           "fair init --ci\n",
-#           "fair pull inst/extdata/SEINRDconfig.yaml\n",
-#           "fair run inst/extdata/SEINRDconfig.yaml"), file = tmp)
-# system2("chmod", paste("+x", tmp))
-# system2(poetry, paste("run", tmp),
-#         stdout = TRUE)
 ```
 
 ## *config.yaml* file
@@ -116,7 +97,7 @@ fair run inst/extdata/SEINRDconfig.yaml
 ```{r, echo=FALSE}
 path <- get_dataproduct(data_product = "disease/sars_cov2/SEINRD_model/results/figure",
                         version = "0.0.1",
-                        namespace = "testing")
+                        namespace = "sonia")
 image_read_pdf(path, density = 60)
 ```
 
@@ -125,5 +106,5 @@ image_read_pdf(path, density = 60)
 ```{r, echo=FALSE}
 get_provenance(data_product = "disease/sars_cov2/SEINRD_model/results/model_output",
                version = "0.0.1",
-               namespace = "testing")
+               namespace = "sonia")
 ```
