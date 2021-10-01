@@ -97,7 +97,7 @@ fair run inst/extdata/SEINRDconfig.yaml
 ```{r, echo=FALSE}
 path <- get_dataproduct(data_product = "disease/sars_cov2/SEINRD_model/results/figure",
                         version = "0.0.1",
-                        namespace = "sonia")
+                        namespace = "testing")
 image_read_pdf(path, density = 60)
 ```
 
@@ -106,5 +106,5 @@ image_read_pdf(path, density = 60)
 ```{r, echo=FALSE}
 get_provenance(data_product = "disease/sars_cov2/SEINRD_model/results/model_output",
                version = "0.0.1",
-               namespace = "sonia")
+               namespace = "testing")
 ```
