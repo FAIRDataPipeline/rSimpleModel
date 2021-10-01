@@ -1,6 +1,7 @@
 #' SEIRS_model
 #'
-#' @param initial.state Number of individuals in different disease states (S, E, I and R) at time, t = 0
+#' @param initial.state Number of individuals in different disease states
+#' (S, E, I and R) at time, t = 0
 #' @param timesteps timesteps
 #' @param years years
 #' @param alpha Death rate
