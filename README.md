@@ -26,7 +26,7 @@ devtools::install_github("FAIRDataPipeline/rDataPipeline")
 library(rDataPipeline)
 ```
 
-Download and install the [rSimpleModel](https://github.com/FAIRDataPipeline/rSimpleModel) code. 
+Then install [rSimpleModel](https://github.com/FAIRDataPipeline/rSimpleModel):
 
 ```R
 devtools::install_github("FAIRDataPipeline/rSimpleModel")
