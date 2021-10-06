@@ -16,7 +16,7 @@ poetry shell
 
 You are now running in a new shell created by `poetry` that has a copy of the `fair` executable in its path.
 
-## Configuring the registry and running the example in this repo
+## Installing the R API and simple model functions
 
 Install the [`rDataPipeline`](https://github.com/FAIRDataPipeline/rDataPipeline) package, in R:
 
@@ -33,7 +33,9 @@ devtools::install_github("FAIRDataPipeline/rSimpleModel")
 library(rSimpleModel)
 ```
 
-Then at the terminal, in some suitable directory, clone the git repo:
+## Configuring the registry and setting up the example
+
+At the terminal, in some suitable directory, clone the git repo:
 
 ```sh
 git clone https://github.com/FAIRDataPipeline/rSimpleModel.git
@@ -53,8 +55,6 @@ fair init --ci
 ```
 
 In this case the CLI will initialise the repo with dummy values that are used for continuous integration testing.
-
-Finally you can run the example!
 
 ## Running the example
 
