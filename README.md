@@ -18,7 +18,7 @@ You are now running in a new shell created by `poetry` that has a copy of the `f
 
 ## Configuring the registry and running the example in this repo
 
-Install the [`rDataPipeline`](https://github.com/FAIRDataPipeline/rDataPipeline) package:
+Install the [`rDataPipeline`](https://github.com/FAIRDataPipeline/rDataPipeline) package, in R:
 
 ```R
 install.packages(devtools)
@@ -26,9 +26,14 @@ devtools::install_github("FAIRDataPipeline/rDataPipeline")
 library(rDataPipeline)
 ```
 
-Download and install the [rSimpleModel](https://github.com/FAIRDataPipeline/rSimpleModel) code. In some suitable directory, clone the git repo:
+Download and install the [rSimpleModel](https://github.com/FAIRDataPipeline/rSimpleModel) code. 
 
-[rSimpleModel](https://github.com/FAIRDataPipeline/rSimpleModel) code. In some suitable directory, clone the git repo:
+```R
+devtools::install_github("FAIRDataPipeline/rSimpleModel")
+library(rSimpleModel)
+```
+
+Then at the terminal, in some suitable directory, clone the git repo:
 
 ```sh
 git clone https://github.com/FAIRDataPipeline/rSimpleModel.git
