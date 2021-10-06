@@ -165,7 +165,7 @@ write:
 - data_product: disease/sars_cov2/SEINRD_model/results/figure
   description: SEINRD output plot
   file_type: pdf</code></pre>
-<p>The submission script should call <code>initialise()</code> to set up the code run, then perhaps read in some data using one of the <code>read_*()</code> functions (for internal file formats) or <code>link_read()</code> (for external file formats such as csvs). The data might now be processed in some way, or a model / analysis might bw carried out, after which the results should be saved in the local data store via one of the <code>write_*()</code> functions or <code>link_write()</code>. When the code run is complete, <code>finalise()</code> should be called to register the all metadata with the local registry.</p>
+<p>The submission script should call <code><a href="https://fairdatapipeline.github.io/rFDP/reference/initialise.html">initialise()</a></code> to set up the code run, then perhaps read in some data using one of the <code>read_*()</code> functions (for internal file formats) or <code><a href="https://fairdatapipeline.github.io/rFDP/reference/link_read.html">link_read()</a></code> (for external file formats such as csvs). The data might now be processed in some way, or a model / analysis might bw carried out, after which the results should be saved in the local data store via one of the <code>write_*()</code> functions or <code><a href="https://fairdatapipeline.github.io/rFDP/reference/link_write.html">link_write()</a></code>. When the code run is complete, <code><a href="https://fairdatapipeline.github.io/rFDP/reference/finalise.html">finalise()</a></code> should be called to register the all metadata with the local registry.</p>
 </div>
 <div id="fair-pull" class="section level2">
 <h2 class="hasAnchor">
@@ -175,9 +175,7 @@ write:
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">fair</span> init --ci</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="ex">fair</span> pull inst/extdata/SEINRDconfig.yaml</span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="co">#&gt; Initialised empty fair repository in /home/runner/work/rSimpleModel/rSimpleModel/.fair</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt; Updating registry from inst/extdata/SEINRDconfig.yaml</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="co">#&gt; </span><span class="al">WARNING</span><span class="co">:FAIRDataPipeline.Parsing:Cannot currently pull from remote registry</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="co">#&gt; </span><span class="al">WARNING</span><span class="co">:FAIRDataPipeline.Parsing:Cannot currently pull from remote registry</span></span></code></pre></div>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt; Updating registry from inst/extdata/SEINRDconfig.yaml</span></span></code></pre></div>
 <p>The local registry should now contain three data products:</p>
 <ol style="list-style-type: decimal">
 <li>
