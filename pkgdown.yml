@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   SEINRD: SEINRD.html
   SEIRS: SEIRS.html
-last_built: 2021-10-06T14:15Z
+last_built: 2021-10-06T14:16Z
 urls:
   reference: https://fairdatapipeline.github.io/rSimpleModel//reference
   article: https://fairdatapipeline.github.io/rSimpleModel//articles

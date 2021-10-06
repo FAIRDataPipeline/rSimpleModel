@@ -98,19 +98,22 @@
 <div id="configuring-the-registry-and-running-the-example-in-this-repo" class="section level2">
 <h2 class="hasAnchor">
 <a href="#configuring-the-registry-and-running-the-example-in-this-repo" class="anchor"></a>Configuring the registry and running the example in this repo</h2>
-<p>Install the <a href="https://github.com/FAIRDataPipeline/rDataPipeline"><code>rDataPipeline</code></a> package:</p>
+<p>Install the <a href="https://github.com/FAIRDataPipeline/rDataPipeline"><code>rDataPipeline</code></a> package, in R:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="va">devtools</span><span class="op">)</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"FAIRDataPipeline/rDataPipeline"</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.fairdatapipeline.org/rDataPipeline/">rDataPipeline</a></span><span class="op">)</span></code></pre></div>
-<p>Download and install the <a href="https://github.com/FAIRDataPipeline/rSimpleModel">rSimpleModel</a> code. In some suitable directory, clone the git repo:</p>
-<p><a href="https://github.com/FAIRDataPipeline/rSimpleModel">rSimpleModel</a> code. In some suitable directory, clone the git repo:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">git</span> clone https://github.com/FAIRDataPipeline/rSimpleModel.git</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="bu">cd</span> rSimpleModel</span></code></pre></div>
+<p>Download and install the <a href="https://github.com/FAIRDataPipeline/rSimpleModel">rSimpleModel</a> code.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"FAIRDataPipeline/rSimpleModel"</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://fairdatapipeline.github.io/SimpleModel">rSimpleModel</a></span><span class="op">)</span></code></pre></div>
+<p>Then at the terminal, in some suitable directory, clone the git repo:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">git</span> clone https://github.com/FAIRDataPipeline/rSimpleModel.git</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="bu">cd</span> rSimpleModel</span></code></pre></div>
 <p>At this point you can configure <code>fair</code> to run in this repo. Either run:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">fair</span> init</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">fair</span> init</span></code></pre></div>
 <p>And fill in your own details, or simply run:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">fair</span> init --ci</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">fair</span> init --ci</span></code></pre></div>
 <p>In this case the CLI will initialise the repo with dummy values that are used for continuous integration testing.</p>
 <p>Finally you can run the example!</p>
 </div>
@@ -118,8 +121,8 @@
 <h2 class="hasAnchor">
 <a href="#running-the-example" class="anchor"></a>Running the example</h2>
 <p>This is easy. The user configuration script for running the R SEIRS model can be found inside this repo - <a href="https://raw.githubusercontent.com/FAIRDataPipeline/rSimpleModel/main/inst/extdata/SEIRSconfig.yaml">inst/extdata/SEIRSconfig.yaml</a> - and for this self-contained example, it includes all of the information to register the input data that the model needs, so that you don’t have to be connected to a registry that already knows about it. The code can be executed by first ensuring that all of the input data is available in the local registry (using <code>fair pull</code>) and then running the code (using <code>fair run</code>). So:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">fair</span> pull inst/extdata/SEIRSconfig.yaml</span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="ex">fair</span> run inst/extdata/SEIRSconfig.yaml</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="ex">fair</span> pull inst/extdata/SEIRSconfig.yaml</span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="ex">fair</span> run inst/extdata/SEIRSconfig.yaml</span></code></pre></div>
 <p>That’s it! If you go to the local registry in your browser now (by default at <a href="http://localhost:8000" class="uri">http://localhost:8000</a>), you should see the input and output data recorded in the registry.</p>
 </div>
 </div>
