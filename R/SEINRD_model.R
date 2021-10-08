@@ -6,7 +6,7 @@
 #'
 #' @export
 #'
-SEINRD_model <- function(time, state, parms){
+SEINRD_model <- function(time, state, parms) {
 
   # Take Rt data and fit a linear interpolation
   Rt_interp <- approxfun(x = rts_params$time, y = rts_params$Rt_value,
@@ -23,10 +23,10 @@ SEINRD_model <- function(time, state, parms){
     dS <- -(r_t * Rt * I * S / Npop + efoi)
     dE <- -dS - (EI_trans_rate * E)
     dI <- (EI_trans_rate * E) - (IN_trans_rate * I)
-    dN <- (IN_trans_rate * I) - (NR_trans_rate + ND_trans_rate)*N
+    dN <- (IN_trans_rate * I) - (NR_trans_rate + ND_trans_rate) * N
     dR <- NR_trans_rate * N
     dD <- ND_trans_rate * N
 
-    return(list(c(dS,dE,dI,dN,dR,dD)))
+    return(list(c(dS, dE, dI, dN, dR, dD)))
   })
 }

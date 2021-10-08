@@ -51,7 +51,7 @@ get_provenance <- function(data_product,
   response <- httr::GET(api_url,
                         httr::add_headers(.headers = h))
   svg <- httr::content(response, as = "text", encoding = "UTF-8")
-  if(!isXMLString(svg))
+  if (!isXMLString(svg))
     stop(paste(response, "\n",
                api_url, "\n",
                svg, "\n",

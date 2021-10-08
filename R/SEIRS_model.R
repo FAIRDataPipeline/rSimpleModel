@@ -36,7 +36,7 @@ SEIRS_model <- function(initial.state, timesteps, years, alpha, beta,
 
   results <- as.data.frame(matrix(NA, nrow = timesteps + 1, ncol = 5))
   colnames(results) <- c("time", "S", "E", "I", "R")
-  results[1,] <- c(0, S, E, I, R)
+  results[1, ] <- c(0, S, E, I, R)
   results <- results %>%
     dplyr::mutate(time = 0:timesteps) %>%
     dplyr::mutate(time = time * time_unit_days)

@@ -22,10 +22,10 @@ plot_SEIRS <- function(results) {
 
   cols <- c("black", "#aceb4e", "red", "#28cce8")
   title <- expression(atop("SEIRS model trajectories",
-                           paste(R[0]==3, ", ",
-                                 1/gamma==14, " days, ",
-                                 1/sigma==7, " days, ",
-                                 1/omega==1, " year")))
+                           paste(R[0] == 3, ", ",
+                                 1 / gamma == 14, " days, ",
+                                 1 / sigma == 7, " days, ",
+                                 1 / omega == 1, " year")))
 
   # Generate plot
   ggplot2::ggplot(plot_this) + ggplot2::theme_bw() +
