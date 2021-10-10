@@ -11,7 +11,7 @@ script <- file.path(conf.dir, "script.sh")
 handle <- initialise(config, script)
 
 # Read model parameters
-params <- read.csv(link_read(handle, "SEIRS_model/parameters"))
+params <- handle %>% link_read("SEIRS_model/parameters") %>% read.csv
 a <- params %>% filter(param == "alpha") %$% value
 b <- params %>% filter(param == "beta") %$% value
 ig <- params %>% filter(param == "inv_gamma") %$% value
