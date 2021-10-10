@@ -199,7 +199,7 @@ write:
 <span id="cb3-30"><a href="#cb3-30"></a><span class="co">#&gt; &gt; handle &lt;- initialise(config, script)</span></span>
 <span id="cb3-31"><a href="#cb3-31"></a><span class="co">#&gt; &gt; </span></span>
 <span id="cb3-32"><a href="#cb3-32"></a><span class="co">#&gt; &gt; # Read model parameters</span></span>
-<span id="cb3-33"><a href="#cb3-33"></a><span class="co">#&gt; &gt; params &lt;- read.csv(link_read(handle, "SEIRS_model/parameters"))</span></span>
+<span id="cb3-33"><a href="#cb3-33"></a><span class="co">#&gt; &gt; params &lt;- handle %&gt;% link_read("SEIRS_model/parameters") %&gt;% read.csv</span></span>
 <span id="cb3-34"><a href="#cb3-34"></a><span class="co">#&gt; &gt; a &lt;- params %&gt;% filter(param == "alpha") %$% value</span></span>
 <span id="cb3-35"><a href="#cb3-35"></a><span class="co">#&gt; &gt; b &lt;- params %&gt;% filter(param == "beta") %$% value</span></span>
 <span id="cb3-36"><a href="#cb3-36"></a><span class="co">#&gt; &gt; ig &lt;- params %&gt;% filter(param == "inv_gamma") %$% value</span></span>
@@ -219,18 +219,17 @@ write:
 <span id="cb3-50"><a href="#cb3-50"></a><span class="co">#&gt; &gt; # Save outputs to data store</span></span>
 <span id="cb3-51"><a href="#cb3-51"></a><span class="co">#&gt; &gt; results %&gt;% write.csv(link_write(handle, "model_output"), row.names = FALSE)</span></span>
 <span id="cb3-52"><a href="#cb3-52"></a><span class="co">#&gt; &gt; </span></span>
-<span id="cb3-53"><a href="#cb3-53"></a><span class="co">#&gt; &gt; path &lt;- link_write(handle, "figure")</span></span>
-<span id="cb3-54"><a href="#cb3-54"></a><span class="co">#&gt; &gt; ggsave(path, g)</span></span>
-<span id="cb3-55"><a href="#cb3-55"></a><span class="co">#&gt; &gt; </span></span>
-<span id="cb3-56"><a href="#cb3-56"></a><span class="co">#&gt; &gt; # Register code run in local registry</span></span>
-<span id="cb3-57"><a href="#cb3-57"></a><span class="co">#&gt; &gt; finalise(handle)</span></span>
-<span id="cb3-58"><a href="#cb3-58"></a><span class="co">#&gt; </span></span>
-<span id="cb3-59"><a href="#cb3-59"></a><span class="co">#&gt; &gt;</span></span></code></pre></div>
+<span id="cb3-53"><a href="#cb3-53"></a><span class="co">#&gt; &gt; handle %&gt;% link_write("figure") %&gt;% ggsave(g, width=20, height=10, units="cm")</span></span>
+<span id="cb3-54"><a href="#cb3-54"></a><span class="co">#&gt; &gt; </span></span>
+<span id="cb3-55"><a href="#cb3-55"></a><span class="co">#&gt; &gt; # Register code run in local registry</span></span>
+<span id="cb3-56"><a href="#cb3-56"></a><span class="co">#&gt; &gt; finalise(handle)</span></span>
+<span id="cb3-57"><a href="#cb3-57"></a><span class="co">#&gt; </span></span>
+<span id="cb3-58"><a href="#cb3-58"></a><span class="co">#&gt; &gt;</span></span></code></pre></div>
 </div>
 <div id="outputs" class="section level2">
 <h2 class="hasAnchor">
 <a href="#outputs" class="anchor"></a>Outputs</h2>
-<p><img src="SEIRS_files/figure-html/unnamed-chunk-4-1.png" width="210"></p>
+<p><img src="SEIRS_files/figure-html/unnamed-chunk-4-1.png" width="236"></p>
 </div>
 <div id="provenance-report" class="section level2">
 <h2 class="hasAnchor">
