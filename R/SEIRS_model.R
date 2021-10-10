@@ -47,7 +47,7 @@ SEIRS_model <- function(initial.state, timesteps, years, alpha, beta,
     lost_immunity <- o * results$R[t]
     death_S <- m * results$S[t]
     death_E <- m * results$E[t]
-    death_I <- (m * a) * results$I[t]
+    death_I <- (m + a) * results$I[t]
     death_R <- m * results$R[t]
     latency <- s * results$E[t]
     recovery <- g * results$I[t]
