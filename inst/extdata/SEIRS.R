@@ -31,8 +31,7 @@ g <- plot_SEIRS(results)
 # Save outputs to data store
 results %>% write.csv(link_write(handle, "model_output"), row.names = FALSE)
 
-path <- link_write(handle, "figure")
-ggsave(path, g)
+handle %>% link_write("figure") %>% ggsave(g, width=20, height=10, units="cm")
 
 # Register code run in local registry
 finalise(handle)
