@@ -26,23 +26,20 @@ good_names <- c()
 starts <- c()
 ends <- c()
 lengths <- c()
-for (name in result_names)
-{
+for (name in result_names) {
   times <- results[[name]]$time
   starts[name] <- times[1]
   ends[name] <- times[length(times)]
   lengths[name] <- nrow(results[[name]])
 }
 
-if (min(starts) != max(starts))
-{
+if (min(starts) != max(starts)) {
   warning("Start times of outputs don't match")
   start.table <- table(starts)
-  if (start.table[1] != 3)
-  {
+  if (start.table[1] != 3) {
     stop("No way of telling which start time is right")
   } else {
-    target = as.numeric(names(start.table)[2])
+    target <- as.numeric(names(start.table)[2])
     bad_name <- result_names[which(starts == target)]
     raise_issue(handle = handle,
                 data_product = paste0("SEIRS_model/results/model_output/",
@@ -53,15 +50,13 @@ if (min(starts) != max(starts))
   }
 }
 
-if (min(ends) != max(ends))
-{
+if (min(ends) != max(ends)) {
   warning("End times of outputs don't match")
   end.table <- table(ends)
-  if (end.table[1] != 3)
-  {
+  if (end.table[1] != 3) {
     stop("No way of telling which end time is right")
   } else {
-    target = as.numeric(names(end.table)[2])
+    target <- as.numeric(names(end.table)[2])
     bad_name <- result_names[which(ends == target)]
     raise_issue(handle = handle,
                 data_product = paste0("SEIRS_model/results/model_output/",
@@ -72,15 +67,13 @@ if (min(ends) != max(ends))
   }
 }
 
-if (min(lengths) != max(lengths))
-{
+if (min(lengths) != max(lengths)) {
   warning("Lengths of outputs don't match")
   length.table <- table(lengths)
-  if (length.table[1] != 3)
-  {
+  if (length.table[1] != 3) {
     stop("No way of telling which length is right")
   } else {
-    target = as.numeric(names(length.table)[2])
+    target <- as.numeric(names(length.table)[2])
     bad_name <- result_names[which(lengths == target)]
     raise_issue(handle = handle,
                 data_product = paste0("SEIRS_model/results/model_output/",
@@ -102,23 +95,19 @@ too.big <- 1e-4
 for (name.1 in good_names)
   problems[name.1] <- 0
 
-for (name.1 in good_names)
-{
-  for (name.2 in good_names)
-  {
+for (name.1 in good_names) {
+  for (name.2 in good_names) {
     d12 <- max(abs(results[[name.1]] - results[[name.2]]))
     if (d12 > max.diff)
       max.diff <- d12
-    if (d12 > too.big)
-    {
+    if (d12 > too.big) {
       problems[name.1] <- problems[name.1] + 1
       problems[name.2] <- problems[name.2] + 1
     }
   }
 }
 
-if (max.diff > too.big)
-{
+if (max.diff > too.big) {
   name <- names(which.max(problems))
   raise_issue(handle = handle,
               data_product = paste0("SEIRS_model/results/model_output/",
@@ -140,7 +129,7 @@ max.diff %>% write_estimate(handle = handle,
                             description = "Maximum difference between values")
 
 path <- link_write(handle, "figure")
-ggsave(path, g)
+ggsave(path, g, width = 20, height = 10, units = "cm")
 
 # Register code run in local registry
 finalise(handle)
