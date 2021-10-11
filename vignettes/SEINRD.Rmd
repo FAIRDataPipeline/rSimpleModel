@@ -98,7 +98,7 @@ fair run inst/extdata/SEINRDconfig.yaml
 path <- get_dataproduct(data_product = "disease/sars_cov2/SEINRD_model/results/figure",
                         version = "0.0.1",
                         namespace = "testing")
-image_read_pdf(path, density = 60)
+image_read_pdf(path)
 ```
 
 ## Provenance report

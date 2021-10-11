@@ -96,7 +96,7 @@ fair run inst/extdata/SEIRSconfig.yaml
 path <- get_dataproduct(data_product = "SEIRS_model/results/figure/R",
                         version = "0.0.1",
                         namespace = "testing")
-image_read_pdf(path, density = 60)
+image_read_pdf(path)
 ```
 
 ## Provenance report
