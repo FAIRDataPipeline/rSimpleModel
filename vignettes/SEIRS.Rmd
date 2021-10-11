@@ -92,7 +92,7 @@ fair run inst/extdata/SEIRSconfig.yaml
 
 ## Outputs
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.width=20}
 path <- get_dataproduct(data_product = "SEIRS_model/results/figure/R",
                         version = "0.0.1",
                         namespace = "testing")
@@ -101,7 +101,7 @@ image_read_pdf(path, density = 60)
 
 ## Provenance report
 
-```{r, echo=FALSE, fig.height=5, fig.width=5}
+```{r, echo=FALSE, fig.width=20}
 get_provenance(data_product = "SEIRS_model/results/model_output/R",
                version = "0.0.1",
                namespace = "testing")
