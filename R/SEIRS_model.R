@@ -23,16 +23,13 @@ SEIRS_model <- function(initial.state, timesteps, years, alpha, beta,
   time_unit_years <- years / timesteps
   time_unit_days <- time_unit_years * 365.25
 
-  # Convert parameters to days
+  # Convert parameters to timesteps
   a <- alpha * time_unit_days
   b <- beta * time_unit_days
   g <- time_unit_days / inv_gamma
   o <- time_unit_days / (inv_omega * 365.25)
   m <- time_unit_days / (inv_mu * 365.25)
-  s <- 1 / inv_sigma
-
-  N <- S + E + I + R
-  birth <- m * N
+  s <- time_unit_days / inv_sigma
 
   results <- as.data.frame(matrix(NA, nrow = timesteps + 1, ncol = 5))
   colnames(results) <- c("time", "S", "E", "I", "R")
@@ -42,6 +39,8 @@ SEIRS_model <- function(initial.state, timesteps, years, alpha, beta,
     dplyr::mutate(time = time * time_unit_days)
 
   for (t in seq_len(timesteps)) {
+    N <- results$S[t] + results$E[t] + results$I[t] + results$R[t]
+    birth <- m * N
 
     infection <- (b * results$I[t] * results$S[t]) / N
     lost_immunity <- o * results$R[t]
