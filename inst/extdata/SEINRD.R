@@ -29,7 +29,7 @@ path <- link_write(handle, "disease/sars_cov2/SEINRD_model/results/model_output"
 write.csv(results, path)
 
 path <- link_write(handle, "disease/sars_cov2/SEINRD_model/results/figure")
-ggsave(path, g)
+ggsave(path, g, width=20, height=10, units="cm", dpi=600)
 
 # Register code run in local registry
 finalise(handle)

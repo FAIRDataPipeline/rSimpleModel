@@ -20,14 +20,14 @@ plot_SEINRD <- function(results) {
 
   rbind.data.frame(left, right) %>%
     ggplot2::ggplot() + ggplot2::theme_bw() +
-    ggplot2::geom_line(ggplot2::aes(x = time, y = value,
+    ggplot2::geom_line(ggplot2::aes(x = time, y = value / 1000000,
                                     group = name, color = name)) +
     ggplot2::facet_wrap(~plot, scales = "free") +
     ggplot2::scale_colour_manual(values = cols) +
     ggplot2::labs(title = "SEINRD model trajectories",
-                  x = "Time", y = "Number") +
+                  x = "Time (days)", y = "Count (millions)") +
     ggplot2::scale_y_continuous(labels = function(x)
-      format(x, scientific = TRUE)) +
+      format(x, scientific = FALSE)) +
     ggplot2::theme(strip.background = ggplot2::element_blank(),
                    strip.text.x = ggplot2::element_blank(),
                    plot.title = ggplot2::element_text(hjust = 0.5))

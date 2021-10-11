@@ -11,7 +11,7 @@ script <- file.path(conf.dir, "script.sh")
 handle <- initialise(config, script)
 
 # Read model parameters
-params <- read.csv(link_read(handle, "SEIRS_model/parameters"))
+params <- handle %>% link_read("SEIRS_model/parameters") %>% read.csv
 a <- params %>% filter(param == "alpha") %$% value
 b <- params %>% filter(param == "beta") %$% value
 ig <- params %>% filter(param == "inv_gamma") %$% value
@@ -31,8 +31,7 @@ g <- plot_SEIRS(results)
 # Save outputs to data store
 results %>% write.csv(link_write(handle, "model_output"), row.names = FALSE)
 
-path <- link_write(handle, "figure")
-ggsave(path, g)
+handle %>% link_write("figure") %>% ggsave(g, width=20, height=10, units="cm")
 
 # Register code run in local registry
 finalise(handle)
