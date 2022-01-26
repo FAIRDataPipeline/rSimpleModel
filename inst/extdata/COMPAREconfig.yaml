@@ -12,6 +12,9 @@ read:
 - data_product: SEIRS_model/results/model_output/python
   use:
     namespace: ryan
+- data_product: SEIRS_model/results/model_output/cpp
+  use:
+    namespace: rfield
 
 write:
 - data_product: output

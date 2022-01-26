@@ -9,7 +9,7 @@ register:
   website: https://ror.org/03jwrz939
 
 - external_object: disease/sars_cov2/SEINRD_model/parameters/static_params
-  namespace: BioSS
+  namespace_name: BioSS
   root: https://raw.githubusercontent.com/
   path: FAIRDataPipeline/rSimpleModel/main/inst/extdata/static_params_SEInRD.csv
   title: Static parameters of the model
