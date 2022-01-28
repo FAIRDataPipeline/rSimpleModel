@@ -36,9 +36,6 @@ jobs:
               else
                   brew install graphviz
               fi
-      - name: Install local registry
-        run: /bin/bash -c "$(curl -fsSL https://data.scrc.uk/static/localregistry.sh)"
-
       - uses: actions/setup-python@v2
         with:
           python-version: '3.9'
@@ -85,5 +82,7 @@ jobs:
           cd ${{ github.workspace }}
           python -m venv venv
           source venv/bin/activate
-          fair run tmp/tmp_file.sh
+          fair registry install
+          fair init --ci
+          fair run --script "sh tmp/tmp_file.sh"
 
