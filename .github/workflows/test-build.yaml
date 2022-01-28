@@ -82,6 +82,7 @@ jobs:
           cd ${{ github.workspace }}
           python -m venv venv
           source venv/bin/activate
+          pip3 install poetry
           fair registry install
-          fair run --script "sh tmp/tmp_file.sh"
+          poetry run tmp/tmp_file.sh
 
