@@ -83,6 +83,5 @@ jobs:
           python -m venv venv
           source venv/bin/activate
           fair registry install
-          fair init --ci
           fair run --script "sh tmp/tmp_file.sh"
 
