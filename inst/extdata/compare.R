@@ -15,8 +15,9 @@ R <- read.csv(link_read(handle, "SEIRS_model/results/model_output/R"))
 python <- read.csv(link_read(handle, "SEIRS_model/results/model_output/python"))
 julia <- read.csv(link_read(handle, "SEIRS_model/results/model_output/julia"))
 java <- read.csv(link_read(handle, "SEIRS_model/results/model_output/java"))
+cpp <- read.csv(link_read(handle, "SEIRS_model/results/model_output/cpp"))
 
-results <- list(R = R, python = python, julia = julia, java = java)
+results <- list(R = R, python = python, julia = julia, java = java, cpp = cpp)
 
 result_names <- names(results)
 bad_names <- c()
@@ -70,7 +71,7 @@ if (min(ends) != max(ends)) {
 if (min(lengths) != max(lengths)) {
   warning("Lengths of outputs don't match")
   length.table <- table(lengths)
-  if (length.table[1] != 3) {
+  if (length.table[1] != 4) {
     stop("No way of telling which length is right")
   } else {
     target <- as.numeric(names(length.table)[2])
@@ -120,7 +121,7 @@ two <- max(R - julia)
 results <- max(one, two)
 
 # Plot results
-g <- plot_compare(R, python, julia, java)
+g <- plot_compare(R, python, julia, java, cpp)
 
 # Save outputs to data store
 max.diff %>% write_estimate(handle = handle,
