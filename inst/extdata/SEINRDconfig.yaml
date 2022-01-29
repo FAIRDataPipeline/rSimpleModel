@@ -30,7 +30,7 @@ register:
   unique_name: Simple model parameters - Values of Rt at time t
   alternate_identifier_type: simple_model_params
   file_type: csv
-  release_date: ${{DATETIME}}
+  release_date: ${{DATETIME-%Y-%m-%sT%H:%M:S}}
   version: 1.0.0
   primary: True
 
@@ -43,7 +43,7 @@ register:
   unique_name: Simple model parameters - External force of infection
   alternate_identifier_type: simple_model_params
   file_type: csv
-  release_date: ${{DATETIME}}
+  release_date: ${{DATETIME-%Y-%m-%sT%H:%M:S}}
   version: 1.0.0
   primary: True
 
