@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Simple Model Examples</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.26.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.26.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -64,7 +60,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/FAIRDataPipeline/SimpleModel/">
+  <a href="https://github.com/FAIRDataPipeline/SimpleModel/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -85,16 +81,17 @@
       <h1 data-toc-skip>SEINRD Model Example</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/FAIRDataPipeline/SimpleModel/blob/master/vignettes/SEINRD.Rmd"><code>vignettes/SEINRD.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/FAIRDataPipeline/SimpleModel/blob/HEAD/vignettes/SEINRD.Rmd" class="external-link"><code>vignettes/SEINRD.Rmd</code></a></small>
       <div class="hidden name"><code>SEINRD.Rmd</code></div>
 
     </div>
 
     
     
-<div id="config-yaml-file" class="section level2">
-<h2 class="hasAnchor">
-<a href="#config-yaml-file" class="anchor"></a><em>config.yaml</em> file</h2>
+<div class="section level2">
+<h2 id="config-yaml-file">
+<em>config.yaml</em> file<a class="anchor" aria-label="anchor" href="#config-yaml-file"></a>
+</h2>
 <p>The user should write a <em>config.yaml</em> file containing information pertaining to the data products used in the code run. The example <em>config.yaml</em> file below describes a code run with inputs:</p>
 <ul>
 <li><code>disease/sars_cov2/SEINRD_model/parameters/static_params</code></li>
@@ -119,7 +116,7 @@ register:
   website: https://ror.org/03jwrz939
 
 - external_object: disease/sars_cov2/SEINRD_model/parameters/static_params
-  namespace: BioSS
+  namespace_name: BioSS
   root: https://raw.githubusercontent.com/
   path: FAIRDataPipeline/rSimpleModel/main/inst/extdata/static_params_SEInRD.csv
   title: Static parameters of the model
@@ -127,7 +124,7 @@ register:
   unique_name: Simple model parameters - Static parameters of the model
   alternate_identifier_type: simple_model_params
   file_type: csv
-  release_date: ${{DATETIME}}
+  release_date: 2022-01-28T12:00
   version: 1.0.0
   primary: True
 
@@ -140,7 +137,7 @@ register:
   unique_name: Simple model parameters - Values of Rt at time t
   alternate_identifier_type: simple_model_params
   file_type: csv
-  release_date: ${{DATETIME}}
+  release_date: 2022-01-28T12:00
   version: 1.0.0
   primary: True
 
@@ -153,7 +150,7 @@ register:
   unique_name: Simple model parameters - External force of infection
   alternate_identifier_type: simple_model_params
   file_type: csv
-  release_date: ${{DATETIME}}
+  release_date: 2022-01-28T12:00
   version: 1.0.0
   primary: True
 
@@ -165,17 +162,19 @@ write:
 - data_product: disease/sars_cov2/SEINRD_model/results/figure
   description: SEINRD output plot
   file_type: pdf</code></pre>
-<p>The submission script should call <code><a href="https://fairdatapipeline.github.io/rFDP/reference/initialise.html">initialise()</a></code> to set up the code run, then perhaps read in some data using one of the <code>read_*()</code> functions (for internal file formats) or <code><a href="https://fairdatapipeline.github.io/rFDP/reference/link_read.html">link_read()</a></code> (for external file formats such as csvs). The data might now be processed in some way, or a model / analysis might bw carried out, after which the results should be saved in the local data store via one of the <code>write_*()</code> functions or <code><a href="https://fairdatapipeline.github.io/rFDP/reference/link_write.html">link_write()</a></code>. When the code run is complete, <code><a href="https://fairdatapipeline.github.io/rFDP/reference/finalise.html">finalise()</a></code> should be called to register the all metadata with the local registry.</p>
+<p>The submission script should call <code><a href="https://fairdatapipeline.github.io/rFDP/reference/initialise.html" class="external-link">initialise()</a></code> to set up the code run, then perhaps read in some data using one of the <code>read_*()</code> functions (for internal file formats) or <code><a href="https://fairdatapipeline.github.io/rFDP/reference/link_read.html" class="external-link">link_read()</a></code> (for external file formats such as csvs). The data might now be processed in some way, or a model / analysis might bw carried out, after which the results should be saved in the local data store via one of the <code>write_*()</code> functions or <code><a href="https://fairdatapipeline.github.io/rFDP/reference/link_write.html" class="external-link">link_write()</a></code>. When the code run is complete, <code><a href="https://fairdatapipeline.github.io/rFDP/reference/finalise.html" class="external-link">finalise()</a></code> should be called to register the all metadata with the local registry.</p>
 </div>
-<div id="fair-pull" class="section level2">
-<h2 class="hasAnchor">
-<a href="#fair-pull" class="anchor"></a><code>fair pull</code>
+<div class="section level2">
+<h2 id="fair-pull">
+<code>fair pull</code><a class="anchor" aria-label="anchor" href="#fair-pull"></a>
 </h2>
 <p>Using the CLI tool, <code>fair pull</code> identifies any data products listed in the <code>register</code> field of the <em>config.yaml</em>. These data products are downloaded to the local data store whilst associated metadata is registered in the local registry.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">fair</span> init --ci</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="ex">fair</span> pull inst/extdata/SEINRDconfig.yaml</span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co">#&gt; Initialised empty fair repository in /home/runner/work/rSimpleModel/rSimpleModel/.fair</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt; Updating registry from inst/extdata/SEINRDconfig.yaml</span></span></code></pre></div>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co">#&gt; FAIR repository is already initialised.</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt; Updating registry from inst/extdata/SEINRDconfig.yaml</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co">#&gt; </span><span class="al">WARNING</span><span class="co">:FAIRDataPipeline.ConfigYAML:Remote registry pulls are not yet implemented</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co">#&gt; </span><span class="al">WARNING</span><span class="co">:FAIRDataPipeline.ConfigYAML:Remote registry pulls are not yet implemented</span></span></code></pre></div>
 <p>The local registry should now contain three data products:</p>
 <ol style="list-style-type: decimal">
 <li>
@@ -186,15 +185,15 @@ write:
 <code>disease/sars_cov2/SEINRD_model/parameters/efoi</code>.</li>
 </ol>
 </div>
-<div id="fair-run" class="section level2">
-<h2 class="hasAnchor">
-<a href="#fair-run" class="anchor"></a><code>fair run</code>
+<div class="section level2">
+<h2 id="fair-run">
+<code>fair run</code><a class="anchor" aria-label="anchor" href="#fair-run"></a>
 </h2>
 <p>Again using the CLI tool, <code>fair run</code> performs the code run, as written in the. submission script. In preparation for this, it translates the user-written <em>config.yaml</em> file for use by the Data Pipeline API. Any variables / wildcards specified by the user in the config file are cross referenced with the registry, and any data products registered by <code>fair pull</code> are made available to read by the current code run.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">fair</span> run inst/extdata/SEINRDconfig.yaml</span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="co">#&gt; Updating registry from inst/extdata/SEINRDconfig.yaml</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt; </span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt; R version 4.1.1 (2021-08-10) -- "Kick Things"</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt; R version 4.1.2 (2021-11-01) -- "Bird Hippie"</span></span>
 <span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt; Copyright (C) 2021 The R Foundation for Statistical Computing</span></span>
 <span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
 <span id="cb3-7"><a href="#cb3-7"></a><span class="co">#&gt; </span></span>
@@ -202,61 +201,105 @@ write:
 <span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt; You are welcome to redistribute it under certain conditions.</span></span>
 <span id="cb3-10"><a href="#cb3-10"></a><span class="co">#&gt; Type 'license()' or 'licence()' for distribution details.</span></span>
 <span id="cb3-11"><a href="#cb3-11"></a><span class="co">#&gt; </span></span>
-<span id="cb3-12"><a href="#cb3-12"></a><span class="co">#&gt; R is a collaborative project with many contributors.</span></span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="co">#&gt; Type 'contributors()' for more information and</span></span>
-<span id="cb3-14"><a href="#cb3-14"></a><span class="co">#&gt; 'citation()' on how to cite R or R packages in publications.</span></span>
-<span id="cb3-15"><a href="#cb3-15"></a><span class="co">#&gt; </span></span>
-<span id="cb3-16"><a href="#cb3-16"></a><span class="co">#&gt; Type 'demo()' for some demos, 'help()' for on-line help, or</span></span>
-<span id="cb3-17"><a href="#cb3-17"></a><span class="co">#&gt; 'help.start()' for an HTML browser interface to help.</span></span>
-<span id="cb3-18"><a href="#cb3-18"></a><span class="co">#&gt; Type 'q()' to quit R.</span></span>
-<span id="cb3-19"><a href="#cb3-19"></a><span class="co">#&gt; </span></span>
-<span id="cb3-20"><a href="#cb3-20"></a><span class="co">#&gt; &gt; library(rSimpleModel)</span></span>
-<span id="cb3-21"><a href="#cb3-21"></a><span class="co">#&gt; &gt; library(rDataPipeline)</span></span>
-<span id="cb3-22"><a href="#cb3-22"></a><span class="co">#&gt; &gt; library(deSolve)</span></span>
-<span id="cb3-23"><a href="#cb3-23"></a><span class="co">#&gt; &gt; library(ggplot2)</span></span>
-<span id="cb3-24"><a href="#cb3-24"></a><span class="co">#&gt; &gt; </span></span>
-<span id="cb3-25"><a href="#cb3-25"></a><span class="co">#&gt; &gt; # Read config directory from command line</span></span>
-<span id="cb3-26"><a href="#cb3-26"></a><span class="co">#&gt; &gt; conf.dir &lt;- commandArgs(trailingOnly=TRUE)[1]</span></span>
-<span id="cb3-27"><a href="#cb3-27"></a><span class="co">#&gt; &gt; </span></span>
-<span id="cb3-28"><a href="#cb3-28"></a><span class="co">#&gt; &gt; # Initialise code run</span></span>
-<span id="cb3-29"><a href="#cb3-29"></a><span class="co">#&gt; &gt; config &lt;- file.path(conf.dir, "config.yaml")</span></span>
-<span id="cb3-30"><a href="#cb3-30"></a><span class="co">#&gt; &gt; script &lt;- file.path(conf.dir, "script.sh")</span></span>
-<span id="cb3-31"><a href="#cb3-31"></a><span class="co">#&gt; &gt; handle &lt;- initialise(config, script)</span></span>
-<span id="cb3-32"><a href="#cb3-32"></a><span class="co">#&gt; &gt; </span></span>
-<span id="cb3-33"><a href="#cb3-33"></a><span class="co">#&gt; &gt; # Read code run inputs</span></span>
-<span id="cb3-34"><a href="#cb3-34"></a><span class="co">#&gt; &gt; static_params &lt;- read.csv(link_read(handle, "disease/sars_cov2/SEINRD_model/parameters/static_params"))</span></span>
-<span id="cb3-35"><a href="#cb3-35"></a><span class="co">#&gt; &gt; rts_params &lt;- read.csv(link_read(handle, "disease/sars_cov2/SEINRD_model/parameters/rts"))</span></span>
-<span id="cb3-36"><a href="#cb3-36"></a><span class="co">#&gt; &gt; efoi_params &lt;- read.csv(link_read(handle, "disease/sars_cov2/SEINRD_model/parameters/efoi"))</span></span>
-<span id="cb3-37"><a href="#cb3-37"></a><span class="co">#&gt; &gt; </span></span>
-<span id="cb3-38"><a href="#cb3-38"></a><span class="co">#&gt; &gt; # Run the model</span></span>
-<span id="cb3-39"><a href="#cb3-39"></a><span class="co">#&gt; &gt; data &lt;- initialise_SEINRD(rts_params, efoi_params, static_params)</span></span>
-<span id="cb3-40"><a href="#cb3-40"></a><span class="co">#&gt; &gt; results &lt;- ode(y = data$init_state,</span></span>
-<span id="cb3-41"><a href="#cb3-41"></a><span class="co">#&gt; +                times = data$time_length,</span></span>
-<span id="cb3-42"><a href="#cb3-42"></a><span class="co">#&gt; +                func = rSimpleModel::SEINRD_model,</span></span>
-<span id="cb3-43"><a href="#cb3-43"></a><span class="co">#&gt; +                parms = data$pars)</span></span>
-<span id="cb3-44"><a href="#cb3-44"></a><span class="co">#&gt; &gt; g &lt;- plot_SEINRD(results)</span></span>
-<span id="cb3-45"><a href="#cb3-45"></a><span class="co">#&gt; &gt; </span></span>
-<span id="cb3-46"><a href="#cb3-46"></a><span class="co">#&gt; &gt; # Save outputs to data store</span></span>
-<span id="cb3-47"><a href="#cb3-47"></a><span class="co">#&gt; &gt; path &lt;- link_write(handle, "disease/sars_cov2/SEINRD_model/results/model_output")</span></span>
-<span id="cb3-48"><a href="#cb3-48"></a><span class="co">#&gt; &gt; write.csv(results, path)</span></span>
-<span id="cb3-49"><a href="#cb3-49"></a><span class="co">#&gt; &gt; </span></span>
-<span id="cb3-50"><a href="#cb3-50"></a><span class="co">#&gt; &gt; path &lt;- link_write(handle, "disease/sars_cov2/SEINRD_model/results/figure")</span></span>
-<span id="cb3-51"><a href="#cb3-51"></a><span class="co">#&gt; &gt; ggsave(path, g, width=20, height=5, units="cm", dpi=600)</span></span>
-<span id="cb3-52"><a href="#cb3-52"></a><span class="co">#&gt; &gt; </span></span>
-<span id="cb3-53"><a href="#cb3-53"></a><span class="co">#&gt; &gt; # Register code run in local registry</span></span>
-<span id="cb3-54"><a href="#cb3-54"></a><span class="co">#&gt; &gt; finalise(handle)</span></span>
-<span id="cb3-55"><a href="#cb3-55"></a><span class="co">#&gt; </span></span>
-<span id="cb3-56"><a href="#cb3-56"></a><span class="co">#&gt; &gt;</span></span></code></pre></div>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="co">#&gt;   Natural language support but running in an English locale</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="co">#&gt; </span></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="co">#&gt; R is a collaborative project with many contributors.</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="co">#&gt; Type 'contributors()' for more information and</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a><span class="co">#&gt; 'citation()' on how to cite R or R packages in publications.</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="co">#&gt; </span></span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="co">#&gt; Type 'demo()' for some demos, 'help()' for on-line help, or</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a><span class="co">#&gt; 'help.start()' for an HTML browser interface to help.</span></span>
+<span id="cb3-20"><a href="#cb3-20"></a><span class="co">#&gt; Type 'q()' to quit R.</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a><span class="co">#&gt; </span></span>
+<span id="cb3-22"><a href="#cb3-22"></a><span class="co">#&gt; &gt; library(rSimpleModel)</span></span>
+<span id="cb3-23"><a href="#cb3-23"></a><span class="co">#&gt; &gt; library(rDataPipeline)</span></span>
+<span id="cb3-24"><a href="#cb3-24"></a><span class="co">#&gt; &gt; library(deSolve)</span></span>
+<span id="cb3-25"><a href="#cb3-25"></a><span class="co">#&gt; &gt; library(ggplot2)</span></span>
+<span id="cb3-26"><a href="#cb3-26"></a><span class="co">#&gt; &gt; </span></span>
+<span id="cb3-27"><a href="#cb3-27"></a><span class="co">#&gt; &gt; # Read config directory from command line</span></span>
+<span id="cb3-28"><a href="#cb3-28"></a><span class="co">#&gt; &gt; conf.dir &lt;- commandArgs(trailingOnly=TRUE)[1]</span></span>
+<span id="cb3-29"><a href="#cb3-29"></a><span class="co">#&gt; &gt; </span></span>
+<span id="cb3-30"><a href="#cb3-30"></a><span class="co">#&gt; &gt; # Initialise code run</span></span>
+<span id="cb3-31"><a href="#cb3-31"></a><span class="co">#&gt; &gt; config &lt;- file.path(conf.dir, "config.yaml")</span></span>
+<span id="cb3-32"><a href="#cb3-32"></a><span class="co">#&gt; &gt; script &lt;- file.path(conf.dir, "script.sh")</span></span>
+<span id="cb3-33"><a href="#cb3-33"></a><span class="co">#&gt; &gt; handle &lt;- initialise(config, script)</span></span>
+<span id="cb3-34"><a href="#cb3-34"></a><span class="co">#&gt; ℹ Reading config.yaml from data store</span></span>
+<span id="cb3-35"><a href="#cb3-35"></a><span class="co">#&gt; ✔ Writing /home/runner/work/rSimpleModel/rSimpleModel/data_store/jobs/2022-01-29_05_47_14_831643//config.yaml to local registry</span></span>
+<span id="cb3-36"><a href="#cb3-36"></a><span class="co">#&gt; ✔ Writing /home/runner/work/rSimpleModel/rSimpleModel/data_store/jobs/2022-01-29_05_47_14_831643//script.sh to local registry</span></span>
+<span id="cb3-37"><a href="#cb3-37"></a><span class="co">#&gt; ✔ Writing FAIRDataPipeline/rSimpleModel to local registry</span></span>
+<span id="cb3-38"><a href="#cb3-38"></a><span class="co">#&gt; ✔ Writing new code_run to local registry</span></span>
+<span id="cb3-39"><a href="#cb3-39"></a><span class="co">#&gt; &gt; </span></span>
+<span id="cb3-40"><a href="#cb3-40"></a><span class="co">#&gt; &gt; # Read code run inputs</span></span>
+<span id="cb3-41"><a href="#cb3-41"></a><span class="co">#&gt; &gt; static_params &lt;- read.csv(link_read(handle, "disease/sars_cov2/SEINRD_model/parameters/static_params"))</span></span>
+<span id="cb3-42"><a href="#cb3-42"></a><span class="co">#&gt; ℹ Locating 'disease/sars_cov2/SEINRD_model/parameters/static_params'</span></span>
+<span id="cb3-43"><a href="#cb3-43"></a><span class="co">#&gt; &gt; rts_params &lt;- read.csv(link_read(handle, "disease/sars_cov2/SEINRD_model/parameters/rts"))</span></span>
+<span id="cb3-44"><a href="#cb3-44"></a><span class="co">#&gt; ℹ Locating 'disease/sars_cov2/SEINRD_model/parameters/rts'</span></span>
+<span id="cb3-45"><a href="#cb3-45"></a><span class="co">#&gt; &gt; efoi_params &lt;- read.csv(link_read(handle, "disease/sars_cov2/SEINRD_model/parameters/efoi"))</span></span>
+<span id="cb3-46"><a href="#cb3-46"></a><span class="co">#&gt; ℹ Locating 'disease/sars_cov2/SEINRD_model/parameters/efoi'</span></span>
+<span id="cb3-47"><a href="#cb3-47"></a><span class="co">#&gt; &gt; </span></span>
+<span id="cb3-48"><a href="#cb3-48"></a><span class="co">#&gt; &gt; # Run the model</span></span>
+<span id="cb3-49"><a href="#cb3-49"></a><span class="co">#&gt; &gt; data &lt;- initialise_SEINRD(rts_params, efoi_params, static_params)</span></span>
+<span id="cb3-50"><a href="#cb3-50"></a><span class="co">#&gt; &gt; results &lt;- ode(y = data$init_state,</span></span>
+<span id="cb3-51"><a href="#cb3-51"></a><span class="co">#&gt; +                times = data$time_length,</span></span>
+<span id="cb3-52"><a href="#cb3-52"></a><span class="co">#&gt; +                func = rSimpleModel::SEINRD_model,</span></span>
+<span id="cb3-53"><a href="#cb3-53"></a><span class="co">#&gt; +                parms = data$pars)</span></span>
+<span id="cb3-54"><a href="#cb3-54"></a><span class="co">#&gt; &gt; g &lt;- plot_SEINRD(results)</span></span>
+<span id="cb3-55"><a href="#cb3-55"></a><span class="co">#&gt; &gt; </span></span>
+<span id="cb3-56"><a href="#cb3-56"></a><span class="co">#&gt; &gt; # Save outputs to data store</span></span>
+<span id="cb3-57"><a href="#cb3-57"></a><span class="co">#&gt; &gt; path &lt;- link_write(handle, "disease/sars_cov2/SEINRD_model/results/model_output")</span></span>
+<span id="cb3-58"><a href="#cb3-58"></a><span class="co">#&gt; &gt; write.csv(results, path)</span></span>
+<span id="cb3-59"><a href="#cb3-59"></a><span class="co">#&gt; &gt; </span></span>
+<span id="cb3-60"><a href="#cb3-60"></a><span class="co">#&gt; &gt; path &lt;- link_write(handle, "disease/sars_cov2/SEINRD_model/results/figure")</span></span>
+<span id="cb3-61"><a href="#cb3-61"></a><span class="co">#&gt; &gt; ggsave(path, g, width=20, height=5, units="cm", dpi=600)</span></span>
+<span id="cb3-62"><a href="#cb3-62"></a><span class="co">#&gt; &gt; </span></span>
+<span id="cb3-63"><a href="#cb3-63"></a><span class="co">#&gt; &gt; # Register code run in local registry</span></span>
+<span id="cb3-64"><a href="#cb3-64"></a><span class="co">#&gt; &gt; finalise(handle)</span></span>
+<span id="cb3-65"><a href="#cb3-65"></a><span class="co">#&gt; ✔ Writing 'disease/sars_cov2/SEINRD_model/results/model_output' to local registry</span></span>
+<span id="cb3-66"><a href="#cb3-66"></a><span class="co">#&gt; ✔ Writing 'disease/sars_cov2/SEINRD_model/results/figure' to local registry</span></span>
+<span id="cb3-67"><a href="#cb3-67"></a><span class="co">#&gt; -&gt; PATCH /api/code_run/1/ HTTP/1.1</span></span>
+<span id="cb3-68"><a href="#cb3-68"></a><span class="co">#&gt; -&gt; Host: 127.0.0.1:8000</span></span>
+<span id="cb3-69"><a href="#cb3-69"></a><span class="co">#&gt; -&gt; User-Agent: libcurl/7.68.0 r-curl/4.3.2 httr/1.4.2</span></span>
+<span id="cb3-70"><a href="#cb3-70"></a><span class="co">#&gt; -&gt; Accept-Encoding: deflate, gzip, br</span></span>
+<span id="cb3-71"><a href="#cb3-71"></a><span class="co">#&gt; -&gt; Accept: application/json, text/xml, application/xml, */*</span></span>
+<span id="cb3-72"><a href="#cb3-72"></a><span class="co">#&gt; -&gt; Content-Type: application/json</span></span>
+<span id="cb3-73"><a href="#cb3-73"></a><span class="co">#&gt; -&gt; Authorization: token 16f06701f4a1e61f4322e95a29c04b0a8b42920d</span></span>
+<span id="cb3-74"><a href="#cb3-74"></a><span class="co">#&gt; -&gt; Content-Length: 304</span></span>
+<span id="cb3-75"><a href="#cb3-75"></a><span class="co">#&gt; -&gt; </span></span>
+<span id="cb3-76"><a href="#cb3-76"></a><span class="co">#&gt; &gt;&gt; {</span></span>
+<span id="cb3-77"><a href="#cb3-77"></a><span class="co">#&gt; &gt;&gt;   "inputs": [</span></span>
+<span id="cb3-78"><a href="#cb3-78"></a><span class="co">#&gt; &gt;&gt;     "http://127.0.0.1:8000/api/object_component/1/",</span></span>
+<span id="cb3-79"><a href="#cb3-79"></a><span class="co">#&gt; &gt;&gt;     "http://127.0.0.1:8000/api/object_component/2/",</span></span>
+<span id="cb3-80"><a href="#cb3-80"></a><span class="co">#&gt; &gt;&gt;     "http://127.0.0.1:8000/api/object_component/3/"</span></span>
+<span id="cb3-81"><a href="#cb3-81"></a><span class="co">#&gt; &gt;&gt;   ],</span></span>
+<span id="cb3-82"><a href="#cb3-82"></a><span class="co">#&gt; &gt;&gt;   "outputs": [</span></span>
+<span id="cb3-83"><a href="#cb3-83"></a><span class="co">#&gt; &gt;&gt;     "http://127.0.0.1:8000/api/object_component/7/",</span></span>
+<span id="cb3-84"><a href="#cb3-84"></a><span class="co">#&gt; &gt;&gt;     "http://127.0.0.1:8000/api/object_component/8/"</span></span>
+<span id="cb3-85"><a href="#cb3-85"></a><span class="co">#&gt; &gt;&gt;   ]</span></span>
+<span id="cb3-86"><a href="#cb3-86"></a><span class="co">#&gt; &gt;&gt; }</span></span>
+<span id="cb3-87"><a href="#cb3-87"></a><span class="co">#&gt; </span></span>
+<span id="cb3-88"><a href="#cb3-88"></a><span class="co">#&gt; &lt;- HTTP/1.1 200 OK</span></span>
+<span id="cb3-89"><a href="#cb3-89"></a><span class="co">#&gt; &lt;- Date: Sat, 29 Jan 2022 05:47:23 GMT</span></span>
+<span id="cb3-90"><a href="#cb3-90"></a><span class="co">#&gt; &lt;- Server: WSGIServer/0.2 CPython/3.9.10</span></span>
+<span id="cb3-91"><a href="#cb3-91"></a><span class="co">#&gt; &lt;- Content-Type: application/json</span></span>
+<span id="cb3-92"><a href="#cb3-92"></a><span class="co">#&gt; &lt;- Vary: Accept, Cookie</span></span>
+<span id="cb3-93"><a href="#cb3-93"></a><span class="co">#&gt; &lt;- Allow: GET, PUT, PATCH, DELETE, HEAD, OPTIONS</span></span>
+<span id="cb3-94"><a href="#cb3-94"></a><span class="co">#&gt; &lt;- X-Frame-Options: DENY</span></span>
+<span id="cb3-95"><a href="#cb3-95"></a><span class="co">#&gt; &lt;- Content-Length: 675</span></span>
+<span id="cb3-96"><a href="#cb3-96"></a><span class="co">#&gt; &lt;- X-Content-Type-Options: nosniff</span></span>
+<span id="cb3-97"><a href="#cb3-97"></a><span class="co">#&gt; &lt;- Referrer-Policy: same-origin</span></span>
+<span id="cb3-98"><a href="#cb3-98"></a><span class="co">#&gt; &lt;- </span></span>
+<span id="cb3-99"><a href="#cb3-99"></a><span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span></span>
+<span id="cb3-100"><a href="#cb3-100"></a><span class="co">#&gt; &gt;</span></span></code></pre></div>
 </div>
-<div id="outputs" class="section level2">
-<h2 class="hasAnchor">
-<a href="#outputs" class="anchor"></a>Outputs</h2>
+<div class="section level2">
+<h2 id="outputs">Outputs<a class="anchor" aria-label="anchor" href="#outputs"></a>
+</h2>
 <p><img src="SEINRD_files/figure-html/unnamed-chunk-4-1.png" width="1179"></p>
 </div>
-<div id="provenance-report" class="section level2">
-<h2 class="hasAnchor">
-<a href="#provenance-report" class="anchor"></a>Provenance report</h2>
-<p><img src="SEINRD_files/figure-html/unnamed-chunk-5-1.png" width="1323"></p>
+<div class="section level2">
+<h2 id="provenance-report">Provenance report<a class="anchor" aria-label="anchor" href="#provenance-report"></a>
+</h2>
+<p><img src="SEINRD_files/figure-html/unnamed-chunk-5-1.png" width="1542"></p>
 </div>
   </div>
 
@@ -271,11 +314,13 @@ write:
 
 
       <footer><div class="copyright">
-  <p>Developed by Sonia Mitchell.</p>
+  <p></p>
+<p>Developed by Sonia Mitchell.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -283,6 +328,8 @@ write:
 
   
 
+
+  
 
   </body>
 </html>

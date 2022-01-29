@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">Simple Model Examples</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.26.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.26.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -64,7 +60,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/FAIRDataPipeline/SimpleModel/">
+  <a href="https://github.com/FAIRDataPipeline/SimpleModel/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -81,36 +77,36 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="rsimplemodel" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#rsimplemodel" class="anchor"></a>rSimpleModel</h1></div>
-<p>A simple example of an SEIRS epidemiological model using the <a href="https://fairdatapipeline.github.io">FAIR Data Pipeline</a>.</p>
-<div id="installing-the-command-line-tools" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installing-the-command-line-tools" class="anchor"></a>Installing the command line tools</h2>
-<p>If you don’t already have the registry initialised and the <code>fair</code> command line tool configured, then you need to install that next - see <a href="https://github.com/FAIRDataPipeline/FAIR-CLI#installation">here</a> for more details. Briefly, with python and poetry (<code>pip install poetry</code>) installed:</p>
+<div class="section level1">
+<div class="page-header"><h1 id="rsimplemodel">rSimpleModel<a class="anchor" aria-label="anchor" href="#rsimplemodel"></a>
+</h1></div>
+<p>A simple example of an SEIRS epidemiological model using the <a href="https://fairdatapipeline.github.io" class="external-link">FAIR Data Pipeline</a>.</p>
+<div class="section level2">
+<h2 id="installing-the-command-line-tools">Installing the command line tools<a class="anchor" aria-label="anchor" href="#installing-the-command-line-tools"></a>
+</h2>
+<p>If you don’t already have the registry initialised and the <code>fair</code> command line tool configured, then you need to install that next - see <a href="https://github.com/FAIRDataPipeline/FAIR-CLI#installation" class="external-link">here</a> for more details. Briefly, with python and poetry (<code>pip install poetry</code>) installed:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">git</span> clone https://github.com/FAIRDataPipeline/FAIR-CLI.git</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="bu">cd</span> FAIR-CLI</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="ex">poetry</span> install</span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="ex">poetry</span> shell</span></code></pre></div>
 <p>You are now running in a new shell created by <code>poetry</code> that has a copy of the <code>fair</code> executable in its path.</p>
 </div>
-<div id="installing-the-r-api-and-simple-model-functions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installing-the-r-api-and-simple-model-functions" class="anchor"></a>Installing the R API and simple model functions</h2>
-<p>Install the <a href="https://github.com/FAIRDataPipeline/rDataPipeline"><code>rDataPipeline</code></a> package, in R:</p>
+<div class="section level2">
+<h2 id="installing-the-r-api-and-simple-model-functions">Installing the R API and simple model functions<a class="anchor" aria-label="anchor" href="#installing-the-r-api-and-simple-model-functions"></a>
+</h2>
+<p>Install the <a href="https://github.com/FAIRDataPipeline/rDataPipeline" class="external-link"><code>rDataPipeline</code></a> package, in R:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="va">devtools</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="va">devtools</span><span class="op">)</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"FAIRDataPipeline/rDataPipeline"</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.fairdatapipeline.org/rDataPipeline/">rDataPipeline</a></span><span class="op">)</span></code></pre></div>
-<p>Then install <a href="https://github.com/FAIRDataPipeline/rSimpleModel">rSimpleModel</a>:</p>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.fairdatapipeline.org/rDataPipeline/" class="external-link">rDataPipeline</a></span><span class="op">)</span></code></pre></div>
+<p>Then install <a href="https://github.com/FAIRDataPipeline/rSimpleModel" class="external-link">rSimpleModel</a>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"FAIRDataPipeline/rSimpleModel"</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://fairdatapipeline.github.io/SimpleModel">rSimpleModel</a></span><span class="op">)</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://fairdatapipeline.github.io/SimpleModel" class="external-link">rSimpleModel</a></span><span class="op">)</span></code></pre></div>
 </div>
-<div id="configuring-the-registry-and-setting-up-the-example" class="section level2">
-<h2 class="hasAnchor">
-<a href="#configuring-the-registry-and-setting-up-the-example" class="anchor"></a>Configuring the registry and setting up the example</h2>
+<div class="section level2">
+<h2 id="configuring-the-registry-and-setting-up-the-example">Configuring the registry and setting up the example<a class="anchor" aria-label="anchor" href="#configuring-the-registry-and-setting-up-the-example"></a>
+</h2>
 <p>At the terminal, in some suitable directory, clone the git repo:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">git</span> clone https://github.com/FAIRDataPipeline/rSimpleModel.git</span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="bu">cd</span> rSimpleModel</span></code></pre></div>
@@ -120,50 +116,62 @@
 <div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">fair</span> init --ci</span></code></pre></div>
 <p>In this case the CLI will initialise the repo with dummy values that are used for continuous integration testing.</p>
 </div>
-<div id="running-the-example" class="section level2">
-<h2 class="hasAnchor">
-<a href="#running-the-example" class="anchor"></a>Running the example</h2>
-<p>This is easy. The user configuration script for running the R SEIRS model can be found inside this repo - <a href="https://raw.githubusercontent.com/FAIRDataPipeline/rSimpleModel/main/inst/extdata/SEIRSconfig.yaml">inst/extdata/SEIRSconfig.yaml</a> - and for this self-contained example, it includes all of the information to register the input data that the model needs, so that you don’t have to be connected to a registry that already knows about it. The code can be executed by first ensuring that all of the input data is available in the local registry (using <code>fair pull</code>) and then running the code (using <code>fair run</code>). So:</p>
+<div class="section level2">
+<h2 id="running-the-example">Running the example<a class="anchor" aria-label="anchor" href="#running-the-example"></a>
+</h2>
+<p>This is easy. The user configuration script for running the R SEIRS model can be found inside this repo - <a href="https://raw.githubusercontent.com/FAIRDataPipeline/rSimpleModel/main/inst/extdata/SEIRSconfig.yaml" class="external-link">inst/extdata/SEIRSconfig.yaml</a> - and for this self-contained example, it includes all of the information to register the input data that the model needs, so that you don’t have to be connected to a registry that already knows about it. The code can be executed by first ensuring that all of the input data is available in the local registry (using <code>fair pull</code>) and then running the code (using <code>fair run</code>). So:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="ex">fair</span> pull inst/extdata/SEIRSconfig.yaml</span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="ex">fair</span> run inst/extdata/SEIRSconfig.yaml</span></code></pre></div>
-<p>That’s it! If you go to the local registry in your browser now (by default at <a href="http://localhost:8000" class="uri">http://localhost:8000</a>), you should see the input and output data recorded in the registry.</p>
+<p>That’s it! If you go to the local registry in your browser now (by default at <a href="http://localhost:8000" class="external-link uri">http://localhost:8000</a>), you should see the input and output data recorded in the registry.</p>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/FAIRDataPipeline/SimpleModel/">https://​github.com/​FAIRDataPipeline/​SimpleModel/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/FAIRDataPipeline/SimpleModel/issues">https://​github.com/​FAIRDataPipeline/​SimpleModel/​issues</a>
-</li>
+<li><a href="https://github.com/FAIRDataPipeline/SimpleModel/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/FAIRDataPipeline/SimpleModel/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a></li>
+<li><a href="https://www.r-project.org/Licenses/GPL-3" class="external-link">GPL-3</a></li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing rSimpleModel</a></li>
+</ul>
+</div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Sonia Mitchell <br><small class="roles"> Maintainer, author </small> <a href="https://orcid.org/0000-0003-1536-2066" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Sonia Mitchell <br><small class="roles"> Maintainer, author </small> <a href="https://orcid.org/0000-0003-1536-2066" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
+
+
 
   </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Sonia Mitchell.</p>
+  <p></p>
+<p>Developed by Sonia Mitchell.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -171,6 +179,8 @@
 
   
 
+
+  
 
   </body>
 </html>
