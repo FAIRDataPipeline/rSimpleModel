@@ -71,6 +71,7 @@ jobs:
           source venv/bin/activate
           pip3 install fair-cli
           fair registry install
+          fair init --ci
           fair registry start
           git config --local user.name "$GITHUB_ACTOR"
           git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
