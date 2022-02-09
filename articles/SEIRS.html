@@ -137,7 +137,7 @@ write:
   file_type: pdf
   use:
     data_product: SEIRS_model/results/figure/R</code></pre>
-<p>The submission script should call <code><a href="https://fairdatapipeline.github.io/rFDP/reference/initialise.html" class="external-link">initialise()</a></code> to set up the code run, then perhaps read in some data using one of the <code>read_*()</code> functions (for internal file formats) or <code><a href="https://fairdatapipeline.github.io/rFDP/reference/link_read.html" class="external-link">link_read()</a></code> (for external file formats such as csvs). The data might now be processed in some way, or a model / analysis might bw carried out, after which the results should be saved in the local data store via one of the <code>write_*()</code> functions or <code><a href="https://fairdatapipeline.github.io/rFDP/reference/link_write.html" class="external-link">link_write()</a></code>. When the code run is complete, <code><a href="https://fairdatapipeline.github.io/rFDP/reference/finalise.html" class="external-link">finalise()</a></code> should be called to register the all metadata with the local registry.</p>
+<p>The submission script should call <code><a href="https://www.fairdatapipeline.org/rDataPipeline/reference/initialise.html" class="external-link">initialise()</a></code> to set up the code run, then perhaps read in some data using one of the <code>read_*()</code> functions (for internal file formats) or <code><a href="https://www.fairdatapipeline.org/rDataPipeline/reference/link_read.html" class="external-link">link_read()</a></code> (for external file formats such as csvs). The data might now be processed in some way, or a model / analysis might bw carried out, after which the results should be saved in the local data store via one of the <code>write_*()</code> functions or <code><a href="https://www.fairdatapipeline.org/rDataPipeline/reference/link_write.html" class="external-link">link_write()</a></code>. When the code run is complete, <code><a href="https://www.fairdatapipeline.org/rDataPipeline/reference/finalise.html" class="external-link">finalise()</a></code> should be called to register the all metadata with the local registry.</p>
 </div>
 <div class="section level2">
 <h2 id="fair-pull">
@@ -212,8 +212,8 @@ write:
 <span id="cb3-45"><a href="#cb3-45"></a><span class="co">#&gt; + }</span></span>
 <span id="cb3-46"><a href="#cb3-46"></a><span class="co">#&gt; &gt; handle &lt;- initialise(config, script)</span></span>
 <span id="cb3-47"><a href="#cb3-47"></a><span class="co">#&gt; ℹ Reading config.yaml from data store</span></span>
-<span id="cb3-48"><a href="#cb3-48"></a><span class="co">#&gt; ✔ Writing /home/runner/work/rSimpleModel/rSimpleModel/data_store/jobs/2022-01-29_05_47_36_790595/config.yaml to local registry</span></span>
-<span id="cb3-49"><a href="#cb3-49"></a><span class="co">#&gt; ✔ Writing /home/runner/work/rSimpleModel/rSimpleModel/data_store/jobs/2022-01-29_05_47_36_790595/script.sh to local registry</span></span>
+<span id="cb3-48"><a href="#cb3-48"></a><span class="co">#&gt; ✔ Writing /home/runner/work/rSimpleModel/rSimpleModel/data_store/jobs/2022-02-09_19_26_39_766587/config.yaml to local registry</span></span>
+<span id="cb3-49"><a href="#cb3-49"></a><span class="co">#&gt; ✔ Writing /home/runner/work/rSimpleModel/rSimpleModel/data_store/jobs/2022-02-09_19_26_39_766587/script.sh to local registry</span></span>
 <span id="cb3-50"><a href="#cb3-50"></a><span class="co">#&gt; ✔ Writing FAIRDataPipeline/rSimpleModel to local registry</span></span>
 <span id="cb3-51"><a href="#cb3-51"></a><span class="co">#&gt; ✔ Writing new code_run to local registry</span></span>
 <span id="cb3-52"><a href="#cb3-52"></a><span class="co">#&gt; &gt; </span></span>
@@ -251,7 +251,7 @@ write:
 <span id="cb3-84"><a href="#cb3-84"></a><span class="co">#&gt; -&gt; Accept-Encoding: deflate, gzip, br</span></span>
 <span id="cb3-85"><a href="#cb3-85"></a><span class="co">#&gt; -&gt; Accept: application/json, text/xml, application/xml, */*</span></span>
 <span id="cb3-86"><a href="#cb3-86"></a><span class="co">#&gt; -&gt; Content-Type: application/json</span></span>
-<span id="cb3-87"><a href="#cb3-87"></a><span class="co">#&gt; -&gt; Authorization: token 16f06701f4a1e61f4322e95a29c04b0a8b42920d</span></span>
+<span id="cb3-87"><a href="#cb3-87"></a><span class="co">#&gt; -&gt; Authorization: token 7f87f13c633cd5b0eb9fe4c5cd9814c98b4618d3</span></span>
 <span id="cb3-88"><a href="#cb3-88"></a><span class="co">#&gt; -&gt; Content-Length: 200</span></span>
 <span id="cb3-89"><a href="#cb3-89"></a><span class="co">#&gt; -&gt; </span></span>
 <span id="cb3-90"><a href="#cb3-90"></a><span class="co">#&gt; &gt;&gt; {</span></span>
@@ -265,7 +265,7 @@ write:
 <span id="cb3-98"><a href="#cb3-98"></a><span class="co">#&gt; &gt;&gt; }</span></span>
 <span id="cb3-99"><a href="#cb3-99"></a><span class="co">#&gt; </span></span>
 <span id="cb3-100"><a href="#cb3-100"></a><span class="co">#&gt; &lt;- HTTP/1.1 200 OK</span></span>
-<span id="cb3-101"><a href="#cb3-101"></a><span class="co">#&gt; &lt;- Date: Sat, 29 Jan 2022 05:47:42 GMT</span></span>
+<span id="cb3-101"><a href="#cb3-101"></a><span class="co">#&gt; &lt;- Date: Wed, 09 Feb 2022 19:26:45 GMT</span></span>
 <span id="cb3-102"><a href="#cb3-102"></a><span class="co">#&gt; &lt;- Server: WSGIServer/0.2 CPython/3.9.10</span></span>
 <span id="cb3-103"><a href="#cb3-103"></a><span class="co">#&gt; &lt;- Content-Type: application/json</span></span>
 <span id="cb3-104"><a href="#cb3-104"></a><span class="co">#&gt; &lt;- Vary: Accept, Cookie</span></span>
