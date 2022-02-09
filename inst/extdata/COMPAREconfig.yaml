@@ -13,8 +13,6 @@ read:
   use:
     namespace: testing
 - data_product: SEIRS_model/results/model_output/cpp
-  use:
-    namespace: testing
 
 write:
 - data_product: output
