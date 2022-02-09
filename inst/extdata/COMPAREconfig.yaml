@@ -6,12 +6,8 @@ run_metadata:
 read:
 - data_product: SEIRS_model/results/model_output/R
 - data_product: SEIRS_model/results/model_output/java
-  use:
-    namespace: testing
 - data_product: SEIRS_model/results/model_output/julia
 - data_product: SEIRS_model/results/model_output/python
-  use:
-    namespace: testing
 - data_product: SEIRS_model/results/model_output/cpp
 
 write:
