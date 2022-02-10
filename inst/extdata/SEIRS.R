@@ -8,6 +8,9 @@ library(magrittr)
 conf.dir <- Sys.getenv("FDP_CONFIG_DIR")
 config <- file.path(conf.dir, "config.yaml")
 script <- file.path(conf.dir, "script.sh")
+if(.Platform$OS.type != "unix") {
+    script <- file.path(conf.dir, "script.bat")
+}
 handle <- initialise(config, script)
 
 # Read model parameters

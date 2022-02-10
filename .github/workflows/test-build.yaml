@@ -36,29 +36,14 @@ jobs:
               else
                   brew install graphviz
               fi
-      - name: Install local registry
-        run: /bin/bash -c "$(curl -fsSL https://data.scrc.uk/static/localregistry.sh)"
-
       - uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
-      - name: Checkout FAIRDataPipeline/FAIR-CLI
-        uses: actions/checkout@v2
-        with:
-          repository: FAIRDataPipeline/FAIR-CLI
-          path: FAIR-CLI
-      - name: Move FAIR-CLI
-        run: mv FAIR-CLI ../FAIR-CLI
+          python-version: '3.9'
       - name: Install Poetry
         uses: snok/install-poetry@v1
         with:
           virtualenvs-create: true
           virtualenvs-in-project: true
-      - name: Install FAIR CLI and initialise rSimpleModel project
-        run: |
-          cd ../FAIR-CLI
-          poetry install
-          source .venv/bin/activate
 
       - name: git2r dependencies (for package deployment)
         run: sudo apt-get install -y libgit2-dev
@@ -82,16 +67,13 @@ jobs:
           sudo apt-get install -y libpoppler-cpp-dev
       - name: Deploy package
         run: |
-          # Need to run CLI from a script via poetry run
-          mkdir tmp
-          echo "#!/bin/sh" >> ${{ github.workspace }}/tmp/tmp_file.sh
-          echo "cd ../rSimpleModel" >> ${{ github.workspace }}/tmp/tmp_file.sh
-          echo "git config --local user.name "$GITHUB_ACTOR" >> ${{ github.workspace }}/tmp/tmp_file.sh
-          echo "git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com" >> ${{ github.workspace }}/tmp/tmp_file.sh
-          echo "cd ../rSimpleModel" >> ${{ github.workspace }}/tmp/tmp_file.sh
-          echo "Rscript -e 'pkgdown::deploy_to_branch(new_process = FALSE)'" >> ${{ github.workspace }}/tmp/tmp_file.sh
-          chmod +x tmp/tmp_file.sh
-          cd ../FAIR-CLI
-          ls ../rSimpleModel/tmp/
-          poetry run ../rSimpleModel/tmp/tmp_file.sh
+          python -m venv venv
+          source venv/bin/activate
+          pip3 install fair-cli
+          fair registry install
+          fair init --ci
+          fair registry start
+          git config --local user.name "$GITHUB_ACTOR"
+          git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          Rscript -e 'pkgdown::deploy_to_branch(new_process = FALSE)'
 

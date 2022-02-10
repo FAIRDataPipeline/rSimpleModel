@@ -4,3 +4,6 @@
 .Ruserdata
 inst/doc
 .fair/
+venv
+data_store
+config.yaml
