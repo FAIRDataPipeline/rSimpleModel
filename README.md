@@ -4,26 +4,16 @@
 
 A simple example of an SEIRS epidemiological model using the [FAIR Data Pipeline](https://fairdatapipeline.github.io).
 
-## Installing the command line tools
+## Installing the command line tools and local registry
 
-If you don't already have the registry initialised and the `fair` command line tool configured, then you need to install that next - see [here](https://github.com/FAIRDataPipeline/FAIR-CLI#installation) for more details. Briefly, with python and poetry (`pip install poetry`) installed:
-
-
-```sh
-git clone https://github.com/FAIRDataPipeline/FAIR-CLI.git
-cd FAIR-CLI
-poetry install
-poetry shell
-```
-
-You are now running in a new shell created by `poetry` that has a copy of the `fair` executable in its path.
+Follow [Instructions to install the CLI](https://github.com/FAIRDataPipeline/FAIR-CLI#installation) in the [CLI GitHub repository](https://github.com/FAIRDataPipeline/FAIR-CLI), then follow the instructions to [install the Data Registry via the CLI](https://github.com/FAIRDataPipeline/FAIR-CLI#registry).
 
 ## Installing the R API and simple model functions
 
 Install the [`rDataPipeline`](https://github.com/FAIRDataPipeline/rDataPipeline) package, in R:
 
 ```R
-install.packages(devtools)
+install.packages("devtools")
 devtools::install_github("FAIRDataPipeline/rDataPipeline")
 library(rDataPipeline)
 ```
