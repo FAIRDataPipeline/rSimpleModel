@@ -22,7 +22,7 @@ register:
   primary: True
 
 - external_object: disease/sars_cov2/SEINRD_model/parameters/rts
-  namespace: BioSS
+  namespace_name: BioSS
   root: https://raw.githubusercontent.com/
   path: FAIRDataPipeline/rSimpleModel/main/inst/extdata/Rt_beep.csv
   title: Values of Rt at time t
@@ -35,7 +35,7 @@ register:
   primary: True
 
 - external_object: disease/sars_cov2/SEINRD_model/parameters/efoi
-  namespace: BioSS
+  namespace_name: BioSS
   root: https://raw.githubusercontent.com/
   path: FAIRDataPipeline/rSimpleModel/main/inst/extdata/efoi_all_dates.csv
   title: External force of infection at time t
